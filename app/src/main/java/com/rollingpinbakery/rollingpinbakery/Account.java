@@ -99,4 +99,8 @@ public class Account extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void toLogIn(View v){
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.LoginActivity"));
+
+    }
 }
