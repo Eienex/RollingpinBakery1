@@ -22,4 +22,10 @@
         app:headerLayout="@layout/nav_header_account"
         app:menu="@menu/activity_account_drawer" />
 
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:onClick="toLogIn"
+        android:text="Login" />
+
 </android.support.v4.widget.DrawerLayout>
