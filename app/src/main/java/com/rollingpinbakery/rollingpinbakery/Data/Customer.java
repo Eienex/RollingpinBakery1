@@ -3,8 +3,11 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
 
-import java.util.Date;
+import java.sql.Date;
+
+
 
 /**
  * Created by rudst on 2/12/2018.
@@ -28,16 +31,17 @@ public class Customer {
     @ColumnInfo(name = "custPassword")
     private String custPassword;
 
-    @ColumnInfo(name = "dateSignedUp")
-    private Date dateSignedUp;
+    //@ColumnInfo(name = "dateSignedUp")
+    //@TypeConverter({Converters.class})
+    //private Date dateSignedUp;
 
 
-    public Customer(String custFName, String custLName, String custUsername, String custPassword, Date dateSignedUp) {
+    public Customer(String custFName, String custLName, String custUsername, String custPassword) {
         this.custFName = custFName;
         this.custLName = custLName;
         this.custUsername = custUsername;
         this.custPassword = custPassword;
-        this.dateSignedUp = dateSignedUp;
+        //this.dateSignedUp = dateSignedUp;
     }
 
     public int get_custId() {return _custId;}
@@ -55,7 +59,7 @@ public class Customer {
     public String getCustPassword() {return custPassword;}
     public void setCustPassword(String custPassword) {this.custPassword = custPassword;}
 
-    public Date getDateSignedUp() {return dateSignedUp;}
-    public void setDateSignedUp(Date dateSignedUp) {this.dateSignedUp = dateSignedUp;}
+    //public Date getDateSignedUp() {return dateSignedUp;}
+    //public void setDateSignedUp(Date dateSignedUp) {this.dateSignedUp = dateSignedUp;}
 
 }
