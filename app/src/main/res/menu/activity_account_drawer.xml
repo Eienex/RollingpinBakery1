@@ -16,6 +16,9 @@
             android:id="@+id/nav_Account"
             android:icon="@android:drawable/ic_dialog_dialer"
             android:title="Account" />
-
+        <item
+            android:id="@+id/nav_Register"
+            android:icon="@android:drawable/ic_dialog_dialer"
+            android:title="Sign Up!" />
     </group>
 </menu>
