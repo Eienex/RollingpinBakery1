@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/userName"
+        android:id="@+id/userNameTxt"
         android:layout_width="135dp"
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
@@ -25,7 +25,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
-        android:id="@+id/userName2"
+        android:id="@+id/userName"
         android:layout_width="357dp"
         android:layout_height="40dp"
         android:layout_marginBottom="8dp"
@@ -40,7 +40,7 @@
         app:layout_constraintVertical_bias="0.075" />
 
     <TextView
-        android:id="@+id/password"
+        android:id="@+id/passwordTxt"
         android:layout_width="134dp"
         android:layout_height="30dp"
         android:layout_marginBottom="392dp"
@@ -59,7 +59,7 @@
         app:layout_constraintVertical_bias="0.098" />
 
     <EditText
-        android:id="@+id/password2"
+        android:id="@+id/password"
         android:layout_width="363dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -76,7 +76,7 @@
         app:layout_constraintVertical_bias="0.25" />
 
     <TextView
-        android:id="@+id/email"
+        android:id="@+id/emailTxt"
         android:layout_width="134dp"
         android:layout_height="30dp"
         android:layout_marginBottom="320dp"
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.262" />
 
     <EditText
-        android:id="@+id/email2"
+        android:id="@+id/email"
         android:layout_width="363dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -110,7 +110,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <TextView
-        android:id="@+id/address"
+        android:id="@+id/addressTxt"
         android:layout_width="146dp"
         android:layout_height="30dp"
         android:layout_marginBottom="252dp"
@@ -129,7 +129,7 @@
         app:layout_constraintVertical_bias="0.426" />
 
     <EditText
-        android:id="@+id/address2"
+        android:id="@+id/address"
         android:layout_width="363dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -144,7 +144,7 @@
         app:layout_constraintVertical_bias="0.547" />
 
     <TextView
-        android:id="@+id/city"
+        android:id="@+id/cityTxt"
         android:layout_width="134dp"
         android:layout_height="30dp"
         android:layout_marginBottom="188dp"
@@ -163,7 +163,7 @@
         app:layout_constraintVertical_bias="0.573" />
 
     <EditText
-        android:id="@+id/city2"
+        android:id="@+id/city"
         android:layout_width="363dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -178,7 +178,7 @@
         app:layout_constraintVertical_bias="0.681" />
 
     <TextView
-        android:id="@+id/state"
+        android:id="@+id/stateTxt"
         android:layout_width="125dp"
         android:layout_height="30dp"
         android:layout_marginBottom="120dp"
@@ -197,7 +197,7 @@
         app:layout_constraintVertical_bias="0.746" />
 
     <EditText
-        android:id="@+id/state2"
+        android:id="@+id/state"
         android:layout_width="146dp"
         android:layout_height="40dp"
         android:layout_marginEnd="276dp"
@@ -211,7 +211,7 @@
         app:layout_constraintVertical_bias="0.838" />
 
     <TextView
-        android:id="@+id/zipCode"
+        android:id="@+id/zipCodeTxt"
         android:layout_width="140dp"
         android:layout_height="35dp"
         android:layout_marginBottom="112dp"
@@ -230,7 +230,7 @@
         app:layout_constraintVertical_bias="0.746" />
 
     <EditText
-        android:id="@+id/zipCode2"
+        android:id="@+id/zipCode"
         android:layout_width="140dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
