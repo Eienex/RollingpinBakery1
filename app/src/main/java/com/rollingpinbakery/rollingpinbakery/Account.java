@@ -83,20 +83,24 @@ public class Account extends AppCompatActivity
 
         if (id == R.id.nav_Home) {
             Intent editIntent = new Intent(this, MainActivity.class);
-
             startActivity(editIntent);
         } else if (id == R.id.nav_Store) {
             Intent editIntent = new Intent(this, Store.class);
-
             startActivity(editIntent);
         } else if (id == R.id.nav_Account) {
             Intent editIntent = new Intent(this, Account.class);
-
+            startActivity(editIntent);
+        } else if (id == R.id.nav_Register) {
+            Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void toLogIn(View v){
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.LoginActivity"));
+
     }
 }

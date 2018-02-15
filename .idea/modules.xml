@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RollingpinBakery.iml" filepath="$PROJECT_DIR$/RollingpinBakery.iml" />
+      <module fileurl="file://C:\Users\rudst\Documents\GitHub\RollingpinBakery1\RollingpinBakery.iml" filepath="C:\Users\rudst\Documents\GitHub\RollingpinBakery1\RollingpinBakery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RollingpinBakery1.iml" filepath="$PROJECT_DIR$/RollingpinBakery1.iml" />
+      <module fileurl="file://C:\Users\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery2\RollingpinBakery1.iml" filepath="C:\Users\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery2\RollingpinBakery1.iml" />
+      <module fileurl="file://C:\Users\rudst\Documents\GitHub\RollingpinBakery1\RollingpinBakery2.iml" filepath="C:\Users\rudst\Documents\GitHub\RollingpinBakery1\RollingpinBakery2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

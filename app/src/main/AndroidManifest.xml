@@ -26,7 +26,22 @@
         <activity
             android:name=".Account"
             android:label="@string/title_activity_account"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:label="Log In">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.LoginActivity"></action>
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Register">
+            android:label="Registration"
+            android:theme="@style/AppTheme.NoActionBar"
+        </activity>
     </application>
 
 </manifest>
