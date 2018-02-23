@@ -8,4 +8,83 @@
     tools:context="com.rollingpinbakery.rollingpinbakery.Store"
     tools:showIn="@layout/app_bar_store">
 
+    <TextView
+        android:id="@+id/CategoryHeaderTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/categories"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <GridLayout
+        android:layout_width="366dp"
+        android:layout_height="462dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:columnCount="2"
+        android:orientation="horizontal"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CategoryHeaderTxt"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/CakesCategory"
+            android:layout_width="175dp"
+            android:layout_height="138dp"
+
+            android:layout_margin="3dp"
+            android:onClick="NavCakesCat"
+            android:text="@string/cakes"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/CookiesCategory"
+            android:layout_width="175dp"
+            android:layout_height="138dp"
+
+            android:layout_margin="3dp"
+            android:onClick="NavCookiesCat"
+            android:text="@string/cookies"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/PastriesCategory"
+            android:layout_width="175dp"
+            android:layout_height="138dp"
+
+            android:layout_margin="3dp"
+            android:onClick="NavPastriesCat"
+            android:text="@string/pastries"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/DonutsCategory"
+            android:layout_width="175dp"
+            android:layout_height="138dp"
+
+            android:layout_margin="3dp"
+            android:onClick="NavDonutsCat"
+            android:text="@string/Donuts"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/BreadsCategory"
+            android:layout_width="175dp"
+            android:layout_height="138dp"
+
+            android:layout_margin="3dp"
+            android:onClick="NavBreadsCat"
+            android:text="@string/breads"
+            android:textSize="30sp" />
+
+    </GridLayout>
 </android.support.constraint.ConstraintLayout>
