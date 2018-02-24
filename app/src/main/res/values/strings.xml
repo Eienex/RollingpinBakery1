@@ -4,13 +4,42 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    //Activity Titles
     <string name="title_activity_store">Store</string>
+    <string name="title_activity_account">Account</string>
+    <string name="title_activity_cakes_category">Store - Cakes</string>
+    <string name="title_activity_cookies_category">Store - Cookies</string>
+    <string name="title_activity_pastries_category">Store - Pastries</string>
+    <string name="title_activity_donut_category">Store - Donuts</string>
+
+
+    <string name="action_settings">Settings</string>
+
+    //Nav
     <string name="nav_Home">Home</string>
     <string name="nav_Store">Store</string>
     <string name="nav_Account">Account</string>
-    <string name="title_activity_account">Account</string>
+
+    //Login Form
     <string name="log_in">Log In</string>
     <string name="password">Password:</string>
     <string name="user_name">User Name:</string>
+
+    //Store - Category Page
+    <string name="categories">Categories</string>
+    <string name="cakes">Cakes</string>
+    <string name="cookies">Cookies</string>
+    <string name="pastries">Pastries</string>
+    <string name="Donuts">Donuts</string>
+    <string name="breads">Breads</string>
+
+    //Individual Category pages
+    <string name="cake_products">Cake Products</string>
+    <string name="cookie_products">Cookie Products</string>
+    <string name="pastry_products">Pastry Products</string>
+    <string name="donut_products">Donut Products</string>
+    <string name="bread_products">Bread Products</string>
+    <string name="title_activity_breads_category">Store - Breads</string>
+
+
 </resources>

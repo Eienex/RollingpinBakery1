@@ -16,13 +16,13 @@ public class Register extends AppCompatActivity {
 
     public void SubmitRegistration(View v) {
         //Gets values
-        EditText userName = findViewById(R.id.userName2);
-        EditText password = findViewById(R.id.password2);
-        EditText email = findViewById(R.id.email2);
-        EditText address = findViewById(R.id.address2);
-        EditText city = findViewById(R.id.city2);
-        EditText state = findViewById(R.id.state2);
-        EditText zip = findViewById(R.id.zipCode2);
+        EditText userName = findViewById(R.id.userName);
+        EditText password = findViewById(R.id.password);
+        EditText email = findViewById(R.id.email);
+        EditText address = findViewById(R.id.address);
+        EditText city = findViewById(R.id.city);
+        EditText state = findViewById(R.id.state);
+        EditText zip = findViewById(R.id.zipCode);
 
         String userNameText = userName.getText().toString();
 

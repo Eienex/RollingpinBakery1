@@ -27,21 +27,39 @@
             android:name=".Account"
             android:label="@string/title_activity_account"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".LoginActivity"
             android:label="Log In">
             <intent-filter>
-                <action android:name="com.rollingpinbakery.rollingpinbakery.LoginActivity"></action>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.LoginActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Register">
+        <activity android:name=".Register">
             android:label="Registration"
             android:theme="@style/AppTheme.NoActionBar"
         </activity>
+        <activity
+            android:name=".CakesCategory"
+            android:label="@string/title_activity_cakes_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CookiesCategory"
+            android:label="@string/title_activity_cookies_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PastriesCategory"
+            android:label="@string/title_activity_pastries_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DonutCategory"
+            android:label="@string/title_activity_donut_category"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BreadsCategory"
+            android:label="@string/title_activity_breads_category"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
