@@ -28,7 +28,7 @@ public class Register extends AppCompatActivity {
 
 
         //Shows that values have been retrieved
-        Toast.makeText(getApplicationContext(), "Welcome : " + userName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome "+ userName, Toast.LENGTH_SHORT).show();
     }
 }
 
