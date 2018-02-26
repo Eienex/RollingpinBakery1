@@ -23,11 +23,12 @@
 
     <EditText
         android:id="@+id/fName"
-        android:layout_width="357dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="363dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="20dp"
-        android:inputType="textPersonName"
+        android:layout_marginLeft="16dp"
+        android:ems="10"
+        android:inputType="text"
         app:layout_constraintTop_toBottomOf="@id/fNameTxt"
         app:layout_constraintBottom_toTopOf="@+id/lNameTxt"
         

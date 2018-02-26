@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity {
 
       //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
 
-        Toast.makeText(this,"Welcome", Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Welcome" + fNameText, Toast.LENGTH_LONG).show();
 
     }
 }
