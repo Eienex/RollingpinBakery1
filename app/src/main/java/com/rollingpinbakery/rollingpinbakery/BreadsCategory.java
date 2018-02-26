@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
 public class BreadsCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -23,6 +26,16 @@ public class BreadsCategory extends AppCompatActivity
         setContentView(R.layout.activity_breads_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppDatabase.getAppDatabase(this).productDao().insert(
+                new Product("Loaf of Bread",
+                        10.99,
+                        null,
+                        "A sample loaf of Bread",
+                        "Bread",
+                        false,
+                        null));
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
