@@ -14,27 +14,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
-import com.rollingpinbakery.rollingpinbakery.Data.Product;
+/**
+ * Created by equno_000 on 2/25/2018.
+ */
 
-public class DonutCategory extends AppCompatActivity
+public class Item extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donut_category);
+        setContentView(R.layout.activity_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Donut",
-                        10.99,
-                        null,
-                        "A sample donut",
-                        "Donut",
-                        false,
-                        null));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +46,6 @@ public class DonutCategory extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view2);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -112,7 +103,5 @@ public class DonutCategory extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void NavItem(View view){
-        startActivity(new Intent(this, Item.class)); }
 }
 
