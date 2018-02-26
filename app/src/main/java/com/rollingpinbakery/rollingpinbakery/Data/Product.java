@@ -34,8 +34,8 @@ public class Product {
     @ColumnInfo(name = "prodImg")
     private String prodImg;
 
-    public Product(int _prodId, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImg) {
-        this._prodId = _prodId;
+    public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImg) {
+
         this.prodName = prodName;
         this.prodRetailPrice = prodRetailPrice;
         this.prodSalePrice = prodSalePrice;
