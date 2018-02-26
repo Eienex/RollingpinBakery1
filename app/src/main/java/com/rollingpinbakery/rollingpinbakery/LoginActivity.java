@@ -6,8 +6,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
+    public String customer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +28,15 @@ public class LoginActivity extends AppCompatActivity {
         String test2 = f.getText().toString();
 
         //Shows that values have been retrieved
-        Toast.makeText(getApplicationContext(), test1 + " " + test2,Toast.LENGTH_SHORT).show();
+        customer = (AppDatabase.getAppDatabase(this)
+                .customerDao()
+                .getCustomerInfo(test1, test2)).toString();
+        if(customer == null){
+            Toast.makeText(getApplicationContext(), "Username does not exist",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Welcome back " + customer + "!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
