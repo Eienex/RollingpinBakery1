@@ -31,16 +31,24 @@ public class Customer {
     @ColumnInfo(name = "custPassword")
     private String custPassword;
 
+    @ColumnInfo(name = "custEmail")
+    private String custEmail;
+
+    @ColumnInfo(name = "custType")
+    private String custType;
+
     //@ColumnInfo(name = "dateSignedUp")
     //@TypeConverter({Converters.class})
     //private Date dateSignedUp;
 
 
-    public Customer(String custFName, String custLName, String custUsername, String custPassword) {
+    public Customer(String custFName, String custLName, String custUsername, String custPassword, String email, String type) {
         this.custFName = custFName;
         this.custLName = custLName;
         this.custUsername = custUsername;
         this.custPassword = custPassword;
+        this.custEmail = email;
+        this.custType = type;
         //this.dateSignedUp = dateSignedUp;
     }
 
@@ -59,6 +67,11 @@ public class Customer {
     public String getCustPassword() {return custPassword;}
     public void setCustPassword(String custPassword) {this.custPassword = custPassword;}
 
+    public String getCustEmail() {return custEmail;}
+    public void setCustEmail(String custEmail) {this.custEmail = custEmail;}
+
+    public String getCustType() {return custType;}
+    public void setCustType(String custtype) {this.custType = custtype;}
     //public Date getDateSignedUp() {return dateSignedUp;}
     //public void setDateSignedUp(Date dateSignedUp) {this.dateSignedUp = dateSignedUp;}
 
