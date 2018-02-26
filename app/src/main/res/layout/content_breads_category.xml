@@ -34,7 +34,10 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item1"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
 
         <Button
             android:id="@+id/Item2"
@@ -43,7 +46,10 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item2"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
 
         <Button
             android:id="@+id/Item3"
@@ -52,7 +58,10 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item3"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
 
         <Button
             android:id="@+id/Item4"
@@ -61,7 +70,10 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item4"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
 
         <Button
             android:id="@+id/Item5"
@@ -70,7 +82,10 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item5"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
 
         <Button
             android:id="@+id/Item6"
@@ -79,6 +94,9 @@
             android:layout_margin="3dp"
             android:onClick="NavItem"
             android:text="@string/item6"
-            android:textSize="30sp" />
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:drawableLeft="@mipmap/bread"
+            />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
