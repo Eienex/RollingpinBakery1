@@ -14,6 +14,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
 public class DonutCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -23,6 +26,15 @@ public class DonutCategory extends AppCompatActivity
         setContentView(R.layout.activity_donut_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppDatabase.getAppDatabase(this).productDao().insert(
+                new Product("Simple Donut",
+                        10.99,
+                        null,
+                        "A sample donut",
+                        "Donut",
+                        false,
+                        null));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

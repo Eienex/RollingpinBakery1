@@ -14,17 +14,29 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.R;
 
 public class CakesCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cakes_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppDatabase.getAppDatabase(this).productDao().insert(
+                new Product("Birthday Cake",
+                        10.99,
+                        null,
+                        "A sample Birthday Cake",
+                        "Cake",
+                        false,
+                        null));
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +44,7 @@ public class CakesCategory extends AppCompatActivity
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+
             }
         });
 
