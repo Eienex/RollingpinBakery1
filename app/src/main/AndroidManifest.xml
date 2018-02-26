@@ -39,7 +39,11 @@
         <activity android:name=".Register"
             android:label="Registration"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.Register" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
 
         </activity>
         <activity

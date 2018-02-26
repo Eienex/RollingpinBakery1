@@ -36,11 +36,11 @@ public class Register extends AppCompatActivity {
 
         AppDatabase.getAppDatabase(this).customerDao().insert(
                 new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+        finish();
 
+      //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
 
-        //List <Customer> customers = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
-
-        //Toast.makeText(this, "Welcome: " + customers , Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Welcome", Toast.LENGTH_LONG).show();
 
     }
 }
