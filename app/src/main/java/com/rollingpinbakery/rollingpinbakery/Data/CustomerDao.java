@@ -31,8 +31,8 @@ public interface CustomerDao {
     @Query("SELECT * FROM customer")
     public List<Customer> getAllCustomers();
 
-    @Query("SELECT custUsername FROM customer where custUsername == :custUser AND custPassword = :custPass")
-    public Customer getCustomerInfo(String custUser, String custPass);
+    @Query("SELECT _custId, custUsername FROM customer where custUsername == :custUsername AND custPassword = :custPassword")
+    public Customer getCustomerInfo(String custUsername, String custPassword);
 
 
 
