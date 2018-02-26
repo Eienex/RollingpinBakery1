@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 
+import java.util.List;
+
 public class Register extends AppCompatActivity {
 
     @Override
@@ -36,9 +38,9 @@ public class Register extends AppCompatActivity {
                 new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
 
 
-        String Customer = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
+        //List <Customer> customers = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
 
-        Toast.makeText(this, "Welcome: " + Customer , Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Welcome: " + customers , Toast.LENGTH_LONG).show();
 
     }
 }
