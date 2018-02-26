@@ -24,7 +24,7 @@ public interface ProductDao {
     @Delete()
     public void deleteAll(List<Product> productList);
 
-    @Query("SELECT * FROM product where _id == :id")
+    @Query("SELECT * FROM product where _prodId == :id")
     public Product getProductById(int id);
 
     @Query("SELECT * FROM product")
