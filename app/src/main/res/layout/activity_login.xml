@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.rollingpinbakery.rollingpinbakery.LoginActivity">
 
+    <Button
+        android:id="@+id/reg"
+        android:layout_width="90sp"
+        android:layout_height="40sp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="272dp"
+        android:layout_marginTop="8dp"
+        android:onClick="RegUser"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.38" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="135dp"
