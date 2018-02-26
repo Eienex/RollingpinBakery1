@@ -25,10 +25,16 @@ public class Register extends AppCompatActivity {
         EditText zip = findViewById(R.id.zipCode);
 
         String userNameText = userName.getText().toString();
+        String passwordText = password.getText().toString();
+        String emailText = email.getText().toString();
+        String addressText = address.getText().toString();
+        String cityText = city.getText().toString();
+        String stateText = state.getText().toString();
+        String zipText = zip.getText().toString();
 
 
         //Shows that values have been retrieved
-        Toast.makeText(this, "Welcome "+ userName, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Welcome " + userNameText, Toast.LENGTH_LONG).show();
     }
 }
 
