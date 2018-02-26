@@ -42,13 +42,13 @@ public class Customer {
     //private Date dateSignedUp;
 
 
-    public Customer(String custFName, String custLName, String custUsername, String custPassword, String email, String type) {
+    public Customer(String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
         this.custFName = custFName;
         this.custLName = custLName;
         this.custUsername = custUsername;
         this.custPassword = custPassword;
-        this.custEmail = email;
-        this.custType = type;
+        this.custEmail = custEmail;
+        this.custType = custType;
         //this.dateSignedUp = dateSignedUp;
     }
 
