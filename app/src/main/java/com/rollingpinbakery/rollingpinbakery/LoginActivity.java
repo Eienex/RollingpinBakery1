@@ -1,5 +1,6 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public String customer;
+    public Customer customer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +29,23 @@ public class LoginActivity extends AppCompatActivity {
         String test2 = f.getText().toString();
 
         //Shows that values have been retrieved
-        customer = (AppDatabase.getAppDatabase(this)
-                .customerDao()
-                .getCustomerInfo(test1, test2)).toString();
-        if(customer == null){
-            Toast.makeText(getApplicationContext(), "Username does not exist",Toast.LENGTH_SHORT).show();
+        try {
+            customer = AppDatabase.getAppDatabase(this)
+                    .customerDao()
+                    .getCustomerInfo(test1, test2);
+            if (customer == null) {
+                Toast.makeText(getApplicationContext(), "Username does not exist", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Welcome back " + customer.toString() + "!", Toast.LENGTH_SHORT).show();
+            }
         }
-        else {
-            Toast.makeText(getApplicationContext(), "Welcome back " + customer + "!", Toast.LENGTH_SHORT).show();
+        catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+    }
+    public void RegUser(View v){
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.Register"));
     }
 
 }

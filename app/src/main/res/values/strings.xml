@@ -40,6 +40,7 @@
     <string name="donut_products">Donut Products</string>
     <string name="bread_products">Bread Products</string>
     <string name="title_activity_breads_category">Store - Breads</string>
+    <string name="register">Register</string>
 
     //Filler Items
     <string name="item1">Item1</string>
