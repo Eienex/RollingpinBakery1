@@ -100,5 +100,7 @@ public class DonutCategory extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void NavItem(View view){
+        startActivity(new Intent(this, Item.class)); }
 }
 

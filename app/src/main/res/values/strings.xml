@@ -42,12 +42,15 @@
     <string name="title_activity_breads_category">Store - Breads</string>
 
     //Filler Items
-    <string name="Item1">Item1</string>
-    <string name="Item2">Item2</string>
-    <string name="Item3">Item3</string>
-    <string name="Item4">Item4</string>
-    <string name="Item5">Item5</string>
-    <string name="Item6">Item6</string>
+    <string name="item1">Item1</string>
+    <string name="item2">Item2</string>
+    <string name="item3">Item3</string>
+    <string name="item4">Item4</string>
+    <string name="item5">Item5</string>
+    <string name="item6">Item6</string>
 
-
+    //Item details page
+    <string name="item">Item</string>
+    <string name="buy">Buy</string>
+    <string name="itemDetails">details to be filled in with DB data</string>
 </resources>

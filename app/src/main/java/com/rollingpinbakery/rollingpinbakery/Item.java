@@ -14,15 +14,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.rollingpinbakery.rollingpinbakery.R;
+/**
+ * Created by equno_000 on 2/25/2018.
+ */
 
-public class CakesCategory extends AppCompatActivity
+public class Item extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cakes_category);
+        setContentView(R.layout.activity_item);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,7 +46,6 @@ public class CakesCategory extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view2);
         navigationView.setNavigationItemSelectedListener(this);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -102,6 +103,5 @@ public class CakesCategory extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void NavItem(View view){
-        startActivity(new Intent(this, Item.class)); }
 }
+
