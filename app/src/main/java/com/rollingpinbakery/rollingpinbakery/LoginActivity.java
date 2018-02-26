@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
             if (customer == null) {
                 Toast.makeText(getApplicationContext(), "Username does not exist", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Welcome back " + customer.toString() + "!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Welcome back " + customer.getCustFName() + "!", Toast.LENGTH_SHORT).show();
             }
         }
         catch(Exception ex){
