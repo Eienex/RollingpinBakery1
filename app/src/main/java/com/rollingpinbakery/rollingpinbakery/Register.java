@@ -32,10 +32,13 @@ public class Register extends AppCompatActivity {
         String emailText = email.getText().toString();
 
 
-
         AppDatabase.getAppDatabase(this).customerDao().insert(
                 new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
-        finish();
+
+
+        String Customer = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
+
+        Toast.makeText(this, "Welcome: " + Customer , Toast.LENGTH_LONG).show();
 
     }
 }
