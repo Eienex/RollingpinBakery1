@@ -35,6 +35,9 @@ public interface CustomerDao {
     @Query("SELECT * FROM customer where custUsername == :custUsername AND custPassword == :custPassword")
     public Customer getCustomerInfo(String custUsername, String custPassword);
 
+    @Query("UPDATE customer SET custType = 'Admin' where custUsername == :custUsername")
+    public void createAdminByUsername(String custUsername);
+
 
 
     //@Query("UPDATE contact set custFName = :custFName where _custId == :id")
