@@ -54,4 +54,5 @@
     <string name="item">Item</string>
     <string name="buy">Buy</string>
     <string name="itemDetails">details to be filled in with DB data</string>
+    <string name="title_activity_admin_main">Admin Home</string>
 </resources>
