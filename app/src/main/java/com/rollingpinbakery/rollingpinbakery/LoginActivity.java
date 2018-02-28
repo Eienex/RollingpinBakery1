@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
             customer = AppDatabase.getAppDatabase(this)
                     .customerDao()
                     .getCustomerInfo(test1, test2);
+
+
             if (customer == null) {
                 Toast.makeText(getApplicationContext(), "Username does not exist", Toast.LENGTH_SHORT).show();
             } else {
