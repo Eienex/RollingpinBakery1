@@ -27,6 +27,9 @@ public interface ProductDao {
     @Query("SELECT * FROM product where _prodId == :id")
     public Product getProductById(int id);
 
+    @Query("SELECT * FROM product where prodType == :type")
+    public Product getProductByType(String type);
+
     @Query("SELECT * FROM product")
     public List<Product> getAllProducts();
 
