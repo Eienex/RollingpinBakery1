@@ -14,6 +14,7 @@
     <string name="title_activity_admin_main">Admin Home</string>
     <string name="title_activity_admin_products">Admin - View Products</string>
     <string name="title_activity_admin_product_edit">Edit Product</string>
+    <string name="title_activity_admin_customer_edit">Edit Customer</string>
 
 
     <string name="action_settings">Settings</string>
@@ -64,6 +65,8 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="add_product">Add a Product</string>
+    <string name="edit_product">Edit a Product</string>
+    <string name="edit_customer">Edit a Product</string>
     <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="sales_price">Sales Price</string>
@@ -80,5 +83,6 @@
         <item>Donut</item>
         <item>Bread</item>
     </string-array>
+    <string name="title_activity_admin_customers">Admin - View Customers</string>
 
 </resources>

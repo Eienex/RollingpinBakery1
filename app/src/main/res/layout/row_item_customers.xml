@@ -11,63 +11,68 @@
 
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_column="0"
             android:layout_row="0"
+            android:paddingBottom="2dp"
             android:paddingLeft="5dp"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:textStyle="bold" />
 
 
         <TextView
-            android:id="@+id/price"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:paddingLeft="5dp"
-            android:textAlignment="viewStart" />
-
-        <TextView
-            android:id="@+id/salePrice"
+            android:id="@+id/userName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_marginLeft="100dp"
             android:layout_row="1"
-            android:paddingBottom="8dp"
+            android:paddingBottom="2dp"
             android:paddingLeft="5dp"
             android:textAlignment="viewStart" />
 
         <TextView
-            android:id="@+id/productType"
+            android:id="@+id/txtPassword"
+            android:layout_width="72dp"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:text="@string/password"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:textAlignment="viewStart"
+            />
+
+        <TextView
+            android:id="@+id/custPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:layout_marginLeft="70dp"
+            android:textAlignment="viewStart"
+            android:inputType="textPassword"/>
+
+        <TextView
+            android:id="@+id/custEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="3"
-            android:paddingBottom="8dp"
+            android:paddingBottom="2dp"
             android:paddingLeft="5dp"
             android:textAlignment="viewStart" />
 
         <TextView
-            android:id="@+id/productDesc"
+            android:id="@+id/custRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_column="0"
             android:layout_row="4"
-            android:paddingBottom="8dp"
-            android:paddingLeft="5dp"
-            android:textAlignment="viewStart" />
-
-        <TextView
-            android:id="@+id/prodIsFeatured"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="5"
-            android:paddingBottom="8dp"
+            android:paddingBottom="2dp"
             android:paddingLeft="5dp"
             android:textAlignment="viewStart" />
 
@@ -76,7 +81,7 @@
 
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="wrap_content"
         android:paddingRight="10dp">
 
         <Button

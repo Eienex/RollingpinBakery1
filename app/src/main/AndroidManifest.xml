@@ -81,7 +81,14 @@
             android:name=".AdminProductEdit"
             android:label="@string/title_activity_admin_product_edit"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminProductAdd"></activity>
+        <activity android:name=".AdminProductAdd" />
+        <activity
+            android:name=".AdminCustomers"
+            android:label="@string/title_activity_admin_customers"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminCustomerEdit"
+            android:label="@string/title_activity_admin_customer_edit"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

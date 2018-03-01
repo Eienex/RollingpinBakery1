@@ -13,14 +13,27 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
-public class AdminMainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
+import java.util.ArrayList;
+
+public class AdminCustomers extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
+
+    Button editBtn;
+    ListView listView;
+    ArrayList<Customer> customers;
+    private static CustomerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.activity_admin_customers);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -33,7 +46,6 @@ public class AdminMainActivity extends AppCompatActivity
             }
         });
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -43,6 +55,7 @@ public class AdminMainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -102,14 +115,13 @@ public class AdminMainActivity extends AppCompatActivity
         return true;
     }
 
-
-    public void products(View view){
-        startActivity(new Intent(this, AdminProducts.class));
+    @Override
+    protected void onResume(){
+        super.onResume();
+        listView = findViewById(R.id.listView);
+        customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
+        adapter = new CustomerAdapter(this, customers);
+        listView.setAdapter(adapter);
     }
-
-    public void customers(View view){
-        startActivity(new Intent(this, AdminCustomers.class));
-    }
-
 
 }
