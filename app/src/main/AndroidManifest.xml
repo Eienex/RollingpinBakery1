@@ -38,8 +38,7 @@
         </activity>
         <activity
             android:name=".Register"
-            android:label="Registration"
-            >
+            android:label="Registration">
             <intent-filter>
                 <action android:name="com.rollingpinbakery.rollingpinbakery.Register" />
 
@@ -73,7 +72,16 @@
         <activity
             android:name=".AdminMainActivity"
             android:label="@string/title_activity_admin_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminProducts"
+            android:label="@string/title_activity_admin_products"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminProductEdit"
+            android:label="@string/title_activity_admin_product_edit"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminProductAdd"></activity>
     </application>
 
 </manifest>

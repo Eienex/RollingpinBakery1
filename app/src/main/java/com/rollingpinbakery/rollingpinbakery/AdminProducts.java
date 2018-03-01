@@ -13,14 +13,26 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
 
-public class AdminMainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
+import java.util.ArrayList;
+
+public class AdminProducts extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
+
+    Button editBtn;
+    ListView listView;
+    ArrayList<Product> products;
+    private static ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_main);
+        setContentView(R.layout.activity_admin_products);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -28,8 +40,8 @@ public class AdminMainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                startActivity(new Intent(getBaseContext(), AdminProductAdd.class));
             }
         });
 
@@ -43,6 +55,7 @@ public class AdminMainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -103,12 +116,13 @@ public class AdminMainActivity extends AppCompatActivity
     }
 
 
-    public void products(View view){
-        startActivity(new Intent(this, AdminProducts.class));
-    }
-
-    public void customers(View view){
-
+    @Override
+    protected void onResume(){
+        super.onResume();
+        listView = findViewById(R.id.listView);
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        adapter = new ProductAdapter(this, products);
+        listView.setAdapter(adapter);
     }
 
 
