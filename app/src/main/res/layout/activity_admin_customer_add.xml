@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.rollingpinbakery.rollingpinbakery.AdminCustomerEdit"
+    tools:context="com.rollingpinbakery.rollingpinbakery.AdminCustomerAdd"
     android:orientation="vertical">
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/edit_customer"
+        android:text="@string/add_customer"
         android:textAlignment="center"/>
 
     <EditText
@@ -40,6 +39,13 @@
         android:inputType="textPassword"/>
 
     <EditText
+        android:id="@+id/CustomerReenteredPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/cust_re_password"
+        android:inputType="textPassword"/>
+
+    <EditText
         android:id="@+id/CustomerEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,10 +58,10 @@
         android:drawSelectorOnTop="true"/>
 
     <Button
-        android:id="@+id/updateCustomerBtn"
+        android:id="@+id/addCustomerBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/update_customer"
-        android:onClick="UpdateCustomer"/>
+        android:text="@string/add_customer"
+        android:onClick="AddCustomer"/>
 
 </LinearLayout>

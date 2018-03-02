@@ -52,6 +52,17 @@ public class Customer {
         //this.dateSignedUp = dateSignedUp;
     }
 
+    public Customer(int id, String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
+        this._custId = id;
+        this.custFName = custFName;
+        this.custLName = custLName;
+        this.custUsername = custUsername;
+        this.custPassword = custPassword;
+        this.custEmail = custEmail;
+        this.custType = custType;
+        //this.dateSignedUp = dateSignedUp;
+    }
+
     public int get_custId() {return _custId;}
     public void set_custId(int _custId) {this._custId = _custId;}
 

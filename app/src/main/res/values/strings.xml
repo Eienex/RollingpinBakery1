@@ -66,7 +66,8 @@
     <string name="delete">Delete</string>
     <string name="add_product">Add a Product</string>
     <string name="edit_product">Edit a Product</string>
-    <string name="edit_customer">Edit a Product</string>
+    <string name="edit_customer">Edit a Customer</string>
+    <string name="add_customer">Add a Customer</string>
     <string name="name">Name</string>
     <string name="price">Price</string>
     <string name="sales_price">Sales Price</string>
@@ -75,6 +76,14 @@
     <string name="isFeatured">Is this product featured?</string>
     <string name="add">Add Product</string>
     <string name="update">Update Product</string>
+    <string name="update_customer">Update Customer</string>
+    <string name="FName">First Name</string>
+    <string name="LName">Last Name</string>
+    <string name="username">Username</string>
+    <string name="cust_password">Password</string>
+    <string name="cust_re_password">Re-enter Password</string>
+    <string name="email_address">Email Address</string>
+
 
     <string-array name="productTypes">
         <item>Cake</item>
@@ -82,6 +91,11 @@
         <item>Pastry</item>
         <item>Donut</item>
         <item>Bread</item>
+    </string-array>
+
+    <string-array name="customerRoles">
+        <item>Customer</item>
+        <item>Admin</item>
     </string-array>
     <string name="title_activity_admin_customers">Admin - View Customers</string>
 
