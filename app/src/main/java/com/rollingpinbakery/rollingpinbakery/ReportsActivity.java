@@ -15,13 +15,13 @@ public class ReportsActivity extends AppCompatActivity {
 
 
     public void custReports(View view) {
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.CustReports"));
+        startActivity(new Intent(this, CustReports.class));
     }
     public void orderReports(View view){
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.OrderReports"));
+        startActivity(new Intent(this, OrderReports.class));
     }
 
     public void inventReports(View view) {
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.InventReports"));
+        startActivity(new Intent(this, InventReports.class));
     }
 }

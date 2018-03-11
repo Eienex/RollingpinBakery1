@@ -15,6 +15,7 @@
     <string name="title_activity_admin_products">Admin - View Products</string>
     <string name="title_activity_admin_product_edit">Edit Product</string>
     <string name="title_activity_admin_customer_edit">Edit Customer</string>
+    <string name="title_activity_admin_reports">Reports</string>
 
 
     <string name="action_settings">Settings</string>
