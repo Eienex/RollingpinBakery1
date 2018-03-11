@@ -32,8 +32,12 @@ public interface CustomerDao {
     @Query("SELECT * FROM customer")
     public List<Customer> getAllCustomers();
 
-    @Query("SELECT _custId, custUsername FROM customer where custUsername == :custUsername AND custPassword = :custPassword")
+    @Query("SELECT * FROM customer where custUsername == :custUsername AND custPassword == :custPassword")
     public Customer getCustomerInfo(String custUsername, String custPassword);
+
+    @Query("UPDATE customer SET custType = 'Admin' where custUsername == :custUsername")
+    public void createAdminByUsername(String custUsername);
+
 
 
 

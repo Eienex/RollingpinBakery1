@@ -1,5 +1,6 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -21,26 +22,32 @@ public class Register extends AppCompatActivity {
 
     public void SubmitRegistration(View v) {
         //Gets values
-        EditText fName = findViewById(R.id.fName);
-        EditText lName = findViewById(R.id.lName);
-        EditText userName = findViewById(R.id.userName);
-        EditText password = findViewById(R.id.password);
-        EditText email = findViewById(R.id.email);
+        try {
+            EditText fName = findViewById(R.id.fName);
+            EditText lName = findViewById(R.id.lName);
+            EditText userName = findViewById(R.id.userName);
+            EditText password = findViewById(R.id.password);
+            EditText email = findViewById(R.id.email);
 
-        String fNameText = fName.getText().toString();
-        String lNameText = lName.getText().toString();
-        String userNameText = userName.getText().toString();
-        String passwordText = password.getText().toString();
-        String emailText = email.getText().toString();
+            String fNameText = fName.getText().toString();
+            String lNameText = lName.getText().toString();
+            String userNameText = userName.getText().toString();
+            String passwordText = password.getText().toString();
+            String emailText = email.getText().toString();
 
 
-        AppDatabase.getAppDatabase(this).customerDao().insert(
-                new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
-        finish();
+            AppDatabase.getAppDatabase(this).customerDao().insert(
+                    new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
 
-      //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
 
-        Toast.makeText(this,"Welcome" + fNameText, Toast.LENGTH_LONG).show();
+            //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
+
+            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show();
+            finish();
+        }
+        catch(Exception e){
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
     }
 }

@@ -11,6 +11,10 @@
     <string name="title_activity_cookies_category">Store - Cookies</string>
     <string name="title_activity_pastries_category">Store - Pastries</string>
     <string name="title_activity_donut_category">Store - Donuts</string>
+    <string name="title_activity_admin_main">Admin Home</string>
+    <string name="title_activity_admin_products">Admin - View Products</string>
+    <string name="title_activity_admin_product_edit">Edit Product</string>
+    <string name="title_activity_admin_customer_edit">Edit Customer</string>
 
 
     <string name="action_settings">Settings</string>
@@ -54,4 +58,45 @@
     <string name="item">Item</string>
     <string name="buy">Buy</string>
     <string name="itemDetails">details to be filled in with DB data</string>
+
+    //Admin Page
+    <string name="edit_products">Edit Products</string>
+    <string name="edit_customers">Edit Customers</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="add_product">Add a Product</string>
+    <string name="edit_product">Edit a Product</string>
+    <string name="edit_customer">Edit a Customer</string>
+    <string name="add_customer">Add a Customer</string>
+    <string name="name">Name</string>
+    <string name="price">Price</string>
+    <string name="sales_price">Sales Price</string>
+    <string name="description">Description</string>
+    <string name="product_category">Product Category</string>
+    <string name="isFeatured">Is this product featured?</string>
+    <string name="add">Add Product</string>
+    <string name="update">Update Product</string>
+    <string name="update_customer">Update Customer</string>
+    <string name="FName">First Name</string>
+    <string name="LName">Last Name</string>
+    <string name="username">Username</string>
+    <string name="cust_password">Password</string>
+    <string name="cust_re_password">Re-enter Password</string>
+    <string name="email_address">Email Address</string>
+
+
+    <string-array name="productTypes">
+        <item>Cake</item>
+        <item>Cookie</item>
+        <item>Pastry</item>
+        <item>Donut</item>
+        <item>Bread</item>
+    </string-array>
+
+    <string-array name="customerRoles">
+        <item>Customer</item>
+        <item>Admin</item>
+    </string-array>
+    <string name="title_activity_admin_customers">Admin - View Customers</string>
+
 </resources>
