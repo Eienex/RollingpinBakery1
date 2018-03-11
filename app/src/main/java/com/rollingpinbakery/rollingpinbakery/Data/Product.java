@@ -45,6 +45,18 @@ public class Product {
         this.prodImg = prodImg;
     }
 
+    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImg) {
+
+        this._prodId = id;
+        this.prodName = prodName;
+        this.prodRetailPrice = prodRetailPrice;
+        this.prodSalePrice = prodSalePrice;
+        this.prodDesc = prodDesc;
+        this.prodType = prodType;
+        this.prodFeatured = prodFeatured;
+        this.prodImg = prodImg;
+    }
+
     public int get_prodId() {return _prodId;}
     public void set_prodId(int _prodId) {this._prodId = _prodId;}
 

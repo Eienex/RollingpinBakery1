@@ -40,6 +40,7 @@ public interface CustomerDao {
 
 
 
+
     //@Query("UPDATE contact set custFName = :custFName where _custId == :id")
     //public void updateCustomerById(int id);
 }
