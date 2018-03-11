@@ -13,12 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
+import java.util.ArrayList;
+
 public class BreadsCategory extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+
+    ListView listView;
+    ArrayList<Product> products;
+    ArrayList<Product> list;
+    private static StoreProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,26 +37,17 @@ public class BreadsCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Loaf of Bread",
-                        10.99,
-                        null,
-                        "A sample loaf of Bread",
-                        "Bread",
-                        false,
-                        null));
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+                startActivity(new Intent(getBaseContext(), AdminProductAdd.class));
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -58,7 +59,7 @@ public class BreadsCategory extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -69,7 +70,7 @@ public class BreadsCategory extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.store, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -100,20 +101,39 @@ public class BreadsCategory extends AppCompatActivity
         } else if (id == R.id.nav_Store) {
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
-        }  else if (id == R.id.nav_Account) {
+        } else if (id == R.id.nav_Account) {
             Intent editIntent = new Intent(this, Account.class);
             startActivity(editIntent);
-        }  else if (id == R.id.nav_Register) {
+        } else if (id == R.id.nav_Register) {
             Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
+        } else if (id == R.id.nav_Admin) {
+            Intent editIntent = new Intent(this, AdminMainActivity.class);
+            startActivity(editIntent);
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    public void NavItem(View view){
-        startActivity(new Intent(this, Item.class));
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String bread = "Bread";
+        listView = findViewById(R.id.listView);
+        //Product prodType = AppDatabase.getAppDatabase(this).productDao().getProductByType(bread);
+        /*
+        list = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        for (int i = 0; i < list.size(); i++) {
+                Product prodType = AppDatabase.getAppDatabase(this).productDao().getProductByType(bread);
+                String name = prodType.getProdName();
+                products.add(prodType);
+            }
+*/      products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        adapter = new StoreProductAdapter(this, products);
+        listView.setAdapter(adapter);
     }
+
 }
 

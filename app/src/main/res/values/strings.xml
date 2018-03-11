@@ -45,6 +45,8 @@
     <string name="bread_products">Bread Products</string>
     <string name="title_activity_breads_category">Store - Breads</string>
     <string name="register">Register</string>
+    <string name="view">View</string>
+    <string name="buy">Buy</string>
 
     //Filler Items
     <string name="item1">Item1</string>
@@ -54,9 +56,9 @@
     <string name="item5">Item5</string>
     <string name="item6">Item6</string>
 
+
     //Item details page
     <string name="item">Item</string>
-    <string name="buy">Buy</string>
     <string name="itemDetails">details to be filled in with DB data</string>
 
     //Admin Page
