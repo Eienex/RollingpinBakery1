@@ -101,6 +101,7 @@
         <item>Admin</item>
     </string-array>
     <string name="title_activity_admin_customers">Admin - View Customers</string>
+    <string name="remove">Remove</string>
 
     <string name="backToReports">Back to Reports</string>
 

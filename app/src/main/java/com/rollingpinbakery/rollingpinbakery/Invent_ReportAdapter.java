@@ -14,10 +14,6 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import java.util.ArrayList;
 
 
-/**
- * Created by jamej on 3/11/2018.
- */
-
 public class Invent_ReportAdapter  extends ArrayAdapter<Product> {
     private ArrayList<Product> dataSet;
     Context context;
