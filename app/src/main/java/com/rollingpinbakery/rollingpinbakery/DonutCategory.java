@@ -119,8 +119,9 @@ public class DonutCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        String bread = "Bread";
         listView = findViewById(R.id.listView);
-        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Donut");
         adapter = new StoreProductAdapter(this, products);
         listView.setAdapter(adapter);
     }

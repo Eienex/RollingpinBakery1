@@ -27,7 +27,6 @@ public class BreadsCategory extends AppCompatActivity
 
     ListView listView;
     ArrayList<Product> products;
-    ArrayList<Product> list;
     private static StoreProductAdapter adapter;
 
     @Override
@@ -122,15 +121,7 @@ public class BreadsCategory extends AppCompatActivity
         super.onResume();
         String bread = "Bread";
         listView = findViewById(R.id.listView);
-        //Product prodType = AppDatabase.getAppDatabase(this).productDao().getProductByType(bread);
-        /*
-        list = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
-        for (int i = 0; i < list.size(); i++) {
-                Product prodType = AppDatabase.getAppDatabase(this).productDao().getProductByType(bread);
-                String name = prodType.getProdName();
-                products.add(prodType);
-            }
-*/      products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Bread");
         adapter = new StoreProductAdapter(this, products);
         listView.setAdapter(adapter);
     }

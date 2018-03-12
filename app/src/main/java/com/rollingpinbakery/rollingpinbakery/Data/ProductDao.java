@@ -28,16 +28,13 @@ public interface ProductDao {
     public Product getProductById(int id);
 
     @Query("SELECT * FROM product where prodType == :type")
-    public Product getProductByType(String type);
+    public List<Product> getProductByType(String type);
 
     @Query("SELECT * FROM product")
     public List<Product> getAllProducts();
 
     @Query("SELECT _prodId, prodName, prodRetailPrice, prodType, prodDesc FROM product")
     public List<Product> getInventReports();
-
-    @Query("SELECT * FROM product where prodType == :bread")
-    public Product getBread(String bread);
 
     //@Query("Update product set name = 'test', email = 'test@test.com' where _id == :id")
     //public void updateProductById(int id);

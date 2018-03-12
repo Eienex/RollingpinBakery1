@@ -99,6 +99,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             @Override
             public void onClick(View view) {
                 final String txtName = name.getText().toString();
+                System.out.println(txtName);
                 final String txtPrice = price.getText().toString();
                 final String txtSalePrice = salePrice.getText().toString();
                 final String txtType = productType.getText().toString();
