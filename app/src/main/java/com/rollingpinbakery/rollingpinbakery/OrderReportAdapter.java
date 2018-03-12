@@ -14,12 +14,12 @@ import com.rollingpinbakery.rollingpinbakery.Data.Order;
 import java.util.ArrayList;
 
 
-public class Order_ReportAdapter  extends ArrayAdapter<Order> {
+public class OrderReportAdapter extends ArrayAdapter<Order> {
 
     private ArrayList<Order> dataSet;
     Context context;
 
-    public Order_ReportAdapter(Context context, ArrayList<Order> orders){
+    public OrderReportAdapter(Context context, ArrayList<Order> orders){
         super(context, R.layout.o_reports_listview, orders);
         this.dataSet = orders;
         this.context = context;
