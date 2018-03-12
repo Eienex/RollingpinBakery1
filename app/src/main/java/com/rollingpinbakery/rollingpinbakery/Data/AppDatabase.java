@@ -17,6 +17,7 @@ public abstract class AppDatabase extends RoomDatabase {
     //Abstract DAO Classes (add as we go for each table/Class we create)
     public abstract CustomerDao customerDao();
     public abstract ProductDao productDao();
+    public abstract CartDao cartDao();
 
 
     public static AppDatabase getAppDatabase(Context context){

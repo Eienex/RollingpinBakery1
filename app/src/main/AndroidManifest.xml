@@ -90,7 +90,8 @@
             android:name=".AdminCustomerEdit"
             android:label="@string/title_activity_admin_customer_edit"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminCustomerAdd"></activity>
+        <activity android:name=".AdminCustomerAdd" />
+        <activity android:name=".CartActivity"></activity>
     </application>
 
 </manifest>
