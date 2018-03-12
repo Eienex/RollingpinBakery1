@@ -5,8 +5,6 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +12,6 @@ import java.util.List;
  */
 @Dao
 public interface ProductDao {
-    String bread = "Bread";
     @Insert()
     public void insert(Product product);
 
@@ -35,6 +32,9 @@ public interface ProductDao {
 
     @Query("SELECT * FROM product")
     public List<Product> getAllProducts();
+
+    @Query("SELECT _prodId, prodName, prodRetailPrice, prodType, prodDesc FROM product")
+    public List<Product> getInventReports();
 
     @Query("SELECT * FROM product where prodType == :bread")
     public Product getBread(String bread);
