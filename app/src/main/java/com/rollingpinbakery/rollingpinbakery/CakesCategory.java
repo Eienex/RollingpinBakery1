@@ -28,14 +28,6 @@ public class CakesCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Birthday Cake",
-                        10.99,
-                        null,
-                        "A sample Birthday Cake",
-                        "Cake",
-                        false,
-                        null));
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

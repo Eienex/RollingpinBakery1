@@ -25,8 +25,8 @@ public class OrderReports extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         listView = findViewById(R.id.orders_list);
-        orders = (ArrayList<Order>)AppDatabase.getAppDatabase(this).orderDao().getOrderReports();
-        adapter2 = new Order_ReportAdapter(this, orders);
-        listView.setAdapter(adapter2);
+        //orders = (ArrayList<Order>)AppDatabase.getAppDatabase(this).orderDao().getOrderReports();
+        //adapter2 = new Order_ReportAdapter(this, orders);
+        //listView.setAdapter(adapter2);
     }
 }

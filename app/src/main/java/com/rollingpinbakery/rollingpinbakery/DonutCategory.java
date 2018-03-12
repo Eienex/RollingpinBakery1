@@ -27,14 +27,6 @@ public class DonutCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Donut",
-                        10.99,
-                        null,
-                        "A sample donut",
-                        "Donut",
-                        false,
-                        null));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

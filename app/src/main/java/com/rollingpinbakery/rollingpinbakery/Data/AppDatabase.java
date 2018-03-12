@@ -10,7 +10,7 @@ import android.content.Context;
  * Created by rudst on 2/12/2018.
  */
 
-@Database(entities = {Customer.class, Product.class, Order.class, Cart.class}, version = 1, exportSchema = false)
+@Database(entities = {Customer.class, Product.class, Cart.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
@@ -18,7 +18,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CustomerDao customerDao();
     public abstract ProductDao productDao();
     public abstract CartDao cartDao();
-    public abstract OrderDao orderDao();
+    //public abstract OrderDao orderDao();
 
 
     public static AppDatabase getAppDatabase(Context context){

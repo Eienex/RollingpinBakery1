@@ -26,15 +26,7 @@ public class PastriesCategory extends AppCompatActivity
         setContentView(R.layout.activity_pastries_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Pastry",
-                        10.99,
-                        null,
-                        "A sample pastry",
-                        "Pastry",
-                        false,
-                        null));
+        
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

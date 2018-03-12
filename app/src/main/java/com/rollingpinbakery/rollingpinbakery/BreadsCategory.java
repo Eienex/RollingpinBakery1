@@ -27,14 +27,7 @@ public class BreadsCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Loaf of Bread",
-                        10.99,
-                        null,
-                        "A sample loaf of Bread",
-                        "Bread",
-                        false,
-                        null));
+
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

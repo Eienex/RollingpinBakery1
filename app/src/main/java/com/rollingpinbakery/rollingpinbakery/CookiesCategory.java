@@ -27,14 +27,6 @@ public class CookiesCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Cookie",
-                        10.99,
-                        null,
-                        "A sample cookie",
-                        "Cookie",
-                        false,
-                        null));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
