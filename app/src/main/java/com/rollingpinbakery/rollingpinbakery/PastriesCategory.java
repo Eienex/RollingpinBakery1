@@ -108,6 +108,10 @@ public class PastriesCategory extends AppCompatActivity
             Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
         }
+        else if (id == R.id.nav_Cart) {
+            Intent editIntent = new Intent(this, CartActivity.class);
+            startActivity(editIntent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         drawer.closeDrawer(GravityCompat.START);

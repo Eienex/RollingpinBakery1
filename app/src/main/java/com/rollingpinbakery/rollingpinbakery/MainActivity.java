@@ -97,6 +97,10 @@ public class MainActivity extends AppCompatActivity
             Intent editIntent = new Intent(this, AdminMainActivity.class);
             startActivity(editIntent);
         }
+        else if (id == R.id.nav_Cart) {
+            Intent editIntent = new Intent(this, CartActivity.class);
+            startActivity(editIntent);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
