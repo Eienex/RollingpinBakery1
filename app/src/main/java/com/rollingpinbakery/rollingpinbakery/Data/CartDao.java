@@ -13,7 +13,7 @@ import java.util.List;
 @Dao
 public interface CartDao {
 
-    @Query("SELECT * FROM customer")
+    @Query("SELECT * FROM cart")
     public List<Cart> getAllCartItems();
 
     @Delete()
@@ -21,6 +21,6 @@ public interface CartDao {
 
     @Insert()
     public void insert(Cart cart);
-    @Query("DELETE FROM Cart")
+    @Query("DELETE FROM cart")
     public void removeCart();
 }
