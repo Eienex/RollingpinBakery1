@@ -97,6 +97,9 @@ public class Item extends AppCompatActivity
         }  else if (id == R.id.nav_Register) {
             Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
+        } else if (id == R.id.nav_Admin) {
+            Intent editIntent = new Intent(this, AdminMainActivity.class);
+            startActivity(editIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
