@@ -49,8 +49,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         final TextView prodIsFeatured = convertView.findViewById(R.id.prodIsFeatured);
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
-        Button viewBtn = convertView.findViewById(R.id.ViewBtn);
-        Button buyBtn = convertView.findViewById(R.id.BuyBtn);
 
         final int id = product.get_prodId();
 
@@ -95,32 +93,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             }
         });
 
-        viewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String txtName = name.getText().toString();
-                System.out.println(txtName);
-                final String txtPrice = price.getText().toString();
-                final String txtSalePrice = salePrice.getText().toString();
-                final String txtType = productType.getText().toString();
-                final String txtDesc = productDesc.getText().toString();
-                final String txtProdIsFeatured = prodIsFeatured.getText().toString();
-                editProduct(view, id, txtName, txtPrice, txtSalePrice, txtType, txtDesc, txtProdIsFeatured);
-            }
-        });
 
-        buyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String txtName = name.getText().toString();
-                final String txtPrice = price.getText().toString();
-                final String txtSalePrice = salePrice.getText().toString();
-                final String txtType = productType.getText().toString();
-                final String txtDesc = productDesc.getText().toString();
-                final String txtProdIsFeatured = prodIsFeatured.getText().toString();
-                editProduct(view, id, txtName, txtPrice, txtSalePrice, txtType, txtDesc, txtProdIsFeatured);
-            }
-        });
 
         return convertView;
     }
