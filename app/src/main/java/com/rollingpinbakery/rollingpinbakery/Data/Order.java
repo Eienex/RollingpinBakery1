@@ -18,12 +18,7 @@ public class Order {
 
     @ColumnInfo(name = "custId")
     private int custId;
-
-    public Order(int paymentId, int custId) {
-
-        this.paymentId = paymentId;
-        this.custId = custId;
-    }
+    
     public Order(int _orderId, int paymentId, int custId) {
         this._orderId = _orderId;
         this.paymentId = paymentId;

@@ -10,14 +10,14 @@ import android.content.Context;
  * Created by rudst on 2/12/2018.
  */
 
-@Database(entities = {Customer.class, Product.class}, version = 1, exportSchema = false)
+@Database(entities = {Customer.class, Product.class, Order.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
 
     //Abstract DAO Classes (add as we go for each table/Class we create)
     public abstract CustomerDao customerDao();
     public abstract ProductDao productDao();
-    public abstract CartDao cartDao();
+    //public abstract CartDao cartDao();
     public abstract OrderDao orderDao();
 
 
