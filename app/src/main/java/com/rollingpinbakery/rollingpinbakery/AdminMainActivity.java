@@ -112,4 +112,6 @@ public class AdminMainActivity extends AppCompatActivity
     }
 
 
+    public void reports(View view) {startActivity(new Intent(this, ReportsActivity.class));
+    }
 }

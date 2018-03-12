@@ -90,6 +90,43 @@
             android:name=".AdminCustomerEdit"
             android:label="@string/title_activity_admin_customer_edit"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AdminCustomerAdd"></activity>
+        <activity
+            android:name=".ReportsActivity"
+            android:label="Reports">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.ReportsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CustReports"
+            android:label="Customer Reports">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.CustReports" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".OrderReports"
+            android:label="Order Reports">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.OrderReports" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".InventReports"
+            android:label="Inventory Reports">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.InventReports" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AdminCustomerAdd" />
         <activity android:name=".CartActivity"></activity>
     </application>
