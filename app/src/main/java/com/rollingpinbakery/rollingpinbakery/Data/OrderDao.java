@@ -28,9 +28,7 @@ public interface OrderDao {
     @Query(value = "SELECT * FROM 'order'")
     public List<Order> getAllOrders();
 
-
-    @Query("SELECT _orderId, custId, paymentId FROM 'order'")
-
+    @Query("SELECT _orderId, custId FROM 'order'")
     public List<Order> getOrderReports();
 
 }
