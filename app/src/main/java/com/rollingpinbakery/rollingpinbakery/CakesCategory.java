@@ -1,6 +1,8 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -13,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
@@ -20,6 +23,9 @@ import com.rollingpinbakery.rollingpinbakery.R;
 
 public class CakesCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -40,20 +46,42 @@ public class CakesCategory extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        //get shared Preferences
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String LoginStatus = sharedPreferences.getString("LoginStatus","");
+        String UserRole = sharedPreferences.getString("UserRole", "");
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view2);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //check to see what the login status of the current user is
+        if (LoginStatus.equals("Logged In")){//if the user is logged in
+            if(UserRole.equals("Admin")){//if the user is an admin
+                navigationView.getMenu().clear();
+                //set the navView to the Admin View
+                navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+            }
+            else {//if the user is not an Admin
+                navigationView.getMenu().clear();
+                //set the nav view to the Main Logged In View
+                navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+            }
+        }
+        else{//If the user is not logged in
+            navigationView.getMenu().clear();
+            //set the nav view to the Guest View
+            navigationView.inflateMenu(R.menu.activity_main_guest_drawer);
+        }
+
     }
 
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -105,9 +133,15 @@ public class CakesCategory extends AppCompatActivity
         else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
+        }else if (id == R.id.nav_Logout) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("LoginStatus","Logged Out");
+            editor.commit();
+            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
