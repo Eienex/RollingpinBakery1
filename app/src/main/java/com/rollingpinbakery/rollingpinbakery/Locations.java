@@ -5,9 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,9 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
-public class Account extends AppCompatActivity
+public class Locations extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String MyPREFERENCES = "MyPrefs";
@@ -26,9 +26,11 @@ public class Account extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_locations);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
 
         //get shared Preferences
@@ -62,7 +64,15 @@ public class Account extends AppCompatActivity
             //set the nav view to the Guest View
             navigationView.inflateMenu(R.menu.activity_main_guest_drawer);
         }
+
+
+
+
+
     }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -77,7 +87,7 @@ public class Account extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.account, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -137,8 +147,15 @@ public class Account extends AppCompatActivity
     }
 
 
-    public void toLogIn(View v){
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.LoginActivity"));
+    public void nav_stcloudWeather(View view){
+        startActivity(new Intent(getApplicationContext(), StCloudCurrentWeatherActivity.class));
+    }
 
+    public void nav_sanfranciscoWeather(View view){
+        startActivity(new Intent(getApplicationContext(), SanFranciscoCurrentWeatherActivity.class));
+    }
+
+    public void nav_miamiWeather(View view){
+        startActivity(new Intent(getApplicationContext(), MiamiCurrentWeatherActivity.class));
     }
 }

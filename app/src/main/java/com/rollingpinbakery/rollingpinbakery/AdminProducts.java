@@ -144,6 +144,9 @@ public class AdminProducts extends AppCompatActivity
             editor.commit();
             startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_Locations) {
+            Intent editIntent = new Intent(this, Locations.class);
+            startActivity(editIntent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

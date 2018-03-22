@@ -16,6 +16,8 @@
     <string name="title_activity_admin_product_edit">Edit Product</string>
     <string name="title_activity_admin_customer_edit">Edit Customer</string>
     <string name="title_activity_admin_reports">Reports</string>
+    <string name="title_activity_admin_customers">Admin - View Customers</string>
+    <string name="title_activity_locations">Store Locations</string>
 
 
     <string name="action_settings">Settings</string>
@@ -26,6 +28,7 @@
     <string name="nav_Account">Account</string>
 
     //Login Form
+    <string name="login">Login</string>
     <string name="log_in">Log In</string>
     <string name="password">Password:</string>
     <string name="user_name">User Name:</string>
@@ -84,8 +87,6 @@
     <string name="cust_password">Password</string>
     <string name="cust_re_password">Re-enter Password</string>
     <string name="email_address">Email Address</string>
-
-
     <string-array name="productTypes">
         <item>Cake</item>
         <item>Cookie</item>
@@ -93,14 +94,23 @@
         <item>Donut</item>
         <item>Bread</item>
     </string-array>
-
     <string-array name="customerRoles">
         <item>Customer</item>
         <item>Admin</item>
     </string-array>
-    <string name="title_activity_admin_customers">Admin - View Customers</string>
-    <string name="remove">Remove</string>
 
+
+    <string name="remove">Remove</string>
     <string name="backToReports">Back to Reports</string>
+
+
+    <string name="location_header">View weather conditions for all of our different store locations</string>
+    <string name="st_cloud">St. Cloud, Minnesota</string>
+    <string name="san_francisco">San Francisco, California</string>
+    <string name="miami">Miami, Florida</string>
+    <string name="title_activity_st_cloud_current_weather">St. Cloud Current Weather</string>
+    <string name="title_activity_san_francisco_current_weather">San Francisco Current Weather
+    </string>
+    <string name="title_activity_miami_current_weather">Miami Current Weather</string>
 
 </resources>

@@ -1,13 +1,14 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import com.rollingpinbakery.rollingpinbakery.Weather.*;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,10 +16,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
-public class Account extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+public class StCloudCurrentWeatherActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
@@ -26,10 +41,18 @@ public class Account extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+        setContentView(R.layout.activity_st_cloud_current_weather);
+        setupTask();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setupTask();
+            }
+        });
 
         //get shared Preferences
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -62,7 +85,112 @@ public class Account extends AppCompatActivity
             //set the nav view to the Guest View
             navigationView.inflateMenu(R.menu.activity_main_guest_drawer);
         }
+
+
     }
+
+    /*
+    The following 4 methods:
+    setupTask
+    GetCurrentForecastTask
+    GetCurrentForecast
+    DisplayCurrentForecast
+
+    All handle getting the current weather from the API
+
+     */
+
+    //Start to get Current Forcast by setting the zipcode
+    public void setupTask(){
+
+        String zipcode = "56301";
+        new GetCurrentForecastTask().execute(
+                "http://api.apixu.com/v1/forecast.json?key=b7ef6b8e34374af4992141448171112&q=" +
+                        zipcode + "&days=14");
+    }
+
+    private class GetCurrentForecastTask extends AsyncTask<String, Void, CurrentWeatherForecast> {
+        @Override
+        protected CurrentWeatherForecast doInBackground(String... strings){
+            return GetCurrentForecast(strings[0]);
+        }
+        protected void onPostExecute(CurrentWeatherForecast result){
+            try{
+                DisplayCurrentForecast(result);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public CurrentWeatherForecast GetCurrentForecast(String address){
+        URL url = null;
+        try{
+            url = new URL(address);
+        }catch (MalformedURLException ex){
+            ex.printStackTrace();
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        HttpURLConnection urlConnection = null;
+        try{
+            urlConnection = (HttpURLConnection)url.openConnection();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        try{
+            InputStream content = new BufferedInputStream(urlConnection.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(content));
+            String line;
+            while ((line = reader.readLine()) != null){
+                stringBuilder.append(line);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        finally {
+            urlConnection.disconnect();
+        }
+
+        Gson gson = new Gson();
+        return gson.fromJson(stringBuilder.toString(), CurrentWeatherForecast.class);
+
+    }
+
+    //Method to handle displaying the current weather values on the current view
+    private void DisplayCurrentForecast(CurrentWeatherForecast currentWeatherForecast){
+        TextView title, date, condition, temp, wind, winddirection, feelslike;
+        ImageView imageView = findViewById(R.id.imageView);
+
+        title = findViewById(R.id.title);
+        title.setText(currentWeatherForecast.getLocation().getName());
+
+        date = findViewById(R.id.date);
+        date.setText("Last updated " + currentWeatherForecast.getCurrent().getLastUpdated());
+
+        condition = findViewById(R.id.condition);
+        condition.setText("Condition: " + currentWeatherForecast.getCurrent().getCondition().getText());
+
+        temp = findViewById(R.id.temp);
+        temp.setText("Temp: " + currentWeatherForecast.getCurrent().getTempF() + "°F");
+
+        wind = findViewById(R.id.wind);
+        wind.setText("Wind: " + currentWeatherForecast.getCurrent().getWindMph()+ " MPH");
+
+        winddirection = findViewById(R.id.windDirection);
+        winddirection.setText("Wind Direction: " + currentWeatherForecast.getCurrent().getWindDir());
+
+        feelslike = findViewById(R.id.feelsLike);
+        feelslike.setText("Feels Like: " + currentWeatherForecast.getCurrent().getFeelslikeF() + "°F");
+
+        Picasso.with(this).load("http:" +currentWeatherForecast.getCurrent().getCondition().getIcon()).into(imageView);
+
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -77,7 +205,7 @@ public class Account extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.account, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -137,8 +265,5 @@ public class Account extends AppCompatActivity
     }
 
 
-    public void toLogIn(View v){
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.LoginActivity"));
 
-    }
 }

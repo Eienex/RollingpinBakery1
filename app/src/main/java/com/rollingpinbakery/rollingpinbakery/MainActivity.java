@@ -130,17 +130,18 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_Admin) {
             Intent editIntent = new Intent(this, AdminMainActivity.class);
             startActivity(editIntent);
-        }
-        else if (id == R.id.nav_Cart) {
+        }else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
-        }
-        else if (id == R.id.nav_Logout) {
+        }else if (id == R.id.nav_Logout) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("LoginStatus","Logged Out");
             editor.commit();
             startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_Locations) {
+            Intent editIntent = new Intent(this, Locations.class);
+            startActivity(editIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

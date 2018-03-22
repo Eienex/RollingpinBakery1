@@ -34,14 +34,6 @@ public class CookiesCategory extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         //get shared Preferences
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -135,6 +127,9 @@ public class CookiesCategory extends AppCompatActivity
             editor.commit();
             startActivity(new Intent(this, MainActivity.class));
             Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_Locations) {
+            Intent editIntent = new Intent(this, Locations.class);
+            startActivity(editIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

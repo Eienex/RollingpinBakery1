@@ -108,6 +108,9 @@ public class AdminCustomers extends AppCompatActivity
         } else if (id == R.id.nav_Admin) {
             Intent editIntent = new Intent(this, AdminMainActivity.class);
             startActivity(editIntent);
+        } else if (id == R.id.nav_Locations) {
+            Intent editIntent = new Intent(this, Locations.class);
+            startActivity(editIntent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
