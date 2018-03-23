@@ -145,7 +145,8 @@
         <activity
             android:name=".MiamiCurrentWeatherActivity"
             android:label="@string/title_activity_miami_current_weather"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Shipping_Payment"></activity>
     </application>
 
 </manifest>
