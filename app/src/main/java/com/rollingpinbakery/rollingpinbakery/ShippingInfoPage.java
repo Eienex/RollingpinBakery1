@@ -50,4 +50,8 @@ public class ShippingInfoPage extends AppCompatActivity {
         }
 
     }
+
+    public void BackToCart(View view) {
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.CartActivity"));
+    }
 }

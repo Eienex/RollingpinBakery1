@@ -172,7 +172,8 @@
             android:layout_marginStart="32dp"
             android:text="Back to Cart"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="BackToCart"/>
 
 
 

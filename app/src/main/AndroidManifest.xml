@@ -133,7 +133,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".CartActivity" />
+        <activity
+            android:name=".CartActivity"
+            android:label="Cart">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.CartActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".StCloudCurrentWeatherActivity"
             android:label="@string/title_activity_st_cloud_current_weather"
