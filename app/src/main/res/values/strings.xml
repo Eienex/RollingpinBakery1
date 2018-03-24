@@ -18,6 +18,9 @@
     <string name="title_activity_admin_reports">Reports</string>
     <string name="title_activity_admin_customers">Admin - View Customers</string>
     <string name="title_activity_locations">Store Locations</string>
+    <string name="title_activity_st_cloud_current_weather">St. Cloud Current Weather</string>
+    <string name="title_activity_san_francisco_current_weather">San Francisco Current Weather</string>
+    <string name="title_activity_miami_current_weather">Miami Current Weather</string>
 
 
     <string name="action_settings">Settings</string>
@@ -104,13 +107,11 @@
     <string name="backToReports">Back to Reports</string>
 
 
+    //Weather Pages
     <string name="location_header">View weather conditions for all of our different store locations</string>
     <string name="st_cloud">St. Cloud, Minnesota</string>
     <string name="san_francisco">San Francisco, California</string>
     <string name="miami">Miami, Florida</string>
-    <string name="title_activity_st_cloud_current_weather">St. Cloud Current Weather</string>
-    <string name="title_activity_san_francisco_current_weather">San Francisco Current Weather
-    </string>
-    <string name="title_activity_miami_current_weather">Miami Current Weather</string>
+
 
 </resources>
