@@ -146,7 +146,24 @@
             android:name=".MiamiCurrentWeatherActivity"
             android:label="@string/title_activity_miami_current_weather"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ShippingInfo"></activity>
+        <activity
+            android:name=".ShippingInfoPage"
+            android:label="Shipping Info">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.ShippingInfoPage" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PaymentInfo"
+            android:label="Payment Info">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.PaymentInfo" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

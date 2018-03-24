@@ -33,14 +33,11 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         FloatingActionButton purchasefab = findViewById(R.id.purchase);
-        purchasefab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Thank you for your purchase!", Toast.LENGTH_LONG).show();
-//
 
-            }
-        });
 
+    }
+
+    public void proceedToShipping(View view) {
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.ShippingInfoPage"));
     }
 }

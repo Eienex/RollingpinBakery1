@@ -17,7 +17,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="8dp"
         android:src="@drawable/ic_attach_money_black_24dp"
-        android:id="@+id/purchase"/>
+        android:id="@+id/purchase"
+        android:onClick="proceedToShipping"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/back"

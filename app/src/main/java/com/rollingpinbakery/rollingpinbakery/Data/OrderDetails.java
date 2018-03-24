@@ -29,17 +29,17 @@ public class OrderDetails {
     @ColumnInfo(name = "totalAmount")
     private double totalAmount;
 
-    @ColumnInfo(name = "orderDate")
-    private Date orderDate;
+    //@ColumnInfo(name = "orderDate")
+    //private Date orderDate;
 
-    public OrderDetails(int _orderDetailNum, int orderID, int productID, int qtyOrdered, double totalAmount, Date orderDate)
+    public OrderDetails(int _orderDetailNum, int orderID, int productID, int qtyOrdered, double totalAmount)//, Date orderDate)
     {
         this._orderDetailNum = _orderDetailNum;
         this.orderID = orderID;
         this.productID = productID;
         this.qtyOrdered = qtyOrdered;
         this.totalAmount = totalAmount;
-        this.orderDate = orderDate;
+        //this.orderDate = orderDate;
     }
     public int get_orderDetailNum() {return _orderDetailNum;}
     public void set_orderDetailNum(int _orderDetailNum) {this._orderDetailNum = _orderDetailNum;}
@@ -56,7 +56,7 @@ public class OrderDetails {
     public double getTotalAmount() {return totalAmount;}
     public void setTotalAmount(double totalAmount) {this.totalAmount = totalAmount;}
 
-    public Date getOrderDate() {return orderDate;}
-    public void setOrderDate(Date orderDate) {this.orderDate = orderDate;}
+    //public Date getOrderDate() {return orderDate;}
+    //public void setOrderDate(Date orderDate) {this.orderDate = orderDate;}
 }
 
