@@ -30,7 +30,7 @@ public class ShippingInfoPage extends AppCompatActivity {
             EditText state = findViewById(R.id.editState);
             EditText zipCode = findViewById(R.id.editZip);
 
-            //Button continueButton = findViewById(R.id.paymentsButton);
+
 
             String nameText = name.getText().toString();
             String addressText = address.getText().toString();

@@ -137,8 +137,9 @@
             android:name=".CartActivity"
             android:label="Cart">
             <intent-filter>
-                <action android:name="com.rollingpinbakery.rollingpinbakery.CartActivity"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.CartActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -169,6 +170,14 @@
                 <action android:name="com.rollingpinbakery.rollingpinbakery.PaymentInfo" />
 
                 <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".OrderConfirmation"
+            android:label="Order Confirmation">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.OrderConfirmation"/>
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
     </application>

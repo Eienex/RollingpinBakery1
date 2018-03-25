@@ -130,9 +130,9 @@
 
         <TextView
             android:id="@+id/shippingZip"
-            android:layout_width="120dp"
+            android:layout_width="116dp"
             android:layout_height="45dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Zip Code:"
             android:textAlignment="viewStart"
@@ -146,12 +146,9 @@
             android:layout_width="153dp"
             android:layout_height="52dp"
             android:layout_marginEnd="128dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="-15dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.703"
-            app:layout_constraintStart_toEndOf="@+id/shippingZip"
-            app:layout_constraintTop_toBottomOf="@+id/shippingState" />
+            app:layout_constraintTop_toBottomOf="@+id/editState" />
 
         <Button
             android:id="@+id/paymentsButton"
