@@ -75,7 +75,7 @@ public class BreadsCategory extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -147,7 +147,6 @@ public class BreadsCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        String bread = "Bread";
         listView = findViewById(R.id.listView);
         products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Bread");
         adapter = new StoreProductAdapter(this, products);

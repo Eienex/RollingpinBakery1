@@ -16,7 +16,7 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 public class AdminProductEdit extends AppCompatActivity {
 
     int id;
-    EditText prodName, prodPrice, prodSalePrice, prodDesc;
+    EditText prodName, prodPrice, prodSalePrice, prodDesc, prodImage;
     Spinner productCategory;
     CheckBox prodIsFeatured;
     String[] productTypes;
@@ -32,6 +32,7 @@ public class AdminProductEdit extends AppCompatActivity {
         prodDesc = (EditText)findViewById(R.id.ProductDescription);
         productCategory = (Spinner)findViewById(R.id.spinner);
         prodIsFeatured = (CheckBox)findViewById(R.id.IsFeaturedCkbx);
+        prodImage = (EditText)findViewById(R.id.ProductImage);
 
         id = getIntent().getIntExtra("int_productID", 0);
         String txtName = getIntent().getStringExtra("txt_productName");
@@ -40,6 +41,7 @@ public class AdminProductEdit extends AppCompatActivity {
         String txtProdDesc = getIntent().getStringExtra("txt_productDesc");
         String txtProdType = getIntent().getStringExtra("txt_productType");
         String txtProdIsFeatured = getIntent().getStringExtra("txt_prodIsFeatured");
+        String txtProdImg = getIntent().getStringExtra("txt_productImg");
 
         //crop the strings
         txtName = txtName.replace("Name: ", "");
@@ -47,12 +49,14 @@ public class AdminProductEdit extends AppCompatActivity {
         txtSalesPrice = txtSalesPrice.replace("Sale Price: ", "");
         txtProdType = txtProdType.replace("Category: ", "");
         txtProdDesc = txtProdDesc.replace("Description: " , "");
+        txtProdImg = txtProdImg.replace("Image: " , "");
 
         //Set the text for the edittext
         prodName.setText(txtName);
         prodPrice.setText(txtPrice);
         prodSalePrice.setText(txtSalesPrice);
         prodDesc.setText(txtProdDesc);
+        prodImage.setText(txtProdImg);
 
         if (txtProdIsFeatured.matches("")){
             prodIsFeatured.setChecked(false);
@@ -84,11 +88,13 @@ public class AdminProductEdit extends AppCompatActivity {
         EditText prodPrice = (EditText)findViewById(R.id.ProductPrice);
         EditText prodSalesPrice = (EditText)findViewById(R.id.ProductSalePrice);
         EditText prodDesc = (EditText)findViewById(R.id.ProductDescription);
+        EditText prodImg = (EditText)findViewById(R.id.ProductImage);
 
         String txtName = prodName.getText().toString();
         String txtPrice = prodPrice.getText().toString();
         String txtSalePrice = prodSalesPrice.getText().toString();
         String txtDesc = prodDesc.getText().toString();
+        String txtImg = prodImg.getText().toString();
 
         if (txtName.matches("") || txtPrice.matches("")){
             Toast.makeText(getApplicationContext(), "Please fill out the form", Toast.LENGTH_SHORT);
@@ -111,7 +117,7 @@ public class AdminProductEdit extends AppCompatActivity {
                 isFeatured = false;
             }
 
-            Product updatedProduct = new Product(id,txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured, null);
+            Product updatedProduct = new Product(txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured,null);
                 AppDatabase.getAppDatabase(this).productDao().update(updatedProduct);
                 //AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured, null));
                 finish();

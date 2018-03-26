@@ -41,15 +41,6 @@ public class DonutCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Donut",
-                        10.99,
-                        null,
-                        "A sample donut",
-                        "Donut",
-                        false,
-                        null));
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +56,6 @@ public class DonutCategory extends AppCompatActivity
         String UserRole = sharedPreferences.getString("UserRole", "");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -95,7 +85,7 @@ public class DonutCategory extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -166,7 +156,6 @@ public class DonutCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        String bread = "Bread";
         listView = findViewById(R.id.listView);
         products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Donut");
         adapter = new StoreProductAdapter(this, products);

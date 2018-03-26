@@ -31,10 +31,10 @@ public class Product {
     @ColumnInfo(name = "prodFeatured")
     private Boolean prodFeatured;
 
-    @ColumnInfo(name = "prodImg")
-    private String prodImg;
+    @ColumnInfo(name = "prodImage")
+    private String prodImage;
 
-    public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImg) {
+    public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImage) {
 
         this.prodName = prodName;
         this.prodRetailPrice = prodRetailPrice;
@@ -42,10 +42,10 @@ public class Product {
         this.prodDesc = prodDesc;
         this.prodType = prodType;
         this.prodFeatured = prodFeatured;
-        this.prodImg = prodImg;
+        this.prodImage = prodImage;
     }
 
-    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImg) {
+    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, boolean prodFeatured, String prodImage) {
 
         this._prodId = id;
         this.prodName = prodName;
@@ -54,7 +54,7 @@ public class Product {
         this.prodDesc = prodDesc;
         this.prodType = prodType;
         this.prodFeatured = prodFeatured;
-        this.prodImg = prodImg;
+        this.prodImage = prodImage;
     }
 
     public int get_prodId() {return _prodId;}
@@ -78,8 +78,8 @@ public class Product {
     public Boolean getProdFeatured() {return prodFeatured;}
     public void setProdFeatured(Boolean prodFeatured) {this.prodFeatured = prodFeatured;}
 
-    public String getProdImg() {return prodImg;}
-    public void setProdImg(String prodImg) {this.prodImg = prodImg;}
+    public String getProdImage() {return prodImage;}
+    public void setProdImg(String prodImage) {this.prodImage = prodImage;}
 
 
 }

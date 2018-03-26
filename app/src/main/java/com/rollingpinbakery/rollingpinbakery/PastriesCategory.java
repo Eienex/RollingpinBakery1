@@ -50,7 +50,6 @@ public class PastriesCategory extends AppCompatActivity
         String UserRole = sharedPreferences.getString("UserRole", "");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -80,7 +79,7 @@ public class PastriesCategory extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -150,9 +149,8 @@ public class PastriesCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        String bread = "Bread";
         listView = findViewById(R.id.listView);
-        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Pastries");
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Pastry");
         adapter = new StoreProductAdapter(this, products);
         listView.setAdapter(adapter);
     }

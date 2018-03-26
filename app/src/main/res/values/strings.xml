@@ -65,7 +65,6 @@
 
     //Item details page
     <string name="item">Item</string>
-    <string name="buy">Buy</string>
     <string name="itemDetails">details to be filled in with DB data</string>
 
     //Admin Page

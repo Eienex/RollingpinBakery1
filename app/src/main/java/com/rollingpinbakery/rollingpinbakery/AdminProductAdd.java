@@ -44,11 +44,13 @@ public class AdminProductAdd extends AppCompatActivity {
         EditText prodPrice = (EditText)findViewById(R.id.ProductPrice);
         EditText prodSalesPrice = (EditText)findViewById(R.id.ProductSalePrice);
         EditText prodDesc = (EditText)findViewById(R.id.ProductDescription);
+        EditText prodImage = (EditText)findViewById(R.id.ProductImage);
 
         String txtName = prodName.getText().toString();
         String txtPrice = prodPrice.getText().toString();
         String txtSalePrice = prodSalesPrice.getText().toString();
         String txtDesc = prodDesc.getText().toString();
+        String txtImage = prodImage.getText().toString();
 
         if (txtName.matches("") || txtPrice.matches("")){
             Toast.makeText(getApplicationContext(), "Please fill out the form", Toast.LENGTH_SHORT);
@@ -73,11 +75,11 @@ public class AdminProductAdd extends AppCompatActivity {
 
 
             if (txtSalePrice.matches("")){
-                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured, null));
+                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured,null));
                 finish();
             }
             else {
-                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured, null));
+                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured,null));
                 finish();
             }
         }

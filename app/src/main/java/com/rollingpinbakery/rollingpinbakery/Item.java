@@ -15,7 +15,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
+
+import java.util.ArrayList;
 
 /**
  * Created by equno_000 on 2/25/2018.
@@ -26,6 +32,11 @@ public class Item extends AppCompatActivity
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
+
+    ListView listView;
+    ArrayList<Product> products;
+    private static ItemAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +81,7 @@ public class Item extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -132,9 +143,18 @@ public class Item extends AppCompatActivity
             startActivity(editIntent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    protected void onResume() {
+        super.onResume();
+        listView = findViewById(R.id.listView);
+        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+        adapter = new ItemAdapter(this, products);
+        listView.setAdapter(adapter);
+    }
+
 }
 

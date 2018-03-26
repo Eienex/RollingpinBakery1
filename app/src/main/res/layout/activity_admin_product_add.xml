@@ -37,6 +37,12 @@
         android:layout_height="wrap_content"
         android:hint="@string/description"/>
 
+    <EditText
+        android:id="@+id/ProductImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"/>
+
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="match_parent"
