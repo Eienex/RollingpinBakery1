@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rollingpinbakery.rollingpinbakery.PaymentInfo">
+
+    <TextView
+        android:id="@+id/payment"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Payment Information"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nameOnCard"
+        android:layout_width="152dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="30dp"
+        android:text="Name on Card:"
+        android:textAlignment="viewStart"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toStartOf="@+id/editName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payment" />
+
+    <EditText
+        android:id="@+id/editNameOnCard"
+        android:layout_width="234dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/nameOnCard"
+        app:layout_constraintTop_toBottomOf="@+id/payment" />
+
+    <TextView
+        android:id="@+id/cardType"
+        android:layout_width="121dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:text="Card Type:"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameOnCard" />
+
+    <Spinner
+        android:id="@+id/cardTypeSpinner"
+        android:layout_width="258dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/cardTypeSpinner"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
+        app:layout_constraintStart_toEndOf="@+id/cardType"
+        app:layout_constraintTop_toBottomOf="@+id/editNameOnCard" />
+
+    <TextView
+        android:id="@+id/cardNumberText"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="4dp"
+        android:text="Card Number:"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardType" />
+
+    <EditText
+        android:id="@+id/editCardNumber"
+        android:layout_width="245dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/cardNumberText"
+        app:layout_constraintTop_toBottomOf="@+id/cardTypeSpinner" />
+
+    <TextView
+        android:id="@+id/cardExp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:text="Card Expiration:"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardNumberText" />
+
+    <Spinner
+        android:id="@+id/expMonth"
+        android:layout_width="97dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/expMonthSpinner"
+        app:layout_constraintStart_toEndOf="@+id/cardExp"
+        app:layout_constraintTop_toBottomOf="@+id/editCardNumber" />
+
+    <Spinner
+        android:id="@+id/expYear"
+        android:layout_width="130dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:drawSelectorOnTop="true"
+        android:entries="@array/expYearSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/expMonth"
+        app:layout_constraintTop_toBottomOf="@+id/editCardNumber" />
+
+    <TextView
+        android:id="@+id/cardSecurityCode"
+        android:layout_width="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:text="CSC:"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardExp" />
+
+    <EditText
+        android:id="@+id/editCVC"
+        android:layout_width="83dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="4dp"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/cardSecurityCode"
+        app:layout_constraintTop_toBottomOf="@+id/expMonth" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/csc"
+        android:layout_width="23dp"
+        android:layout_height="24dp"
+        android:onClick="question"
+        android:visibility="visible"
+        app:backgroundTint="@android:color/black"
+        app:fabSize="mini"
+        app:layout_constraintStart_toEndOf="@+id/cardSecurityCode"
+        app:layout_constraintTop_toBottomOf="@+id/cardExp"
+        app:srcCompat="@mipmap/ic_help" />
+
+
+    <Button
+        android:id="@+id/proceedToConfirm"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginTop="78dp"
+        android:onClick="proceedToConfirm"
+        android:text="Proceed to Confirmation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editCVC" />
+</android.support.constraint.ConstraintLayout>

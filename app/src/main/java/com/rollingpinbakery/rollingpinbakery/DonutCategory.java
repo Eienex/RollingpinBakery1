@@ -1,6 +1,8 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -24,6 +26,9 @@ import java.util.ArrayList;
 public class DonutCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedPreferences;
+
 
     ListView listView;
     ArrayList<Product> products;
@@ -32,33 +37,65 @@ public class DonutCategory extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cakes_category);
+        setContentView(R.layout.activity_donut_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        AppDatabase.getAppDatabase(this).productDao().insert(
+                new Product("Simple Donut",
+                        10.99,
+                        null,
+                        "A sample donut",
+                        "Donut",
+                        false,
+                        null));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                startActivity(new Intent(getBaseContext(), AdminProductAdd.class));
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
 
+        //get shared Preferences
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String LoginStatus = sharedPreferences.getString("LoginStatus","");
+        String UserRole = sharedPreferences.getString("UserRole", "");
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view2);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //check to see what the login status of the current user is
+        if (LoginStatus.equals("Logged In")){//if the user is logged in
+            if(UserRole.equals("Admin")){//if the user is an admin
+                navigationView.getMenu().clear();
+                //set the navView to the Admin View
+                navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+            }
+            else {//if the user is not an Admin
+                navigationView.getMenu().clear();
+                //set the nav view to the Main Logged In View
+                navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+            }
+        }
+        else{//If the user is not logged in
+            navigationView.getMenu().clear();
+            //set the nav view to the Guest View
+            navigationView.inflateMenu(R.menu.activity_main_guest_drawer);
+        }
     }
+
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout2);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -69,7 +106,7 @@ public class DonutCategory extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.store, menu);
         return true;
     }
 
@@ -106,10 +143,20 @@ public class DonutCategory extends AppCompatActivity
         } else if (id == R.id.nav_Register) {
             Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
-        } else if (id == R.id.nav_Admin) {
-            Intent editIntent = new Intent(this, AdminMainActivity.class);
+        }  else if (id == R.id.nav_Cart) {
+            Intent editIntent = new Intent(this, CartActivity.class);
+            startActivity(editIntent);
+        }  else if (id == R.id.nav_Logout) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("LoginStatus","Logged Out");
+            editor.commit();
+            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
+        }  else if (id == R.id.nav_Locations) {
+            Intent editIntent = new Intent(this, Locations.class);
             startActivity(editIntent);
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

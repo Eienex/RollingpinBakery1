@@ -23,6 +23,7 @@ public class Register extends AppCompatActivity {
     public void SubmitRegistration(View v) {
         //Gets values
         try {
+
             EditText fName = findViewById(R.id.fName);
             EditText lName = findViewById(R.id.lName);
             EditText userName = findViewById(R.id.userName);
@@ -35,15 +36,19 @@ public class Register extends AppCompatActivity {
             String passwordText = password.getText().toString();
             String emailText = email.getText().toString();
 
+            if(fNameText.isEmpty() || lNameText.isEmpty() || userNameText.isEmpty() || passwordText.isEmpty() || emailText.isEmpty()){
+                Toast.makeText(this, "Fill out the form correctly", Toast.LENGTH_LONG).show();
+            }else {
 
-            AppDatabase.getAppDatabase(this).customerDao().insert(
-                    new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+                AppDatabase.getAppDatabase(this).customerDao().insert(
+                        new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
 
 
-            //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
+                //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
 
-            Toast.makeText(this, "Welcome", Toast.LENGTH_LONG).show();
-            finish();
+                Toast.makeText(this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
+                finish();
+            }
         }
         catch(Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();

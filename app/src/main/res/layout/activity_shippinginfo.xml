@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.rollingpinbakery.rollingpinbakery.ShippingInfoPage">
+
+        <TextView
+            android:id="@+id/shipping_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Shipping Information"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/shippingInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Shipping Address"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shipping_payment" />
+
+        <TextView
+            android:id="@+id/shippingName"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:text="Name:"
+            android:textAlignment="viewStart"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editName"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shippingInfo" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="270dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/shippingName"
+            app:layout_constraintTop_toBottomOf="@+id/shippingInfo" />
+
+        <TextView
+            android:id="@+id/shippingAddress"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="22dp"
+            android:text="Address:"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shippingName" />
+
+        <EditText
+            android:id="@+id/editAddress"
+            android:layout_width="270dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.703"
+            app:layout_constraintStart_toEndOf="@+id/shippingAddress"
+            app:layout_constraintTop_toBottomOf="@+id/shippingName" />
+
+        <TextView
+            android:id="@+id/shippingCity"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="City:"
+            android:textAlignment="viewStart"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editCity"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shippingAddress" />
+
+        <EditText
+            android:id="@+id/editCity"
+            android:layout_width="270dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.703"
+            app:layout_constraintStart_toEndOf="@+id/shippingCity"
+            app:layout_constraintTop_toBottomOf="@+id/shippingAddress" />
+
+        <TextView
+            android:id="@+id/shippingState"
+            android:layout_width="90dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:text="State:"
+            android:textAlignment="viewStart"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editState"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shippingCity" />
+
+        <EditText
+            android:id="@+id/editState"
+            android:layout_width="270dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.703"
+            app:layout_constraintStart_toEndOf="@+id/shippingState"
+            app:layout_constraintTop_toBottomOf="@+id/shippingCity" />
+
+        <TextView
+            android:id="@+id/shippingZip"
+            android:layout_width="116dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Zip Code:"
+            android:textAlignment="viewStart"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toStartOf="@+id/editZip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shippingState" />
+
+        <EditText
+            android:id="@+id/editZip"
+            android:layout_width="153dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="128dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editState" />
+
+        <Button
+            android:id="@+id/paymentsButton"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="32dp"
+            android:text="Proceed to payments infomation"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="SubmitShippingInfo"/>
+
+        <Button
+            android:id="@+id/cartButton"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginStart="32dp"
+            android:text="Back to Cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="BackToCart"/>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

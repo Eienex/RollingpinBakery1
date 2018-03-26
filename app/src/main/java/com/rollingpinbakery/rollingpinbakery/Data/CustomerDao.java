@@ -29,6 +29,9 @@ public interface CustomerDao {
     @Query("SELECT * FROM customer where _custId == :id")
     public Customer getCustomerById(int id);
 
+    @Query("SELECT * FROM customer where custUsername == :custUsername")
+    public Customer getCustomerByUsername(String custUsername);
+
     @Query("SELECT * FROM customer")
     public List<Customer> getAllCustomers();
 
