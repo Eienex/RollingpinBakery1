@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rollingpinbakery.rollingpinbakery.Data.Cart;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 
@@ -109,11 +110,12 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_productType", type);
         formResult.putExtra("txt_productDesc", desc);
 
-        view.getContext().startActivity(formResult);
+        //view.getContext().startActivity(formResult);
+        view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }
 
     public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
-        Intent formResult = new Intent(getContext(), Item.class);
+        Intent formResult = new Intent(getContext(), CartActivity.class);
 
         formResult.putExtra("int_productID", id);
         formResult.putExtra("txt_productName", name);
@@ -123,5 +125,6 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_productDesc", desc);
 
         view.getContext().startActivity(formResult);
+        //view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }
 }
