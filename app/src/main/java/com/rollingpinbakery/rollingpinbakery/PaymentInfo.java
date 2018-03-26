@@ -36,6 +36,7 @@ public class PaymentInfo extends AppCompatActivity {
         Spinner expMonthSpinner = (Spinner)findViewById(R.id.expMonth);
         Spinner expYearSpinner = (Spinner)findViewById(R.id.expYear);
         EditText csc = findViewById(R.id.editCVC);
+        
 
         String nameOnCardText = nameOnCard.getText().toString();
         String cardNumberText = cardNumber.getText().toString();
