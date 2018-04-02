@@ -14,6 +14,12 @@ import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Payment;
 import com.rollingpinbakery.rollingpinbakery.Data.ShippingInfo;
 
+import java.security.Key;
+import java.security.SecureRandom;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+
 public class PaymentInfo extends AppCompatActivity {
 
     public static Intent paymentResults;
@@ -75,6 +81,32 @@ public class PaymentInfo extends AppCompatActivity {
                 //expMonthText+ expYearText, cscText));
 
                 //put extras to the next form
+                try {
+
+
+                    SecureRandom random = new SecureRandom();
+                    IvParameterSpec ivSpec = AndroidCryptUtils.createCtrIvForAES(1, random);
+                    //KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA", "BC");
+                    //Generator.initialize(534, random);
+                    //KeyPair pair = generator.generateKeyPair();
+                    Key key = AndroidCryptUtils.createKeyForAES(256, random);
+                    //Key privKey = pair.getPrivate();
+                    Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding", "BC");
+                    //encryption
+                    cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
+                    byte[] cipherText = cipher.doFinal(AndroidCryptUtils.toByteArray(cardNumberText));
+                    System.out.println("INPUT: " + cardNumberText);
+                    System.out.println("ENCRYPTED: " + AndroidCryptUtils.toHex(cipherText));
+                    //decryption
+                    cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
+                    byte[] plainText = cipher.doFinal(cipherText);
+                    System.out.println("DECRYPTED: " + AndroidCryptUtils.toString(plainText));
+
+
+                }
+                catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
                 paymentResults.putExtra("PaymentName", nameOnCardText);
                 paymentResults.putExtra("PaymentCardNumber", cardNumberText );
                 paymentResults.putExtra("PaymentCardType", cardTypeText);
