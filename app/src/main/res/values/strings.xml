@@ -114,6 +114,7 @@
     <string name="san_francisco">San Francisco, California</string>
     <string name="miami">Miami, Florida</string>
 
+    //Payment Info Page
     <string-array name="cardTypeSpinner">
         <item>MasterCard</item>
         <item>Visa</item>
@@ -150,5 +151,10 @@
         <item>2028</item>
     </string-array>
 
+
+    <string name="OCHeader">Order Summary</string>
+    <string name="shipDetails">Shipping Details</string>
+    <string name="payDetails">Payment Details</string>
+    <string name="placeOrder">Place Order</string>
 
 </resources>

@@ -24,6 +24,7 @@ public class ShippingInfoPage extends AppCompatActivity {
     public void SubmitShippingInfo(View v) {
         //Gets values
         try {
+
             EditText name = findViewById(R.id.editName);
             EditText address = findViewById(R.id.editAddress);
             EditText city = findViewById(R.id.editCity);
@@ -38,12 +39,32 @@ public class ShippingInfoPage extends AppCompatActivity {
             String stateText = state.getText().toString();
             String zipCodeText = zipCode.getText().toString();
 
-            AppDatabase.getAppDatabase(this).shippingInfoDao().insert(
-                    new ShippingInfo(nameText, addressText, cityText,
-                            stateText, zipCodeText));
+            if(nameText.isEmpty() || addressText.isEmpty() || cityText.isEmpty() || stateText.isEmpty() || zipCodeText.isEmpty()){
+                Toast.makeText(getApplicationContext(), "Please fill out the Shipping form correctly", Toast.LENGTH_SHORT ).show();
+            }
+            else {
+                if(stateText.length() != 2){
+                    Toast.makeText(getApplicationContext(), "State can only be two letters. EX: MN", Toast.LENGTH_SHORT ).show();
+                }
+                else if (zipCodeText.length() != 5){
+                    Toast.makeText(getApplicationContext(), "Please enter a valid Zip Code", Toast.LENGTH_SHORT ).show();
+                }
+                else{
+                    //put extras to the next form
+                    Intent shippingResults = new Intent(getApplicationContext(), PaymentInfo.class);
+                    shippingResults.putExtra("ShippingName", nameText);
+                    shippingResults.putExtra("ShippingAddress", addressText);
+                    shippingResults.putExtra("ShippingCity", cityText);
+                    shippingResults.putExtra("ShippingState", stateText);
+                    shippingResults.putExtra("ShippingZip", zipCodeText);
 
-            startActivity(new Intent(this, PaymentInfo.class));
+                    AppDatabase.getAppDatabase(this).shippingInfoDao().insert(
+                            new ShippingInfo(nameText, addressText, cityText,
+                                    stateText, zipCodeText));
 
+                    startActivity(shippingResults);
+                }
+            }
         }
         catch(Exception e){
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
