@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void Submit(View v){
+
         //Gets values
         EditText e = findViewById(R.id.editText);
         String test1 = e.getText().toString();
@@ -36,24 +38,26 @@ public class LoginActivity extends AppCompatActivity {
 
         //Shows that values have been retrieved
         try {
-            customer = AppDatabase.getAppDatabase(this)
-                    .customerDao()
-                    .getCustomerInfo(test1, test2);
-
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            //customer = AppDatabase.getAppDatabase(this).customerDao().getCustomerInfo(test1, test2);
+            customer = databaseAccess.getCustomerInfo(test1, test2);
 
             if (customer == null) {
                 Toast.makeText(getApplicationContext(), "Username does not exist", Toast.LENGTH_SHORT).show();
             } else {
                 //Mark the user logged in
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                customer = AppDatabase.getAppDatabase(this).customerDao().getCustomerByUsername(customer.getCustUsername());
+
+                customer = databaseAccess.getCustomerByUsername(customer.getCustUsername());
+                //customer = AppDatabase.getAppDatabase(this).customerDao().getCustomerByUsername(customer.getCustUsername());
 
                 editor.putString("LoginStatus", "Logged In");
                 editor.putString("UserRole", customer.getCustType());
+                editor.putInt("custID", customer.get_custId());
                 editor.commit();
                 startActivity(new Intent(this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Welcome back " + customer.getCustFName() + "!", Toast.LENGTH_SHORT).show();
-
             }
         }
         catch(Exception ex){

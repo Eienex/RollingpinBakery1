@@ -11,9 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 
 
 import java.util.ArrayList;
@@ -87,7 +89,26 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
     }
 
     public void update(Customer customer){
-        AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
+        //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+            databaseAccess.open();
+            //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
+            databaseAccess.deleteCustomer(customer);
+        }catch(Exception ex){
+            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+    public void Delete(Customer customer){
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+            databaseAccess.open();
+            //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
+            databaseAccess.deleteCustomer(customer);
+        }catch(Exception ex){
+            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void editCustomer(View view, int id, String fName, String lName, String username, String password, String email, String role){

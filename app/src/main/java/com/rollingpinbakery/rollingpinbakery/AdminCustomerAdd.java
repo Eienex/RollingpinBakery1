@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminCustomerAdd extends AppCompatActivity {
@@ -60,10 +61,18 @@ public class AdminCustomerAdd extends AppCompatActivity {
         }
         else {
             if (txtPassword != txtRePassword){
-                Spinner spinner = findViewById(R.id.spinner);
-                String spinnerResult = spinner.getSelectedItem().toString();
-                AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult));
-                finish();
+                try{
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                    databaseAccess.open();
+                    Spinner spinner = findViewById(R.id.spinner);
+                    String spinnerResult = spinner.getSelectedItem().toString();
+                    //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult));
+                    databaseAccess.insertCustomer(new Customer(txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult));
+                    finish();
+                }catch(Exception ex){
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
             }
             else {
                 Toast.makeText(getApplicationContext(), "The password you entered does not match", Toast.LENGTH_SHORT);

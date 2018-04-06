@@ -41,6 +41,7 @@ public class Customer {
     //@TypeConverter({Converters.class})
     //private Date dateSignedUp;
 
+    public Customer(){}
 
     public Customer(String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
         this.custFName = custFName;
