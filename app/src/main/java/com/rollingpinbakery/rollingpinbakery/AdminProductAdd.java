@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminProductAdd extends AppCompatActivity {
@@ -64,22 +65,36 @@ public class AdminProductAdd extends AppCompatActivity {
 
             Spinner spinner = findViewById(R.id.spinner);
             String spinnerResult = spinner.getSelectedItem().toString();
-            boolean isFeatured = false;
+            int isFeatured = 0;
             CheckBox isFeaturedProd = findViewById(R.id.IsFeaturedCkbx);
             if (isFeaturedProd.isChecked()){
-                isFeatured = true;
+                isFeatured = 1;
             }
             else {
-                isFeatured = false;
+                isFeatured = 0;
             }
 
 
             if (txtSalePrice.matches("")){
-                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured,null));
+                //AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured,null));
+                try{
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                    databaseAccess.open();
+                    databaseAccess.insertProduct(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured,null));
+                }catch(Exception ex){
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 finish();
             }
             else {
-                AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured,null));
+                //AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured,null));
+                try{
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                    databaseAccess.open();
+                    databaseAccess.insertProduct(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured,null));
+                }catch(Exception ex){
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
                 finish();
             }
         }

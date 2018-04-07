@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
@@ -149,10 +150,17 @@ public class PastriesCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        listView = findViewById(R.id.listView);
-        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Pastry");
-        adapter = new StoreProductAdapter(this, products);
-        listView.setAdapter(adapter);
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            listView = findViewById(R.id.listView);
+            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
+            products = (ArrayList<Product>) databaseAccess.getProductByType("Pastry");
+            adapter = new StoreProductAdapter(this, products);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 
 }

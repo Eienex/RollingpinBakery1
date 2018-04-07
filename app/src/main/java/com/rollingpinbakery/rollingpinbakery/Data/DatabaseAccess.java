@@ -51,6 +51,10 @@ public class DatabaseAccess {
         }
     }
 
+
+
+
+
     /**
      The following 6 methods handle all of the Customer Database related operations
      */
@@ -149,4 +153,84 @@ public class DatabaseAccess {
     }
 
 
+
+
+    /**
+     The following 6 methods handle all of the Product Database related operations
+     */
+
+    public void insertProduct(Product p){
+        database.execSQL("INSERT INTO Products (prodName, prodRetailPrice, prodSalesPrice, prodDesc, prodType, prodFeatured, prodImg)" +
+                " Values('" + p.getProdName() +
+                "', " + p.getProdRetailPrice() + ", " + p.getProdSalePrice() + ", '" +
+                p.getProdDesc() + "', '" + p.getProdType() + "', " + p.getProdFeatured() + ", '" + p.getProdImage()+ "')");
+    }
+
+    public void updateProduct(Product p){
+        database.execSQL("UPDATE Products SET prodName = '" + p.getProdName() + "', " +
+                "prodRetailPrice = " + p.getProdRetailPrice() + ", " + "prodSalesPrice = " + p.getProdSalePrice()+
+                "," + " prodDesc = '" + p.getProdDesc() + "'," + " prodType = '" + p.getProdType() +
+                "'," + " prodFeatured = " + p.getProdFeatured() + ", " + "prodImg = '" + p.getProdImage() +
+                "' Where prodID = " + p.get_prodId());
+    }
+
+    public void deleteProduct(Product p){
+        database.execSQL("DELETE FROM Products where prodID = " + p.get_prodId());
+    }
+
+    public ArrayList<Product> getAllProducts() {
+        ArrayList<Product> list = new ArrayList<Product>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Products", null);
+        cursor.moveToFirst();
+        int i = 0;
+        while (!cursor.isAfterLast()) {
+            list.add(i, new Product(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2),
+                            cursor.getDouble(3), cursor.getString(4), cursor.getString(5),
+                            cursor.getInt(6), cursor.getString(7)));
+            i++;
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+    public Product getProductById(int id){
+        Product product = new Product();
+        Cursor cursor = database.rawQuery("SELECT * FROM Products where prodID == " + id, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            product.set_prodId(cursor.getInt(0));
+            product.setProdName(cursor.getString(1));
+            product.setProdRetailPrice(cursor.getDouble(2));
+            product.setProdSalePrice(cursor.getDouble(3));
+            product.setProdDesc(cursor.getString(4));
+            product.setProdType(cursor.getString(5));
+            product.setProdFeatured(cursor.getInt(6));
+            product.setProdImage(cursor.getString(7));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return product;
+    }
+
+    public List<Product> getProductByType(String type){
+        ArrayList<Product> list = new ArrayList<Product>();
+        Cursor cursor = database.rawQuery("SELECT * FROM Products where prodType = '" + type + "'", null);
+        cursor.moveToFirst();
+        int i =0;
+        while (!cursor.isAfterLast()) {
+            list.add(i, new Product(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2),
+                    cursor.getDouble(3), cursor.getString(4), cursor.getString(5),
+                    cursor.getInt(6), cursor.getString(7)));
+            i++;
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+
+    /**
+     The following methods handle all of the Order Database related operations
+     */
 }

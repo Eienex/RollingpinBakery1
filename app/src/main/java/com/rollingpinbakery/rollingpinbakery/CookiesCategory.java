@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
@@ -40,10 +41,6 @@ public class CookiesCategory extends AppCompatActivity
         setContentView(R.layout.activity_cookies_category);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        AppDatabase.getAppDatabase(this).productDao().insert(
-                new Product("Simple Cookie",0.99,null,"A sample cookie","Cookie",false,null));
-
 
         //get shared Preferences
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
@@ -149,9 +146,16 @@ public class CookiesCategory extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
-        listView = findViewById(R.id.listView);
-        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cookie");
-        adapter = new StoreProductAdapter(this, products);
-        listView.setAdapter(adapter);
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            listView = findViewById(R.id.listView);
+            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
+            products = (ArrayList<Product>) databaseAccess.getProductByType("Cookie");
+            adapter = new StoreProductAdapter(this, products);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }

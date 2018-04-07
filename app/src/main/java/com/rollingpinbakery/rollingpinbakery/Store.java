@@ -114,7 +114,10 @@ public class Store extends AppCompatActivity
         }  else if (id == R.id.nav_Register) {
             Intent editIntent = new Intent(this, Register.class);
             startActivity(editIntent);
-        }  else if (id == R.id.nav_Cart) {
+        }  else if (id == R.id.nav_Admin) {
+            Intent editIntent = new Intent(this, AdminMainActivity.class);
+            startActivity(editIntent);
+        }else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
         }  else if (id == R.id.nav_Logout) {

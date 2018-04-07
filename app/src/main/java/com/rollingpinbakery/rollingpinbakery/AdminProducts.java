@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class AdminProducts extends AppCompatActivity
                 startActivity(new Intent(getBaseContext(), AdminProductAdd.class));
             }
         });
-//get shared Preferences
+        //get shared Preferences
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String LoginStatus = sharedPreferences.getString("LoginStatus","");
         String UserRole = sharedPreferences.getString("UserRole", "");
@@ -138,8 +139,7 @@ public class AdminProducts extends AppCompatActivity
         }else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
-        }
-        else if (id == R.id.nav_Logout) {
+        }else if (id == R.id.nav_Logout) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("LoginStatus","Logged Out");
             editor.commit();
@@ -158,11 +158,20 @@ public class AdminProducts extends AppCompatActivity
     @Override
     protected void onResume(){
         super.onResume();
-        listView = findViewById(R.id.listView);
-        products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
-        adapter = new ProductAdapter(this, products);
-        listView.setAdapter(adapter);
-    }
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            listView = findViewById(R.id.listView);
+            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
+            products = (ArrayList<Product>) databaseAccess.getAllProducts();
+            adapter = new ProductAdapter(this, products);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+
+        }
 
 
 }

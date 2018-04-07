@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminProductEdit extends AppCompatActivity {
@@ -32,7 +33,7 @@ public class AdminProductEdit extends AppCompatActivity {
         prodDesc = (EditText)findViewById(R.id.ProductDescription);
         productCategory = (Spinner)findViewById(R.id.spinner);
         prodIsFeatured = (CheckBox)findViewById(R.id.IsFeaturedCkbx);
-        prodImage = (EditText)findViewById(R.id.ProductImage);
+        //prodImage = (EditText)findViewById(R.id.ProductImage);
 
         id = getIntent().getIntExtra("int_productID", 0);
         String txtName = getIntent().getStringExtra("txt_productName");
@@ -41,7 +42,7 @@ public class AdminProductEdit extends AppCompatActivity {
         String txtProdDesc = getIntent().getStringExtra("txt_productDesc");
         String txtProdType = getIntent().getStringExtra("txt_productType");
         String txtProdIsFeatured = getIntent().getStringExtra("txt_prodIsFeatured");
-        String txtProdImg = getIntent().getStringExtra("txt_productImg");
+        //String txtProdImg = getIntent().getStringExtra("txt_productImg");
 
         //crop the strings
         txtName = txtName.replace("Name: ", "");
@@ -49,14 +50,14 @@ public class AdminProductEdit extends AppCompatActivity {
         txtSalesPrice = txtSalesPrice.replace("Sale Price: ", "");
         txtProdType = txtProdType.replace("Category: ", "");
         txtProdDesc = txtProdDesc.replace("Description: " , "");
-        txtProdImg = txtProdImg.replace("Image: " , "");
+        //txtProdImg = txtProdImg.replace("Image: " , "");
 
         //Set the text for the edittext
         prodName.setText(txtName);
         prodPrice.setText(txtPrice);
         prodSalePrice.setText(txtSalesPrice);
         prodDesc.setText(txtProdDesc);
-        prodImage.setText(txtProdImg);
+        //prodImage.setText(txtProdImg);
 
         if (txtProdIsFeatured.matches("")){
             prodIsFeatured.setChecked(false);
@@ -108,18 +109,24 @@ public class AdminProductEdit extends AppCompatActivity {
 
             Spinner spinner = findViewById(R.id.spinner);
             String spinnerResult = spinner.getSelectedItem().toString();
-            boolean isFeatured = false;
+            int isFeatured = 0;
             CheckBox isFeaturedProd = findViewById(R.id.IsFeaturedCkbx);
             if (isFeaturedProd.isChecked()){
-                isFeatured = true;
+                isFeatured = 1;
             }
             else {
-                isFeatured = false;
+                isFeatured = 0;
             }
 
-            Product updatedProduct = new Product(txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured,null);
-                AppDatabase.getAppDatabase(this).productDao().update(updatedProduct);
-                //AppDatabase.getAppDatabase(this).productDao().insert(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured, null));
+            Product updatedProduct = new Product(id,txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured,null);
+                //AppDatabase.getAppDatabase(this).productDao().update(updatedProduct);
+            try{
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                databaseAccess.open();
+                databaseAccess.updateProduct(updatedProduct);
+            }catch(Exception ex){
+                Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
                 finish();
             }
     }
