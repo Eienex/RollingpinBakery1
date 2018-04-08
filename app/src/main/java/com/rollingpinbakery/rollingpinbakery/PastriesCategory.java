@@ -123,10 +123,7 @@ public class PastriesCategory extends AppCompatActivity
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Account) {
-            Intent editIntent = new Intent(this, Account.class);
-            startActivity(editIntent);
-        } else if (id == R.id.nav_Register) {
-            Intent editIntent = new Intent(this, Register.class);
+            Intent editIntent = new Intent(this, LoginActivity.class);
             startActivity(editIntent);
         }  else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);

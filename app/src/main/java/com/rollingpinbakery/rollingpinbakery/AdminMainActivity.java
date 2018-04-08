@@ -109,10 +109,7 @@ public class AdminMainActivity extends AppCompatActivity
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Account) {
-            Intent editIntent = new Intent(this, Account.class);
-            startActivity(editIntent);
-        } else if (id == R.id.nav_Register) {
-            Intent editIntent = new Intent(this, Register.class);
+            Intent editIntent = new Intent(this, LoginActivity.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Admin) {
             Intent editIntent = new Intent(this, AdminMainActivity.class);

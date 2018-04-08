@@ -16,10 +16,6 @@
             android:label="@string/title_activity_store"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Account"
-            android:label="@string/title_activity_account"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".CakesCategory"
             android:label="@string/title_activity_cakes_category"
             android:theme="@style/AppTheme.NoActionBar" />

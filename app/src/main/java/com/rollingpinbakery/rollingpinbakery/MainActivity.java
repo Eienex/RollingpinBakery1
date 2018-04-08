@@ -31,11 +31,18 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.LoginActivity"));
+
+            }
+        });
+        FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.Register"));
             }
         });
 
@@ -122,10 +129,7 @@ public class MainActivity extends AppCompatActivity
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Account) {
-            Intent editIntent = new Intent(this, Account.class);
-            startActivity(editIntent);
-        } else if (id == R.id.nav_Register) {
-            Intent editIntent = new Intent(this, Register.class);
+            Intent editIntent = new Intent(this, LoginActivity.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Admin) {
             Intent editIntent = new Intent(this, AdminMainActivity.class);
