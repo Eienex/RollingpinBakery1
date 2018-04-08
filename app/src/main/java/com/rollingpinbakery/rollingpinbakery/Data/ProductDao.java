@@ -33,7 +33,7 @@ public interface ProductDao {
     @Query("SELECT * FROM product")
     public List<Product> getAllProducts();
 
-    @Query("SELECT _prodId, prodName, prodRetailPrice, prodType, prodDesc FROM product")
+    @Query("SELECT _prodId, prodName, prodRetailPrice, prodType, prodDesc, prodFeatured FROM product")
     public List<Product> getInventReports();
 
     //@Query("Update product set name = 'test', email = 'test@test.com' where _id == :id")

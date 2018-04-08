@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 
 import java.util.List;
 
@@ -39,15 +40,17 @@ public class Register extends AppCompatActivity {
             if(fNameText.isEmpty() || lNameText.isEmpty() || userNameText.isEmpty() || passwordText.isEmpty() || emailText.isEmpty()){
                 Toast.makeText(this, "Fill out the form correctly", Toast.LENGTH_LONG).show();
             }else {
+                try{
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                    databaseAccess.open();
+                    //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+                    databaseAccess.insertCustomer(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+                    Toast.makeText(this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
+                    finish();
+                }catch(Exception ex){
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
 
-                AppDatabase.getAppDatabase(this).customerDao().insert(
-                        new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
-
-
-                //  List<Customer> = AppDatabase.getAppDatabase(this).customerDao().getAllCustomers().toString();
-
-                Toast.makeText(this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
-                finish();
             }
         }
         catch(Exception e){

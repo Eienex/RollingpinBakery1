@@ -13,14 +13,12 @@ public class ReportsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reports);
     }
 
-
     public void custReports(View view) {
         startActivity(new Intent(this, CustReports.class));
     }
     public void orderReports(View view){
         startActivity(new Intent(this, OrderReports.class));
     }
-
     public void inventReports(View view) {
         startActivity(new Intent(this, InventReports.class));
     }

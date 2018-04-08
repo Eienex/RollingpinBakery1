@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminCustomerEdit extends AppCompatActivity {
@@ -95,12 +96,19 @@ public class AdminCustomerEdit extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please fill out the form", Toast.LENGTH_SHORT);
         }
         else {
-            Spinner spinner = findViewById(R.id.spinner);
-            String spinnerResult = spinner.getSelectedItem().toString();
+            try{
+                Spinner spinner = findViewById(R.id.spinner);
+                String spinnerResult = spinner.getSelectedItem().toString();
+                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+                databaseAccess.open();
+                Customer updatedCustomer = new Customer(id,txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult);
+                //AppDatabase.getAppDatabase(this).customerDao().update(updatedCustomer);
+                databaseAccess.updateCustomer(updatedCustomer);
+                finish();
+            }catch(Exception ex){
+                Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
 
-            Customer updatedCustomer = new Customer(id,txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult);
-            AppDatabase.getAppDatabase(this).customerDao().update(updatedCustomer);
-            finish();
         }
     }
 }

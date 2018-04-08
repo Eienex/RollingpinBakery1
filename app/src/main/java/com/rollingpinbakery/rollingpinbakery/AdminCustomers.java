@@ -15,9 +15,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
@@ -120,10 +122,18 @@ public class AdminCustomers extends AppCompatActivity
     @Override
     protected void onResume(){
         super.onResume();
-        listView = findViewById(R.id.listView);
-        customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
-        adapter = new CustomerAdapter(this, customers);
-        listView.setAdapter(adapter);
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+            databaseAccess.open();
+            listView = findViewById(R.id.listView);
+            //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
+            customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
+            adapter = new CustomerAdapter(this, customers);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
     }
 
 }

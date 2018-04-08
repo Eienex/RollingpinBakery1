@@ -29,12 +29,14 @@ public class Product {
     private String prodType;
 
     @ColumnInfo(name = "prodFeatured")
-    private Boolean prodFeatured;
+    private int prodFeatured;
 
     @ColumnInfo(name = "prodImage")
     private String prodImage;
 
-    public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, Boolean prodFeatured, String prodImage) {
+    public Product(){}
+
+    public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this.prodName = prodName;
         this.prodRetailPrice = prodRetailPrice;
@@ -45,7 +47,7 @@ public class Product {
         this.prodImage = prodImage;
     }
 
-    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, boolean prodFeatured, String prodImage) {
+    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this._prodId = id;
         this.prodName = prodName;
@@ -75,11 +77,11 @@ public class Product {
     public String getProdType() {return prodType;}
     public void setProdType(String prodType) {this.prodType = prodType;}
 
-    public Boolean getProdFeatured() {return prodFeatured;}
-    public void setProdFeatured(Boolean prodFeatured) {this.prodFeatured = prodFeatured;}
+    public int getProdFeatured() {return prodFeatured;}
+    public void setProdFeatured(int prodFeatured) {this.prodFeatured = prodFeatured;}
 
     public String getProdImage() {return prodImage;}
-    public void setProdImg(String prodImage) {this.prodImage = prodImage;}
+    public void setProdImage(String prodImage) {this.prodImage = prodImage;}
 
 
 }

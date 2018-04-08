@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 
@@ -62,7 +63,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         }
         productType.setText("Category: " + product.getProdType());
         productDesc.setText("Description: " + product.getProdDesc());
-        if (product.getProdFeatured() == true){
+        if (product.getProdFeatured() == 1){
             prodIsFeatured.setText("Featured Product!");
             prodIsFeatured.setTextColor(Color.RED);
         }
@@ -79,6 +80,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 final String txtType = productType.getText().toString();
                 final String txtDesc = productDesc.getText().toString();
                 final String txtProdIsFeatured = prodIsFeatured.getText().toString();
+                final String txtProdImg = prodIsFeatured.getText().toString();
                 editProduct(view, id, txtName, txtPrice, txtSalePrice, txtType, txtDesc, txtProdIsFeatured);
             }
         });
@@ -92,9 +94,6 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 view.getContext().startActivity(new Intent(getContext(), AdminProducts.class));
             }
         });
-
-
-
         return convertView;
     }
 
@@ -104,7 +103,14 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     }
 
     public void update(Product product){
-        AppDatabase.getAppDatabase(getContext()).productDao().delete(product);
+        try{
+            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
+            databaseAccess.open();
+            databaseAccess.deleteProduct(product);
+        }catch(Exception ex){
+            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+        //AppDatabase.getAppDatabase(getContext()).productDao().delete(product);
     }
 
     public void editProduct(View view, int id, String name, String price, String salePrice, String type, String desc, String prodIsFeatured){
