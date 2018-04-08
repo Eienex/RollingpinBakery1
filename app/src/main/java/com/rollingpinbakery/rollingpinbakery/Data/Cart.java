@@ -21,14 +21,21 @@ public class Cart {
     @ColumnInfo(name = "Price")
     private String price;
 
+    public Cart(String itemName, String itemCat, String price) {
+        this.itemName = itemName;
+        this.itemCat = itemCat;
+        this.price = price;
+    }
 
+/*
     public Cart(int cartId, String itemName, String itemCat, String price) {
         this._cartId = cartId;
         this.itemName = itemName;
         this.itemCat = itemCat;
         this.price = price;
-
     }
+    */
+
     public int get_cartId() {return _cartId;}
     public void set_cartId(int _cartId) {this._cartId = _cartId;}
 
