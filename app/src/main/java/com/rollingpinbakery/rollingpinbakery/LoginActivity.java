@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextView regUser;
+
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
     public Customer customer;
@@ -26,6 +29,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        regUser = (TextView)findViewById(R.id.signUp);
+        regUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, Register.class));
+            }
+        });
+
     }
 
     public void Submit(View v){
@@ -65,9 +77,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
-    public void RegUser(View v){
-        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.Register"));
-    }
+
 
     public void passReset(View v){
         startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.PasswordReset"));

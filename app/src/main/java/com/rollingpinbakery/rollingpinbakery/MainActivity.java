@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.Register"));
+                startActivity(new Intent(MainActivity.this, Register.class));
             }
         });
 
