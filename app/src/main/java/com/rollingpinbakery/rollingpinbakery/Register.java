@@ -41,6 +41,7 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(this, "Fill out the form correctly", Toast.LENGTH_LONG).show();
             }else {
                 try{
+
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
                     databaseAccess.open();
                     //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));

@@ -40,10 +40,11 @@ public class PasswordReset extends AppCompatActivity {
                 finish();
             }
         });
+
         resetButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String email = inputEmail.getText().toString().trim();
+                String email = inputEmail.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplication(), "Enter your registered email", Toast.LENGTH_LONG).show();
