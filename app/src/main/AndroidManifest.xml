@@ -172,8 +172,18 @@
             android:name=".OrderConfirmation"
             android:label="Order Confirmation">
             <intent-filter>
-                <action android:name="com.rollingpinbakery.rollingpinbakery.OrderConfirmation"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.OrderConfirmation" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".PasswordReset"
+            android:label="Forgot Password">
+            <intent-filter>
+                <action android:name="com.rollingpinbakery.rollingpinbakery.PasswordReset" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>

@@ -69,4 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.Register"));
     }
 
+    public void passReset(View v){
+        startActivity(new Intent("com.rollingpinbakery.rollingpinbakery.PasswordReset"));
+    }
 }
