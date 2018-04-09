@@ -33,6 +33,7 @@ public class InventReports extends AppCompatActivity {
             listView = findViewById(R.id.product_list);
             //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getInventReports();
             products = (ArrayList<Product>) databaseAccess.getAllProducts();
+            databaseAccess.close();
             adapter2 = new Invent_ReportAdapter(this, products);
             listView.setAdapter((ListAdapter) adapter2);
         }catch(Exception ex){

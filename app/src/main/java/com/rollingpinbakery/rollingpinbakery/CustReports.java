@@ -34,6 +34,7 @@ public class CustReports extends AppCompatActivity {
             listView = findViewById(R.id.list_item);
             //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getCustReports();
             customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
+            databaseAccess.close();
             adapter = new Cust_ReportAdapter(this, customers);
             listView.setAdapter(adapter);
         }

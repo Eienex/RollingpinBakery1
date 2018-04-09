@@ -161,6 +161,7 @@ public class AdminProducts extends AppCompatActivity
             listView = findViewById(R.id.listView);
             //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
             products = (ArrayList<Product>) databaseAccess.getAllProducts();
+            databaseAccess.close();
             adapter = new ProductAdapter(this, products);
             listView.setAdapter(adapter);
         }catch(Exception ex){

@@ -95,6 +95,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
             databaseAccess.open();
             //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
             databaseAccess.deleteCustomer(customer);
+            databaseAccess.close();
         }catch(Exception ex){
             Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -105,6 +106,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
             databaseAccess.open();
             //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
             databaseAccess.deleteCustomer(customer);
+            databaseAccess.close();
         }catch(Exception ex){
             Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
         }

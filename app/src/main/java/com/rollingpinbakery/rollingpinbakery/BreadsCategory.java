@@ -151,6 +151,7 @@ public class BreadsCategory extends AppCompatActivity
             listView = findViewById(R.id.listView);
             //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
             products = (ArrayList<Product>) databaseAccess.getProductByType("Bread");
+            databaseAccess.close();
             adapter = new StoreProductAdapter(this, products);
             listView.setAdapter(adapter);
         }catch(Exception ex){

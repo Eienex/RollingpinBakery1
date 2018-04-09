@@ -152,6 +152,7 @@ public class DonutCategory extends AppCompatActivity
             listView = findViewById(R.id.listView);
             //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
             products = (ArrayList<Product>) databaseAccess.getProductByType("Donut");
+            databaseAccess.close();
             adapter = new StoreProductAdapter(this, products);
             listView.setAdapter(adapter);
         }catch(Exception ex){

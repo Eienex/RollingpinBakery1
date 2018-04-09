@@ -125,6 +125,7 @@ public class AdminCustomers extends AppCompatActivity
             listView = findViewById(R.id.listView);
             //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
             customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
+            databaseAccess.close();
             adapter = new CustomerAdapter(this, customers);
             listView.setAdapter(adapter);
         }catch(Exception ex){
