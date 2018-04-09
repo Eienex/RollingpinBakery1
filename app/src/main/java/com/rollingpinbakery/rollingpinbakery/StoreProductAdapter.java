@@ -125,6 +125,8 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_productDesc", desc);
 
         view.getContext().startActivity(formResult);
+        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(name, type, salePrice));
+
         //view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }
 }
