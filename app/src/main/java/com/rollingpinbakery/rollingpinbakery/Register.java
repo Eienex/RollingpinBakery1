@@ -62,6 +62,27 @@ public class Register extends AppCompatActivity {
                                 }
                             });
                 }
+                try{
+
+                    String fNameText = fName.getText().toString();
+                    String lNameText = lName.getText().toString();
+                    String userNameText = userName.getText().toString();
+                    String passwordText = password.getText().toString();
+                    String emailText = email.getText().toString();
+
+                    DatabaseAccess databaseAccess = DatabaseAccess.getInstance(Register.this);
+                    databaseAccess.open();
+                    //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+                    databaseAccess.insertCustomer(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+                    Toast.makeText(Register.this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
+                    databaseAccess.close();
+                    Register.this.finish();
+                    startActivity(new Intent(Register.this, LoginActivity.class));
+
+                }catch(Exception ex){
+                    Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
