@@ -44,9 +44,14 @@ public class Register extends AppCompatActivity {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
                     databaseAccess.open();
                     //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
+
+
                     databaseAccess.insertCustomer(new Customer(fNameText, lNameText, userNameText, passwordText, emailText, "Customer"));
                     Toast.makeText(this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
-                    finish();
+                    databaseAccess.close();
+                    this.finish();
+                    startActivity(new Intent(this, LoginActivity.class));
+
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
