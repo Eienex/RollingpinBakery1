@@ -68,6 +68,7 @@ public class AdminCustomerAdd extends AppCompatActivity {
                     String spinnerResult = spinner.getSelectedItem().toString();
                     //AppDatabase.getAppDatabase(this).customerDao().insert(new Customer(txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult));
                     databaseAccess.insertCustomer(new Customer(txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult));
+                    databaseAccess.close();
                     finish();
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();

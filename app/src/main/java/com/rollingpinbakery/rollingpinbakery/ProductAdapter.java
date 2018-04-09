@@ -107,6 +107,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
             databaseAccess.open();
             databaseAccess.deleteProduct(product);
+            databaseAccess.close();
         }catch(Exception ex){
             Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
         }

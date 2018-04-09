@@ -81,6 +81,7 @@ public class AdminProductAdd extends AppCompatActivity {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
                     databaseAccess.open();
                     databaseAccess.insertProduct(new Product(txtName, productPrice, 0.00, txtDesc, spinnerResult, isFeatured,null));
+                    databaseAccess.close();
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
@@ -92,6 +93,7 @@ public class AdminProductAdd extends AppCompatActivity {
                     DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
                     databaseAccess.open();
                     databaseAccess.insertProduct(new Product(txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured,null));
+                    databaseAccess.close();
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }

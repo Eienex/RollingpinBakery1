@@ -124,6 +124,7 @@ public class AdminProductEdit extends AppCompatActivity {
                 DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
                 databaseAccess.open();
                 databaseAccess.updateProduct(updatedProduct);
+                databaseAccess.close();
             }catch(Exception ex){
                 Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
             }

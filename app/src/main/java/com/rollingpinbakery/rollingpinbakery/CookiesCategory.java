@@ -152,6 +152,7 @@ public class CookiesCategory extends AppCompatActivity
             listView = findViewById(R.id.listView);
             //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
             products = (ArrayList<Product>) databaseAccess.getProductByType("Cookie");
+            databaseAccess.close();
             adapter = new StoreProductAdapter(this, products);
             listView.setAdapter(adapter);
         }catch(Exception ex){

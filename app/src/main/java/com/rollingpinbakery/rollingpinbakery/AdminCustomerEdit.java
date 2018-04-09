@@ -104,6 +104,7 @@ public class AdminCustomerEdit extends AppCompatActivity {
                 Customer updatedCustomer = new Customer(id,txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult);
                 //AppDatabase.getAppDatabase(this).customerDao().update(updatedCustomer);
                 databaseAccess.updateCustomer(updatedCustomer);
+                databaseAccess.close();
                 finish();
             }catch(Exception ex){
                 Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
