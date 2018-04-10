@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 public class PasswordReset extends AppCompatActivity {
 
     private EditText inputEmail;
-    private Button resetButton, backButton;
+    private TextView resetButton, backButton;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
 
@@ -28,10 +29,10 @@ public class PasswordReset extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_reset);
 
-        inputEmail = (EditText)findViewById(R.id.email);
-        resetButton = (Button) findViewById(R.id.resetButton);
-        backButton = (Button) findViewById(R.id.backBtn);
-        progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        inputEmail = findViewById(R.id.email);
+        resetButton = findViewById(R.id.resetButton);
+        backButton = findViewById(R.id.backBtn);
+        progressBar = findViewById(R.id.progressBar);
         auth = FirebaseAuth.getInstance();
 
         backButton.setOnClickListener(new View.OnClickListener(){
