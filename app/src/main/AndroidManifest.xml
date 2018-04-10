@@ -67,7 +67,8 @@
         <activity android:name=".AdminCustomerAdd" />
         <activity
             android:name=".MainActivity"
-            android:label="Rollingpin Bakery Home Page">
+            android:label="Rollingpin Bakery Home Page"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.rollingpinbakery.rollingpinbakery.MainActivity" />
 
