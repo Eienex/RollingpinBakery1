@@ -2,26 +2,25 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery.iml" filepath="C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery.iml" />
-      <module fileurl="file://C:\Users\jamej\Documents\RollingpinBakery1\RollingpinBakery.iml" filepath="C:\Users\jamej\Documents\RollingpinBakery1\RollingpinBakery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RollingpinBakery.iml" filepath="$PROJECT_DIR$/RollingpinBakery.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RollingpinBakery1/RollingpinBakery.iml" filepath="$PROJECT_DIR$/../RollingpinBakery1/RollingpinBakery.iml" />
+      <module fileurl="file://C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery.iml" filepath="C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/RollingpinBakery1.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/RollingpinBakery1.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery226/RollingpinBakery1.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery226/RollingpinBakery1.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery2/RollingpinBakery1.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery2/RollingpinBakery1.iml" />
+      <module fileurl="file://C:/equno_000/AndroidProjectGRP2/RollingpinBakery/RollingpinBakery1.iml" filepath="C:/equno_000/AndroidProjectGRP2/RollingpinBakery/RollingpinBakery1.iml" />
       <module fileurl="file://$PROJECT_DIR$/RollingpinBakery1.iml" filepath="$PROJECT_DIR$/RollingpinBakery1.iml" />
-      <module fileurl="file://C:\Users\jamej\Documents\RollingpinBakery\RollingpinBakery1.iml" filepath="C:\Users\jamej\Documents\RollingpinBakery\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\equno_000\AndroidProjectGRP2\RollingpinBakery\RollingpinBakery1.iml" filepath="C:\equno_000\AndroidProjectGRP2\RollingpinBakery\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\RollingpinBakery1.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery226\RollingpinBakery1.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery226\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery225\RollingpinBakery1.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery225\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery2\RollingpinBakery1.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery2\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery31218\RollingpinBakery1.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery31218\RollingpinBakery1.iml" />
-      <module fileurl="file://C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery2.iml" filepath="C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery2.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\RollingpinBakery225.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\RollingpinBakery225.iml" />
-      <module fileurl="file://C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery226.iml" filepath="C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery226.iml" />
-      <module fileurl="file://C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery31218.iml" filepath="C:\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery31218.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery225/RollingpinBakery1.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery225/RollingpinBakery1.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery31218/RollingpinBakery1.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery31218/RollingpinBakery1.iml" />
+      <module fileurl="file://C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery2.iml" filepath="C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery2.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/RollingpinBakery225.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/RollingpinBakery225.iml" />
+      <module fileurl="file://C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery226.iml" filepath="C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery226.iml" />
+      <module fileurl="file://C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery31218.iml" filepath="C:/defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery31218.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\jamej\Documents\RollingpinBakery1\app\app.iml" filepath="C:\Users\jamej\Documents\RollingpinBakery1\app\app.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery31218\app\app.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery31218\app\app.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery225\app\app.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1-Feature\RollingpinBakery225\app\app.iml" />
-      <module fileurl="file://C:\Users\jamej\Documents\RollingpinBakery\app\app.iml" filepath="C:\Users\jamej\Documents\RollingpinBakery\app\app.iml" />
-      <module fileurl="file://C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\app\app.iml" filepath="C:\jamej\Downloads\RollingpinBakery1-Feature\RollingpinBakery1\app\app.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery225/app/app.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1-Feature/RollingpinBakery225/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RollingpinBakery1/app/app.iml" filepath="$PROJECT_DIR$/../RollingpinBakery1/app/app.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery31218/app/app.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery31218/app/app.iml" />
+      <module fileurl="file://C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/app/app.iml" filepath="C:/jamej/Downloads/RollingpinBakery1-Feature/RollingpinBakery1/app/app.iml" />
     </modules>
   </component>
 </project>

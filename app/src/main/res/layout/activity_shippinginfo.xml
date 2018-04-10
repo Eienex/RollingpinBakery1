@@ -38,9 +38,8 @@
         <EditText
             android:id="@+id/editName"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/shippingName"
             app:layout_constraintTop_toBottomOf="@+id/shipping_payment" />
@@ -61,9 +60,9 @@
         <EditText
             android:id="@+id/editAddress"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toEndOf="@+id/shippingAddress"
@@ -86,9 +85,9 @@
         <EditText
             android:id="@+id/editCity"
             android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.703"
             app:layout_constraintStart_toEndOf="@+id/shippingCity"
@@ -98,7 +97,7 @@
             android:id="@+id/shippingState"
             android:layout_width="95dp"
             android:layout_height="45dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="22dp"
             android:layout_marginTop="12dp"
             android:text="State:"
             android:textAlignment="viewStart"
@@ -109,9 +108,11 @@
         <EditText
             android:id="@+id/editState"
             android:layout_width="66dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
             app:layout_constraintStart_toEndOf="@+id/shippingState"
             app:layout_constraintTop_toBottomOf="@+id/editCity" />
 
@@ -119,23 +120,26 @@
             android:id="@+id/shippingZip"
             android:layout_width="95dp"
             android:layout_height="45dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
             android:text="Zip Code:"
             android:textAlignment="viewStart"
             android:textSize="22sp"
             app:layout_constraintEnd_toStartOf="@+id/editZip"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/shippingState" />
 
         <EditText
             android:id="@+id/editZip"
             android:layout_width="153dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="100dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.761"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editState" />
 
         <Button
@@ -150,7 +154,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editZip"
-            app:layout_constraintVertical_bias="0.964" />
+            app:layout_constraintVertical_bias="0.843" />
 
         <Button
             android:id="@+id/cartButton"
