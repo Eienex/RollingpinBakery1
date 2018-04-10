@@ -67,21 +67,20 @@
         <activity android:name=".AdminCustomerAdd" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="Rollingpin Bakery Home Page">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.rollingpinbakery.rollingpinbakery.MainActivity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:label="Log In">
             <intent-filter>
-                <action android:name="com.rollingpinbakery.rollingpinbakery.LoginActivity" />
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity

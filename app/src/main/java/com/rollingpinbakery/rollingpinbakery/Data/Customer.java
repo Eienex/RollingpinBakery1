@@ -43,7 +43,8 @@ public class Customer {
 
     public Customer(){}
 
-    public Customer(String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
+    public Customer( String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
+
         this.custFName = custFName;
         this.custLName = custLName;
         this.custUsername = custUsername;

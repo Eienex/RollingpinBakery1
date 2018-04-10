@@ -46,7 +46,6 @@ public class Product {
         this.prodFeatured = prodFeatured;
         this.prodImage = prodImage;
     }
-
     public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this._prodId = id;
