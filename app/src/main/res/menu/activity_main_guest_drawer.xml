@@ -12,10 +12,7 @@
             android:id="@+id/nav_Store"
             android:icon="@drawable/ic_shop"
             android:title="Store" />
-        <item
-            android:id="@+id/nav_Account"
-            android:icon="@drawable/ic_account_box"
-            android:title="Account" />
+
 
         <item
             android:id="@+id/nav_Cart"
@@ -27,5 +24,9 @@
             android:icon="@drawable/ic_room"
             android:title="Store Locations"
             />
+        <item
+            android:id="@+id/nav_Logout"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="Log Out" />
     </group>
 </menu>

@@ -19,6 +19,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.auth.FirebaseAuth;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
@@ -27,6 +29,7 @@ import java.util.ArrayList;
 
 public class AdminProducts extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
+    private FirebaseAuth firebaseAuth;
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
     Button editBtn;
@@ -40,6 +43,8 @@ public class AdminProducts extends AppCompatActivity
         setContentView(R.layout.activity_admin_products);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAuth=FirebaseAuth.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -127,20 +132,19 @@ public class AdminProducts extends AppCompatActivity
         } else if (id == R.id.nav_Store) {
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
-        } else if (id == R.id.nav_Account) {
-            Intent editIntent = new Intent(this, LoginActivity.class);
-            startActivity(editIntent);
-        } else if (id == R.id.nav_Admin) {
+        }  else if (id == R.id.nav_Admin) {
             Intent editIntent = new Intent(this, AdminMainActivity.class);
             startActivity(editIntent);
         }else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
         }else if (id == R.id.nav_Logout) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("LoginStatus","Logged Out");
-            editor.commit();
-            startActivity(new Intent(this, MainActivity.class));
+            firebaseAuth.signOut();
+            finish();
+            //SharedPreferences.Editor editor = sharedPreferences.edit();
+            //editor.putString("LoginStatus","Logged Out");
+            //editor.commit();
+            startActivity(new Intent(this, Login.class));
             Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_Locations) {
             Intent editIntent = new Intent(this, Locations.class);

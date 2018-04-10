@@ -2,7 +2,6 @@ package com.rollingpinbakery.rollingpinbakery;
 
 import android.content.Context;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 
-import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
-
-import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -43,9 +39,9 @@ public class LoginActivity extends AppCompatActivity {
     public void Submit(View v){
 
         //Gets values
-        EditText e = findViewById(R.id.editText);
+        EditText e = findViewById(R.id.editEmail);
         String test1 = e.getText().toString();
-        EditText f = findViewById(R.id.editText2);
+        EditText f = findViewById(R.id.editPassword);
         String test2 = f.getText().toString();
 
         //Shows that values have been retrieved

@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 public class CakesCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private FirebaseAuth firebaseAuth;
     ListView listView;
     ArrayList<Product> products;
     private static StoreProductAdapter adapter;
@@ -42,7 +43,7 @@ public class CakesCategory extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        firebaseAuth= FirebaseAuth.getInstance();
         //get shared Preferences
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         String LoginStatus = sharedPreferences.getString("LoginStatus", "");
@@ -118,19 +119,18 @@ public class CakesCategory extends AppCompatActivity
         } else if (id == R.id.nav_Store) {
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
-        } else if (id == R.id.nav_Account) {
-            Intent editIntent = new Intent(this, LoginActivity.class);
-            startActivity(editIntent);
         } else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
         } else if (id == R.id.nav_Logout) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("LoginStatus", "Logged Out");
-            editor.commit();
-            startActivity(new Intent(this, MainActivity.class));
+            firebaseAuth.signOut();
+            finish();
+            //SharedPreferences.Editor editor = sharedPreferences.edit();
+            //editor.putString("LoginStatus","Logged Out");
+            //editor.commit();
+            startActivity(new Intent(this, Login.class));
             Toast.makeText(getApplicationContext(), "You have successfully Logged Out!", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_Locations) {
+        }else if (id == R.id.nav_Locations) {
             Intent editIntent = new Intent(this, Locations.class);
             startActivity(editIntent);
         }
