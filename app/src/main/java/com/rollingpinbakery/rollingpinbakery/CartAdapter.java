@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
@@ -40,9 +41,9 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         TextView itemName = convertView.findViewById(R.id.itemName);
         TextView itemCat = convertView.findViewById(R.id.itemCat);
         TextView price = convertView.findViewById((R.id.price));
-        Button btn = convertView.findViewById(R.id.btnDelete);
+        ImageButton btn = convertView.findViewById(R.id.deleteBtn);
 
-        itemName.setText(cart.getItemCat());
+        itemName.setText(cart.getItemName());
         itemCat.setText(cart.getItemCat());
         price.setText(cart.getPrice());
 
