@@ -52,12 +52,6 @@ public class Login extends AppCompatActivity{
                 startActivity(new Intent(Login.this, Register.class));
             }
         });
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                validate(email.getText().toString(), password.getText().toString());
-            }
-        });
 
     }
 

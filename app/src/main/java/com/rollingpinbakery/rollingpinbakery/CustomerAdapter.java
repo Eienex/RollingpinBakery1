@@ -49,7 +49,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
-        final int id = customer.get_custId();
+        final String id = customer.get_custId();
 
         Name.setText("Name: " + customer.getCustFName() + " " + customer.getCustLName());
         username.setText("Username: " + customer.getCustUsername());
@@ -113,10 +113,10 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
 
     }
 
-    public void editCustomer(View view, int id, String fName, String lName, String username, String password, String email, String role){
+    public void editCustomer(View view, String id, String fName, String lName, String username, String password, String email, String role){
         Intent formResult = new Intent(getContext(), AdminCustomerEdit.class);
 
-        formResult.putExtra("int_custID", id);
+        formResult.putExtra("txt_custID", id);
         formResult.putExtra("txt_custFName", fName);
         formResult.putExtra("txt_custLName",lName);
         formResult.putExtra("txt_username", username);

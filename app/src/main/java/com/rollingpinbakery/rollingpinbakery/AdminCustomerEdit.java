@@ -17,7 +17,7 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminCustomerEdit extends AppCompatActivity {
 
-    int id;
+    String id;
     EditText custFName, custLName, custUsername, custPassword, custEmail;
     Spinner customerRole;
     String[] customerTypes;
@@ -34,7 +34,7 @@ public class AdminCustomerEdit extends AppCompatActivity {
         custEmail = (EditText)findViewById(R.id.CustomerEmail);
         customerRole = (Spinner)findViewById(R.id.spinner);
 
-        id = getIntent().getIntExtra("int_custID", 0);
+        id = getIntent().getStringExtra("txt_custID");
         String txt_custFName = getIntent().getStringExtra("txt_custFName");
         String txt_custLName = getIntent().getStringExtra("txt_custLName");
         String txt_username = getIntent().getStringExtra("txt_username");

@@ -83,7 +83,7 @@ public class DatabaseAccess {
         int i = 0;
         while (!cursor.isAfterLast()) {
             Customer customer = new Customer();
-            customer.set_custId(cursor.getInt(0));
+            customer.set_custId(cursor.getString(0));
             customer.setCustFName(cursor.getString(1));
             customer.setCustLName(cursor.getString(2));
             customer.setCustUsername(cursor.getString(3));
@@ -103,7 +103,7 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT * FROM Customers where custId == " + id, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            customer.set_custId(cursor.getInt(0));
+            customer.set_custId(cursor.getString(0));
             customer.setCustFName(cursor.getString(1));
             customer.setCustLName(cursor.getString(2));
             customer.setCustUsername(cursor.getString(3));
@@ -121,7 +121,7 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT * FROM Customers where custUsername = '" + custUsername + "'", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            customer.set_custId(cursor.getInt(0));
+            customer.set_custId(cursor.getString(0));
             customer.setCustFName(cursor.getString(1));
             customer.setCustLName(cursor.getString(2));
             customer.setCustUsername(cursor.getString(3));
@@ -139,7 +139,7 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT * FROM Customers where custUsername = '" + custUsername + "' AND custPassword = '" + custPassword + "'", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            customer.set_custId(cursor.getInt(0));
+            customer.set_custId(cursor.getString(0));
             customer.setCustFName(cursor.getString(1));
             customer.setCustLName(cursor.getString(2));
             customer.setCustUsername(cursor.getString(3));

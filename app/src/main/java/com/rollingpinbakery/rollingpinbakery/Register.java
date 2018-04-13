@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
@@ -30,12 +32,13 @@ public class Register extends AppCompatActivity {
     private Button regBtn;
 
     private FirebaseAuth firebaseAuth;
-
+    String fNameText,lNameText, userNameText, passwordText, emailText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_register);
         setUIViews();
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -53,11 +56,13 @@ public class Register extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
+                                        createUser();
                                         Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Register.this, LoginActivity.class));
                                     }else{
                                         FirebaseAuthException e = (FirebaseAuthException)task.getException();
                                         Toast.makeText(Register.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+
                                     }
                                 }
                             });
@@ -103,24 +108,37 @@ public class Register extends AppCompatActivity {
         regBtn = findViewById(R.id.regBtn);
         login = findViewById(R.id.login);
 
+
     }
 
     private Boolean validate(){
+
         Boolean result = false;
+        fNameText = fName.getText().toString();
+        lNameText = lName.getText().toString();
+        userNameText = userName.getText().toString();
+        passwordText = password.getText().toString();
+        emailText = email.getText().toString();
 
-        String fNameText = fName.getText().toString();
-        String lNameText = lName.getText().toString();
-        String userNameText = userName.getText().toString();
-        String passwordText = password.getText().toString();
-        String emailText = email.getText().toString();
 
-        if(fNameText.isEmpty() || lNameText.isEmpty() || userNameText.isEmpty() ||
-                passwordText.isEmpty() || emailText.isEmpty()){
+        if(fNameText.isEmpty() || lNameText.isEmpty() || userNameText.isEmpty() || passwordText.isEmpty()
+                || emailText.isEmpty())
+        {
             Toast.makeText(this, "Please complete every field", Toast.LENGTH_LONG).show();
+
         } else{
-            return result = true;
+            result = true;
         }
         return result;
+    }
+
+    private void createUser(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
+        String custType = "Customer";
+        String custID = firebaseAuth.getCurrentUser().getUid();
+        Customer customer = new Customer(custID, fNameText, lNameText,userNameText,passwordText,emailText, custType);
+        myRef.setValue(customer);
     }
     public void SubmitRegistration(View v) {
         //Gets values

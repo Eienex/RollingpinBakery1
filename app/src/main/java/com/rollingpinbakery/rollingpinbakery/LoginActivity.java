@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 editor.putString("LoginStatus", "Logged In");
                 editor.putString("UserRole", customer.getCustType());
-                editor.putInt("custID", customer.get_custId());
+                //editor.putInt("custID", customer.get_custId());
                 editor.commit();
                 startActivity(new Intent(this, MainActivity.class));
                 Toast.makeText(getApplicationContext(), "Welcome back " + customer.getCustFName() + "!", Toast.LENGTH_SHORT).show();

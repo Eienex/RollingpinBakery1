@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
+import android.support.annotation.NonNull;
 
 import java.sql.Date;
 
@@ -16,8 +17,9 @@ import java.sql.Date;
 @Entity
 public class Customer {
 
-    @PrimaryKey(autoGenerate = true)
-    private int _custId;
+    @NonNull
+    @PrimaryKey
+    private String _custId;
 
     @ColumnInfo(name = "custFname")
     private String custFName;
@@ -54,7 +56,7 @@ public class Customer {
         //this.dateSignedUp = dateSignedUp;
     }
 
-    public Customer(int id, String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
+    public Customer(String id, String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
         this._custId = id;
         this.custFName = custFName;
         this.custLName = custLName;
@@ -65,8 +67,8 @@ public class Customer {
         //this.dateSignedUp = dateSignedUp;
     }
 
-    public int get_custId() {return _custId;}
-    public void set_custId(int _custId) {this._custId = _custId;}
+    public String get_custId() {return _custId;}
+    public void set_custId(String _custId) {this._custId = _custId;}
 
     public String getCustFName() {return custFName;}
     public void setCustFName(String custFName) {this.custFName = custFName;}
