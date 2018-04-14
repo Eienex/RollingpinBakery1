@@ -134,12 +134,12 @@ public class Register extends AppCompatActivity {
 
     private void createUser(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
+        DatabaseReference myRef = firebaseDatabase.getReference();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String custType = "Customer";
         String custID =user.getUid();
         Customer customer = new Customer(custID, fNameText, lNameText,userNameText,passwordText,emailText, custType);
-        myRef.setValue(customer);
+        myRef.child("users").child(custID).setValue(customer);
     }
     public void SubmitRegistration(View v) {
         //Gets values

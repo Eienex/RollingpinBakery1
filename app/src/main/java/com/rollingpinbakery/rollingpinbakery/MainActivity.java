@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,20 +42,21 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+
 
         database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference(user.getUid());
-
+        final DatabaseReference databaseReference = database.getReference().child("users");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Customer customer = dataSnapshot.getValue(Customer.class);
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                String userID = user.getUid();
+                Customer customer = dataSnapshot.child(userID).getValue(Customer.class);
+                String type = customer.getCustType();
+                //String userID = user.getUid();
 
-                final String UserRole = customer.getCustType();
                 Toolbar toolbar = findViewById(R.id.toolbar);
                 setSupportActionBar(toolbar);
-
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                         MainActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,20 +65,20 @@ public class MainActivity extends AppCompatActivity
                 NavigationView navigationView = findViewById(R.id.nav_view);
                 navigationView.setNavigationItemSelectedListener(MainActivity.this);
 
-                if (UserRole.equals("Admin")) {//if the user is an admin
-                    navigationView.getMenu().clear();
-                    //set the navView to the Admin View
-                    navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
-                } else {//if the user is not an Admin
-                    navigationView.getMenu().clear();
-                    //set the nav view to the Main Logged In View
-                    navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                    if (type.equals("Admin")) {//if the user is an admin
+                        navigationView.getMenu().clear();
+                        //set the navView to the Admin View
+                        navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+                    } else {//if the user is not an Admin
+                        navigationView.getMenu().clear();
+                        //set the nav view to the Main Logged In View
+                        navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                    }
                 }
-            }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, databaseError.getCode(), Toast.LENGTH_LONG).show();
+
             }
         });
 

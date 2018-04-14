@@ -77,7 +77,7 @@ public class AdminCustomerAdd extends AppCompatActivity {
                                 createUser();
                                 firebaseAuth.signOut();
                                 Toast.makeText(AdminCustomerAdd.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AdminCustomerAdd.this, LoginActivity.class));
+                                startActivity(new Intent(AdminCustomerAdd.this, AdminCustomers.class));
                             } else {
                                 FirebaseAuthException e = (FirebaseAuthException) task.getException();
                                 Toast.makeText(AdminCustomerAdd.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -111,13 +111,13 @@ public class AdminCustomerAdd extends AppCompatActivity {
 
     private void createUser(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
+        DatabaseReference myRef = firebaseDatabase.getReference();
         FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        String custType = spinner.getSelectedItem().toString();
         String custID =user.getUid();
+        String custType = spinner.getSelectedItem().toString();
+
         Customer customer = new Customer(custID, fNameText, lNameText,userNameText,passwordText,emailText, custType);
-        myRef.setValue(customer);
+        myRef.child("users").child(emailText).setValue(customer);
     }
     public void setFields(){
         custFName = findViewById(R.id.CustomerFName);

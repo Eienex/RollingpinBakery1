@@ -48,10 +48,7 @@ public class Login extends AppCompatActivity{
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if(user != null){
-            finish();
-            startActivity(new Intent(Login.this, MainActivity.class));
-        }
+
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override

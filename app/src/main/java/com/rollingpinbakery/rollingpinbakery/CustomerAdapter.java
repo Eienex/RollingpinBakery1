@@ -5,14 +5,24 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
@@ -27,6 +37,9 @@ import java.util.ArrayList;
 public class CustomerAdapter extends ArrayAdapter<Customer> {
     private ArrayList<Customer> dataSet;
     Context context;
+
+    private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase database;
 
     public CustomerAdapter(Context context, ArrayList<Customer> customers){
         super(context, R.layout.row_item_customers, customers);
@@ -49,13 +62,36 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
-        final String id = customer.get_custId();
+        //final String id = customer.get_custId();
 
-        Name.setText("Name: " + customer.getCustFName() + " " + customer.getCustLName());
-        username.setText("Username: " + customer.getCustUsername());
-        password.setText("Password: " + customer.getCustPassword());
-        email.setText("Email: " + customer.getCustEmail());
-        custRole.setText("Role: " + customer.getCustType());
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("users");
+
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Customer cust = dataSnapshot.getValue(Customer.class);
+
+                Toast.makeText(getContext(), "This is the database", Toast.LENGTH_LONG).show();
+                Name.setText("Name: " + cust.getCustFName() + " " + cust.getCustLName());
+                username.setText("Username: " + cust.getCustUsername());
+                password.setText("Password: " + cust.getCustPassword());
+                email.setText("Email: " + cust.getCustEmail());
+                custRole.setText("Role: " + cust.getCustType());
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) { }
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) { }
+            @Override
+            public void onCancelled(DatabaseError databaseError) { }
+        });
+
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +102,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
                 final String txtPassword = password.getText().toString();
                 final String txtEmail = email.getText().toString();
                 final String txtRole = custRole.getText().toString();
-                editCustomer(view, id, txtFName, txtLName, txtUsername, txtPassword, txtEmail, txtRole);
+               // editCustomer(view, id, txtFName, txtLName, txtUsername, txtPassword, txtEmail, txtRole);
             }
         });
 
