@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
@@ -29,6 +30,8 @@ public class AdminCustomers extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase database;
+
     Button editBtn;
     ListView listView;
     ArrayList<Customer> customers;
@@ -38,11 +41,11 @@ public class AdminCustomers extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_customers);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar =findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         firebaseAuth=FirebaseAuth.getInstance();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
@@ -39,8 +40,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.content_register);
         setUIViews();
 
-
-
         firebaseAuth = FirebaseAuth.getInstance();
 
         regBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +56,7 @@ public class Register extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()) {
                                         createUser();
+                                        firebaseAuth.signOut();
                                         Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(Register.this, LoginActivity.class));
                                     }else{
@@ -135,8 +135,9 @@ public class Register extends AppCompatActivity {
     private void createUser(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getCurrentUser().getUid());
+        FirebaseUser user = firebaseAuth.getCurrentUser();
         String custType = "Customer";
-        String custID = firebaseAuth.getCurrentUser().getUid();
+        String custID =user.getUid();
         Customer customer = new Customer(custID, fNameText, lNameText,userNameText,passwordText,emailText, custType);
         myRef.setValue(customer);
     }
