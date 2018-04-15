@@ -117,7 +117,7 @@ public class AdminCustomerAdd extends AppCompatActivity {
         String custType = spinner.getSelectedItem().toString();
 
         Customer customer = new Customer(custID, fNameText, lNameText,userNameText,passwordText,emailText, custType);
-        myRef.child("users").child(emailText).setValue(customer);
+        myRef.child("users").child(custID).setValue(customer);
     }
     public void setFields(){
         custFName = findViewById(R.id.CustomerFName);

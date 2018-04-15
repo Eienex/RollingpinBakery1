@@ -50,6 +50,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        /*
         listView = findViewById(R.id.listView);
 
         carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
@@ -57,10 +58,9 @@ public class CartActivity extends AppCompatActivity {
                 .getAllCartItems();
 
         adapter = new CartAdapter(this, carts);
-        if (adapter == null) {
-            Toast.makeText(this, "There are no items to show!", Toast.LENGTH_LONG).show();
-        } else {
+
             listView.setAdapter(adapter);
-        }
+         */
+
     }
 }

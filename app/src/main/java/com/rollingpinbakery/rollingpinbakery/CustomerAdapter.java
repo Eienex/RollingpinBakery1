@@ -64,6 +64,10 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
 
         //final String id = customer.get_custId();
 
+        //This is where I have been trying to connect to the firebase database and pull the information.
+        //I don't know if we need to use an outside customer adapter to do that though, so we might
+        // be able to just create an adapter in the AdminCustomers page in the onCreate method.
+
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 

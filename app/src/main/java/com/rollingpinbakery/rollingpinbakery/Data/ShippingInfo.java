@@ -3,6 +3,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import java.util.Date;
 
@@ -11,9 +12,12 @@ import java.util.Date;
  */
 @Entity
 public class ShippingInfo {
+    @NonNull
+    @PrimaryKey
+    private String _id;
 
-    @PrimaryKey(autoGenerate = true)
-    private int _id;
+    @ColumnInfo(name = "custID")
+    private String custID;
 
     @ColumnInfo(name = "name")
     private String name;
@@ -30,8 +34,21 @@ public class ShippingInfo {
     @ColumnInfo(name = "zipCode")
     private String zipCode;
 
-    public ShippingInfo(String name, String address, String city, String state, String zipCode)
+    public ShippingInfo(){}
+
+    public ShippingInfo(String _id, String custID, String name, String address, String city, String state, String zipCode)
     {
+        this._id = _id;
+        this.custID = custID;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
+    public ShippingInfo(String custID,String name, String address, String city, String state, String zipCode)
+    {
+        this.custID = custID;
         this.name = name;
         this.address = address;
         this.city = city;
@@ -39,8 +56,11 @@ public class ShippingInfo {
         this.zipCode = zipCode;
     }
 
-    public int get_id(){return _id;}
-    public void set_id(int _id){this._id = _id;}
+    public String get_id(){return _id;}
+    public void set_id(String _id){this._id = _id;}
+
+    public String getCustID(){return custID;}
+    public void setCustID(String custID){this._id = _id;}
 
     public String getName() {return name;}
     public void setName(String name) {this.name = name;}

@@ -3,6 +3,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * Created by jamej on 3/15/2018.
@@ -10,17 +11,18 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Payment {
 
-    @PrimaryKey(autoGenerate = true)
-    private int _paymentID;
+    @NonNull
+    @PrimaryKey
+    private String _paymentID;
 
     @ColumnInfo(name = "custID")
-    private int custID;
+    private String custID;
 
     @ColumnInfo(name = "payType")
     private String payType;
 
     @ColumnInfo(name = "cardNum")
-    private int cardNum;
+    private String cardNum;
 
     @ColumnInfo(name = "cardHolderName")
     private String cardHolderName;
@@ -29,10 +31,11 @@ public class Payment {
     private String expDate;
 
     @ColumnInfo(name = "secCode")
-    private int secCode;
+    private String secCode;
 
+    public Payment(){}
 
-    public Payment(int _paymentID, int custID, String payType, int cardNum, String cardHolderName, String expDate, int secCode) {
+    public Payment(String _paymentID, String custID, String payType, String cardNum, String cardHolderName, String expDate, String secCode) {
         this._paymentID = _paymentID;
         this.custID = custID;
         this.payType = payType;
@@ -42,17 +45,17 @@ public class Payment {
         this.secCode = secCode;
     }
 
-    public int get_paymentID() {return _paymentID;}
-    public void set_paymentID(int _paymentID) {this._paymentID = _paymentID;}
+    public String get_paymentID() {return _paymentID;}
+    public void set_paymentID(String _paymentID) {this._paymentID = _paymentID;}
 
-    public int getCustID() {return custID;}
-    public void setCustID(int custID) {this.custID = custID;}
+    public String getCustID() {return custID;}
+    public void setCustID(String custID) {this.custID = custID;}
 
     public String getPayType() {return payType;}
     public void setPayType(String payType) {this.payType = payType;}
 
-    public int getCardNum(){return cardNum;}
-    public void setCardNum(int cardNum) {this.cardNum = cardNum;}
+    public String getCardNum(){return cardNum;}
+    public void setCardNum(String cardNum) {this.cardNum = cardNum;}
 
     public String getCardHolderName() {return cardHolderName;}
     public void setCardHolderName(String cardHolderName) {this.cardHolderName = cardHolderName;}
@@ -60,8 +63,8 @@ public class Payment {
     public String getExpDate() {return expDate;}
     public void setExpDate(String expDate) {this.expDate = expDate;}
 
-    public int getSecCode() {return secCode;}
-    public void setSecCode(int secCode) {this.secCode = secCode;}
+    public String getSecCode() {return secCode;}
+    public void setSecCode(String secCode) {this.secCode = secCode;}
 
 
 }
