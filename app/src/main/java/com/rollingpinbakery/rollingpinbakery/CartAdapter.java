@@ -41,11 +41,13 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         TextView itemName = convertView.findViewById(R.id.itemName);
         TextView itemCat = convertView.findViewById(R.id.itemCat);
         TextView price = convertView.findViewById((R.id.price));
+        TextView qty = convertView.findViewById(R.id.qty);
         ImageButton btn = convertView.findViewById(R.id.deleteBtn);
 
         itemName.setText(cart.getItemName());
         itemCat.setText(cart.getItemCat());
         price.setText(cart.getPrice());
+        qty.setText(cart.getQty());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

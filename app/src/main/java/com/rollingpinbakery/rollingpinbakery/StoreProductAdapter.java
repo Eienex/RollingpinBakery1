@@ -117,6 +117,7 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
     public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
         Intent formResult = new Intent(getContext(), CartActivity.class);
 
+        String qty = "1";
         formResult.putExtra("int_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
@@ -125,7 +126,7 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_productDesc", desc);
 
         view.getContext().startActivity(formResult);
-        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(name, type, salePrice));
+        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(name, type, salePrice, qty));
 
         //view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }

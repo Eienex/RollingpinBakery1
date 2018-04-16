@@ -20,12 +20,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/qtyHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:text="Quantity"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tproductNameHeader"
+        android:layout_width="92dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="8dp"
+        android:text="Product Name"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/qtyHeader"
+        app:layout_constraintTop_toBottomOf="@+id/OCHeader" />
+
+    <TextView
+        android:id="@+id/productPriceHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="Price"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toEndOf="@+id/tproductNameHeader"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/OCHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/tproductNameHeader"
+        tools:layout_editor_absoluteX="0dp" />
 
 
     <TextView

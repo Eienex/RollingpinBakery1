@@ -52,12 +52,14 @@ public class CartProductsAdapter extends ArrayAdapter<Cart>{
         for(int i=0; i <carts.size(); i++){
             String productName = cart.getItemName();
             String productPrice = cart.getPrice();
+            String qty = cart.getQty();
             productName = productName.replace("Name: ", "");
             productPrice = productPrice.replace("Sale Price: ", "");
             //String productName = carts.get(i).getItemName();
             //String productPrice = carts.get(i).getPrice();
             prodName.setText(productName);
             txtProdPrice.setText("$"+ productPrice);
+            Qty.setText(qty);
         }
         return convertView;
     }

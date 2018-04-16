@@ -21,10 +21,14 @@ public class Cart {
     @ColumnInfo(name = "Price")
     private String price;
 
-    public Cart(String itemName, String itemCat, String price) {
+    @ColumnInfo(name = "Qty")
+    private String qty;
+
+    public Cart(String itemName, String itemCat, String price, String qty) {
         this.itemName = itemName;
         this.itemCat = itemCat;
         this.price = price;
+        this.qty = qty;
     }
 
 /*
@@ -47,4 +51,7 @@ public class Cart {
 
     public String getPrice() {return price;}
     public void setPrice(String price) {this.price = price;}
+
+    public String getQty() {return qty;}
+    public void setQty(String price) {this.qty = qty;}
 }
