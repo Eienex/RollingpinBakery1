@@ -3,6 +3,7 @@ package com.rollingpinbakery.rollingpinbakery;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -32,32 +33,53 @@ public class Login extends AppCompatActivity{
     private TextView signUp;
     private Button login;
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
     private ProgressDialog progressDialog;
+    public static final String MyPREFERENCES = "MyPrefs";
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        email = findViewById(R.id.editEmail);
-        password = findViewById(R.id.editPassword);
-        signUp = findViewById(R.id.signUp);
-        login = findViewById(R.id.button);
-        progressDialog = new ProgressDialog(this);
-
+        //Get the current user
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        user = firebaseAuth.getCurrentUser();
 
+            setContentView(R.layout.activity_login);
 
+            email = findViewById(R.id.editEmail);
+            password = findViewById(R.id.editPassword);
+            signUp = findViewById(R.id.signUp);
+            login = findViewById(R.id.button);
+            progressDialog = new ProgressDialog(this);
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, Register.class));
-            }
-        });
-
+            signUp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(Login.this, Register.class));
+                }
+            });
+        //}
     }
+
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        //gets the current user
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        //calls the method to check and see if they are signed in
+        updateUI(currentUser);
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {//if the user is signed in
+            startActivity(new Intent(Login.this, MainActivity.class));
+        } else {//if the user is not signed in
+
+        }
+    }
+
 
     private void validate(String email, String password){
         progressDialog.setMessage("Please wait while we verify your email and password");
@@ -69,6 +91,12 @@ public class Login extends AppCompatActivity{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             progressDialog.dismiss();
+                            //Mark the user logged in
+                            //SharedPreferences.Editor editor = sharedPreferences.edit();
+                            //editor.putString("LoginStatus", "Logged In");
+                            //editor.putString("UserRole", customer.getCustType());
+                            //editor.putInt("custID", customer.get_custId());
+                            //editor.commit();
                             Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(Login.this, MainActivity.class));
                         }else{
