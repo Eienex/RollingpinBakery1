@@ -58,7 +58,7 @@ public class Register extends AppCompatActivity {
                                         createUser();
                                         firebaseAuth.signOut();
                                         Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Register.this, LoginActivity.class));
+                                        startActivity(new Intent(Register.this, Login.class));
                                     }else{
                                         FirebaseAuthException e = (FirebaseAuthException)task.getException();
                                         Toast.makeText(Register.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();

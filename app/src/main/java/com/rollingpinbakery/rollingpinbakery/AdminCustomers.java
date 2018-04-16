@@ -18,8 +18,12 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
@@ -38,13 +42,12 @@ public class AdminCustomers extends AppCompatActivity
     ListView listView;
     ArrayList<Customer> customers;
     private static CustomerAdapter adapter;
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_customers);
-        Toolbar toolbar =findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         firebaseAuth=FirebaseAuth.getInstance();
         FloatingActionButton fab =  findViewById(R.id.fab);
@@ -55,14 +58,48 @@ public class AdminCustomers extends AppCompatActivity
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        firebaseAuth= FirebaseAuth.getInstance();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //check to see what the login status of the current user is
+
+        database = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = database.getReference().child("users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                String userID = user.getUid();
+                Customer customer = dataSnapshot.child(userID).getValue(Customer.class);
+                String type = customer.getCustType();
+                //String userID = user.getUid();
+
+                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                        AdminCustomers.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                drawer.addDrawerListener(toggle);
+                toggle.syncState();
+                NavigationView navigationView = findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(AdminCustomers.this);
+
+                if (type.equals("Admin")) {//if the user is an admin
+                    navigationView.getMenu().clear();
+                    //set the navView to the Admin View
+                    navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+                } else {//if the user is not an Admin
+                    navigationView.getMenu().clear();
+                    //set the nav view to the Main Logged In View
+                    navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override

@@ -21,7 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Weather.CurrentWeatherForecast;
 import com.squareup.picasso.Picasso;
 
@@ -38,18 +45,14 @@ public class SanFranciscoCurrentWeatherActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private FirebaseAuth firebaseAuth;
-    public static final String MyPREFERENCES = "MyPrefs";
-    SharedPreferences sharedPreferences;
+    private FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_san_francisco_current_weather);
         setupTask();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        firebaseAuth=FirebaseAuth.getInstance();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -59,37 +62,53 @@ public class SanFranciscoCurrentWeatherActivity extends AppCompatActivity
             }
         });
 
+        firebaseAuth= FirebaseAuth.getInstance();
+
         //get shared Preferences
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        //Get the values from the shared preferences
-        String LoginStatus = sharedPreferences.getString("LoginStatus","");
-        String UserRole = sharedPreferences.getString("UserRole", "");
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        //String LoginStatus = sharedPreferences.getString("LoginStatus", "");
+        //String UserRole = sharedPreferences.getString("UserRole", "");
 
         //check to see what the login status of the current user is
-        if (LoginStatus.equals("Logged In")){//if the user is logged in
-            if(UserRole.equals("Admin")){//if the user is an admin
-                navigationView.getMenu().clear();
-                //set the navView to the Admin View
-                navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+
+        database = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = database.getReference().child("users");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                String userID = user.getUid();
+                Customer customer = dataSnapshot.child(userID).getValue(Customer.class);
+                String type = customer.getCustType();
+                //String userID = user.getUid();
+
+                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+                setSupportActionBar(toolbar);
+
+                DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                        SanFranciscoCurrentWeatherActivity.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                drawer.addDrawerListener(toggle);
+                toggle.syncState();
+                NavigationView navigationView = findViewById(R.id.nav_view);
+                navigationView.setNavigationItemSelectedListener(SanFranciscoCurrentWeatherActivity.this);
+
+                if (type.equals("Admin")) {//if the user is an admin
+                    navigationView.getMenu().clear();
+                    //set the navView to the Admin View
+                    navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
+                } else {//if the user is not an Admin
+                    navigationView.getMenu().clear();
+                    //set the nav view to the Main Logged In View
+                    navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                }
             }
-            else {//if the user is not an Admin
-                navigationView.getMenu().clear();
-                //set the nav view to the Main Logged In View
-                navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
-        }
-        else{//If the user is not logged in
-            navigationView.getMenu().clear();
-            //set the nav view to the Guest View
-            navigationView.inflateMenu(R.menu.activity_main_guest_drawer);
-        }
+        });
     }
 
 
