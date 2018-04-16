@@ -15,11 +15,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Cart;
 import com.rollingpinbakery.rollingpinbakery.Data.Payment;
 import com.rollingpinbakery.rollingpinbakery.Data.ShippingInfo;
 
 import java.security.Key;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -30,6 +32,7 @@ public class PaymentInfo extends AppCompatActivity {
     EditText nameOnCard, cardNumber, csc;
     Spinner cardTypeSpinner, expMonthSpinner, expYearSpinner;
     String nameOnCardText, cardNumberText, cscText, cardTypeText , expMonthText, expYearText;
+    ArrayList<Cart> carts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,24 @@ public class PaymentInfo extends AppCompatActivity {
         expYearSpinner = findViewById(R.id.expYear);
         csc = findViewById(R.id.editCVC);
 
+        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
+                .cartDao()
+                .getAllCartItems();
+
+        paymentResults = new Intent(getApplicationContext(), OrderConfirmation.class);
+        //get all of the cart products and retrieve their values
+        // and pass add them to the next Intent result
+        for(int i=0; i <carts.size(); i++){
+
+            Bundle extras = getIntent().getExtras();
+            String productNum = ("Product").concat(Integer.toString(i));
+            String priceNum = ("Price").concat(Integer.toString(i));
+            String prodName = extras.getString(productNum);
+            String prodPrice = extras.getString(priceNum);
+            paymentResults.putExtra(productNum, prodName);
+            paymentResults.putExtra(priceNum,prodPrice);
+        }
+
         //Get the previous forms extras
         Bundle extras = getIntent().getExtras();
         String ShippingName = extras.getString("ShippingName");
@@ -51,7 +72,7 @@ public class PaymentInfo extends AppCompatActivity {
         String ShippingState = extras.getString("ShippingState");
         String ShippingZip = extras.getString("ShippingZip");
 
-        paymentResults = new Intent(getApplicationContext(), OrderConfirmation.class);
+
         paymentResults.putExtra("ShippingName", ShippingName);
         paymentResults.putExtra("ShippingAddress", ShippingAddress);
         paymentResults.putExtra("ShippingCity",ShippingCity);

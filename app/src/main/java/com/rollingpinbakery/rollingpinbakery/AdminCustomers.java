@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
@@ -30,7 +31,8 @@ public class AdminCustomers extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase database;
+    private FirebaseDatabase userDatabase;
+    private DatabaseReference mDatabase;
 
     Button editBtn;
     ListView listView;
@@ -131,6 +133,11 @@ public class AdminCustomers extends AppCompatActivity
     protected void onResume(){
         super.onResume();
         try{
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference users = mDatabase.getRoot().child("users");
+
+            String users2 = users.toString();
+            Toast.makeText(getApplicationContext(), users2, Toast.LENGTH_LONG).show();
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
             databaseAccess.open();
             listView = findViewById(R.id.listView);

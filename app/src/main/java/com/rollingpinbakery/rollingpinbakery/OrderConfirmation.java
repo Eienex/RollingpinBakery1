@@ -4,15 +4,31 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class OrderConfirmation extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Cart;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
+import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 
+import java.util.ArrayList;
+
+public class OrderConfirmation extends AppCompatActivity {
+    ListView listView;
+    ArrayList<Cart> carts;
+    private static CartProductsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
+
+        TextView productName = findViewById(R.id.prodName);
+        TextView productPrice = findViewById(R.id.txtProdPrice);
+        TextView cartTotal = findViewById(R.id.OrderTotalText);
 
         TextView shipNameText = findViewById(R.id.ShipNameText);
         TextView shipAddressText = findViewById(R.id.ShipAddressText);
@@ -25,6 +41,25 @@ public class OrderConfirmation extends AppCompatActivity {
         TextView payCardNumber = findViewById(R.id.CardNumText);
         TextView payCardExpText = findViewById(R.id.CardExpText);
         TextView payCardCSCText = findViewById(R.id.CardCSVNumText);
+
+        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
+                .cartDao()
+                .getAllCartItems();
+
+        //get all of the cart products and retrieve their values
+        // and pass add them to the next Intent result
+        double orderTotal = 0.00;
+        for(int i=0; i <carts.size(); i++){
+            Bundle extras = getIntent().getExtras();
+            String productNum = ("Product").concat(Integer.toString(i));
+            String priceNum = ("Price").concat(Integer.toString(i));
+            String prodName = extras.getString(productNum);
+            String prodPrice = extras.getString(priceNum);
+            double prodPriceI = Double.parseDouble(prodPrice);
+            orderTotal += prodPriceI;
+            //productName.setText(prodName);
+            //productPrice.setText(prodPrice);
+        }
 
         //Get all of the form results from the shipping and payments page
         Bundle extras = getIntent().getExtras();
@@ -43,6 +78,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
 
         //set the textboxes to all of the form info
+        cartTotal.setText("Order Total: " + orderTotal);
         shipNameText.setText("Name: " + ShippingName);
         shipAddressText.setText("Address: " + ShippingAddress);
         shipCityText.setText("City: " + ShippingCity);
@@ -60,4 +96,22 @@ public class OrderConfirmation extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Thank you for placing an order with Rolling Pin Bakery!", Toast.LENGTH_LONG).show();
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
+
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        try{
+            listView = findViewById(R.id.listView);
+            //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
+            carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this).cartDao().getAllCartItems();
+            adapter = new CartProductsAdapter(this, carts);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 }
+

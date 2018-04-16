@@ -13,15 +13,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Cart;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.Data.ShippingInfo;
+
+import java.util.ArrayList;
 
 public class ShippingInfoPage extends AppCompatActivity {
 
     EditText name, address, city, state, zipCode;
     String nameText, addressText, cityText, stateText, zipCodeText;
     Intent shippingResults;
+    ArrayList<Cart> carts;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +37,23 @@ public class ShippingInfoPage extends AppCompatActivity {
         state = findViewById(R.id.editState);
         zipCode = findViewById(R.id.editZip);
 
+        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
+                .cartDao()
+                .getAllCartItems();
 
+        shippingResults = new Intent(getApplicationContext(), PaymentInfo.class);
+
+        //get all of the cart products and retrieve their values
+        // and pass add them to the next Intent result
+        for(int i=0; i <carts.size(); i++){
+            Bundle extras = getIntent().getExtras();
+            String productNum = ("Product").concat(Integer.toString(i));
+            String priceNum = ("Price").concat(Integer.toString(i));
+            String prodName = extras.getString(productNum);
+            String prodPrice = extras.getString(priceNum);
+            shippingResults.putExtra(productNum, prodName);
+            shippingResults.putExtra(priceNum,prodPrice);
+        }
     }
 
     public void SubmitShippingInfo(View v) {
@@ -82,7 +102,6 @@ public class ShippingInfoPage extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please enter a valid Zip Code", Toast.LENGTH_SHORT).show();
             } else {
                     //put extras to the next form
-                    shippingResults = new Intent(getApplicationContext(), PaymentInfo.class);
                     shippingResults.putExtra("ShippingName", nameText);
                     shippingResults.putExtra("ShippingAddress", addressText);
                     shippingResults.putExtra("ShippingCity", cityText);
