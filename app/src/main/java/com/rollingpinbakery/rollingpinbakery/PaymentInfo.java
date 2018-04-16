@@ -33,6 +33,7 @@ public class PaymentInfo extends AppCompatActivity {
     Spinner cardTypeSpinner, expMonthSpinner, expYearSpinner;
     String nameOnCardText, cardNumberText, cscText, cardTypeText , expMonthText, expYearText;
     ArrayList<Cart> carts;
+    byte[] cipherText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,19 +144,13 @@ public class PaymentInfo extends AppCompatActivity {
                     Cipher cipher = Cipher.getInstance("AES/CTR/NoPadding", "BC");
                     //encryption
                     cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
-                    byte[] cipherText = cipher.doFinal(AndroidCryptUtils.toByteArray(cardNumberText));
-                    System.out.println("INPUT: " + cardNumberText);
-                    System.out.println("ENCRYPTED: " + AndroidCryptUtils.toHex(cipherText));
-                    //decryption
-                    cipher.init(Cipher.DECRYPT_MODE, key, ivSpec);
-                    byte[] plainText = cipher.doFinal(cipherText);
-                    System.out.println("DECRYPTED: " + AndroidCryptUtils.toString(plainText));
+                    cipherText = cipher.doFinal(AndroidCryptUtils.toByteArray(cardNumberText));
 
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
                 paymentResults.putExtra("PaymentName", nameOnCardText);
-                paymentResults.putExtra("PaymentCardNumber", cardNumberText);
+                paymentResults.putExtra("PaymentCardNumber", cipherText);
                 paymentResults.putExtra("PaymentCardType", cardTypeText);
                 paymentResults.putExtra("PaymentExpMonth", expMonthText);
                 paymentResults.putExtra("PaymentExpYear", expYearText);
