@@ -21,20 +21,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listview"
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/OCHeader" />
 
+
+    <TextView
+        android:id="@+id/orderTax"
+        android:layout_width="128dp"
+        android:layout_height="19dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Order Tax"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderShip" />
+
     <TextView
         android:id="@+id/OrderTotalText"
-        android:layout_width="wrap_content"
+        android:layout_width="146dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Order Total"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listview" />
+        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderTax" />
+
 
     <TextView
         android:id="@+id/textView11"
@@ -43,12 +64,13 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
 
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:text="@string/shipDetails"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listview" />
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
 
     <TextView
         android:id="@+id/ShipNameText"
@@ -201,4 +223,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/orderShip"
+        android:layout_width="128dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Shipping Cost"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView" />
+
+
 </android.support.constraint.ConstraintLayout>

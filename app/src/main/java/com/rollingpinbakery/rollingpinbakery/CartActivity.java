@@ -37,7 +37,7 @@ public class CartActivity extends AppCompatActivity {
         });
 
         listView = findViewById(R.id.listView);
-        /*carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
+        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
                 .cartDao()
                 .getAllCartItems();
         if(carts.isEmpty()){
@@ -47,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
         }else{
             adapter = new CartAdapter(this, carts);
             listView.setAdapter(adapter);
-        }*/
+        }
     }
 
     public void proceedToShipping(View view) {

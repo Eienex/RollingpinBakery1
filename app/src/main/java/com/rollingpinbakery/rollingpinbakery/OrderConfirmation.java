@@ -15,6 +15,7 @@ import com.rollingpinbakery.rollingpinbakery.Data.Cart;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class OrderConfirmation extends AppCompatActivity {
@@ -26,9 +27,20 @@ public class OrderConfirmation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_confirmation);
 
+        try{
+            listView = findViewById(R.id.listView);
+            //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
+            carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this).cartDao().getAllCartItems();
+            adapter = new CartProductsAdapter(this, carts);
+            listView.setAdapter(adapter);
+        }catch(Exception ex){
+            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
         TextView productName = findViewById(R.id.prodName);
         TextView productPrice = findViewById(R.id.txtProdPrice);
         TextView cartTotal = findViewById(R.id.OrderTotalText);
+        TextView Shippingtotal = findViewById(R.id.orderShip);
+        TextView orderTax = findViewById(R.id.orderTax);
 
         TextView shipNameText = findViewById(R.id.ShipNameText);
         TextView shipAddressText = findViewById(R.id.ShipAddressText);
@@ -55,11 +67,19 @@ public class OrderConfirmation extends AppCompatActivity {
             String priceNum = ("Price").concat(Integer.toString(i));
             String prodName = extras.getString(productNum);
             String prodPrice = extras.getString(priceNum);
-            double prodPriceI = Double.parseDouble(prodPrice);
-            orderTotal += prodPriceI;
-            //productName.setText(prodName);
-            //productPrice.setText(prodPrice);
+            double prodPriced = Double.parseDouble(prodPrice);
+            orderTotal += prodPriced;
+
         }
+            double shippingCharge = 5.99;
+            orderTotal += shippingCharge;
+            double tax = orderTotal * .07;
+
+            orderTotal += tax;
+
+        Shippingtotal.setText("Shipping: $" + String.valueOf(shippingCharge));
+        //orderTax.setText("Tax: $" + String.format("%.2f",String.valueOf(tax)));
+        orderTax.setText("Tax: $" + new DecimalFormat("#.00").format(tax));
 
         //Get all of the form results from the shipping and payments page
         Bundle extras = getIntent().getExtras();
@@ -78,7 +98,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
 
         //set the textboxes to all of the form info
-        cartTotal.setText("Order Total: " + orderTotal);
+        cartTotal.setText("Order Total: $" + new DecimalFormat("#.00").format(orderTotal));
         shipNameText.setText("Name: " + ShippingName);
         shipAddressText.setText("Address: " + ShippingAddress);
         shipCityText.setText("City: " + ShippingCity);

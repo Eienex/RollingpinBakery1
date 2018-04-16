@@ -22,16 +22,15 @@
         android:layout_height="wrap_content"
         android:paddingBottom="2dp"
         android:paddingLeft="5dp"
-        android:textAlignment="viewStart" />
+        android:textAlignment="center" />
 
-        <TextView
-            android:id="@+id/txtProdPrice"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content"
-            android:paddingBottom="2dp"
-            android:paddingLeft="5dp"
-            android:textAlignment="viewStart"
-            />
+    <TextView
+        android:id="@+id/txtProdPrice"
+        android:layout_width="72dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="5dp"
+        android:textAlignment="viewStart" />
 
 </LinearLayout>
 

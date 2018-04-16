@@ -3,6 +3,7 @@ package com.rollingpinbakery.rollingpinbakery;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -15,23 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Cart;
-import com.rollingpinbakery.rollingpinbakery.Data.Customer;
-import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
-
 import java.util.ArrayList;
 
 public class CartProductsAdapter extends ArrayAdapter<Cart>{
 
+    ArrayList<Cart> carts;
     private ArrayList<Cart> dataSet;
     Context context;
 
@@ -53,6 +45,20 @@ public class CartProductsAdapter extends ArrayAdapter<Cart>{
         final TextView prodName = convertView.findViewById(R.id.prodName);
         final TextView txtProdPrice = convertView.findViewById(R.id.txtProdPrice);
 
+        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(context)
+                .cartDao()
+                .getAllCartItems();
+
+        for(int i=0; i <carts.size(); i++){
+            String productName = cart.getItemName();
+            String productPrice = cart.getPrice();
+            productName = productName.replace("Name: ", "");
+            productPrice = productPrice.replace("Sale Price: ", "");
+            //String productName = carts.get(i).getItemName();
+            //String productPrice = carts.get(i).getPrice();
+            prodName.setText(productName);
+            txtProdPrice.setText("$"+ productPrice);
+        }
         return convertView;
     }
 
