@@ -24,22 +24,30 @@ public class CartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
         FloatingActionButton backfab = findViewById(R.id.back);
         backfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//
+
                 startActivity(new Intent(getBaseContext(), Store.class));
             }
         });
 
-        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
+        listView = findViewById(R.id.listView);
+        /*carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
                 .cartDao()
                 .getAllCartItems();
+        if(carts.isEmpty()){
+            TextView cartText = findViewById(R.id.CartEmptyText);
+            cartText.setText("You currently have no products in the cart");
+            //Toast.makeText(getApplicationContext(),"You currently have no products in the cart", Toast.LENGTH_LONG).show();
+        }else{
+            adapter = new CartAdapter(this, carts);
+            listView.setAdapter(adapter);
+        }*/
     }
 
     public void proceedToShipping(View view) {
@@ -72,18 +80,7 @@ public class CartActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        listView = findViewById(R.id.listView);
-        carts = (ArrayList<Cart>) AppDatabase.getAppDatabase(this)
-                .cartDao()
-                .getAllCartItems();
-        if(carts.isEmpty()){
-            TextView cartText = findViewById(R.id.CartEmptyText);
-            cartText.setText("You currently have no products in the cart");
-            //Toast.makeText(getApplicationContext(),"You currently have no products in the cart", Toast.LENGTH_LONG).show();
-        }else{
-            adapter = new CartAdapter(this, carts);
-            listView.setAdapter(adapter);
-        }
+
 
     }
 }
