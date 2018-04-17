@@ -159,7 +159,7 @@ public class AdminMainActivity extends AppCompatActivity
     }
 
     public void customers(View view){
-        startActivity(new Intent(this, AdminCustomers.class));
+        startActivity(new Intent(this, AdminCust.class));
     }
 
 

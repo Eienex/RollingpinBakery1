@@ -1,25 +1,22 @@
 package com.rollingpinbakery.rollingpinbakery;
 
-import android.arch.persistence.room.Database;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,32 +27,32 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
-import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
-import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdminCustomers extends AppCompatActivity
+public class AdminCust extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
 
     private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase userDatabase;
-    private DatabaseReference mDatabase;
 
-    Button editBtn;
+
     ListView listView;
     ArrayList<Customer> customers;
-    private static CustomerAdapter adapter;
-    private FirebaseDatabase database;
+    private static CustAdapter adapter;
+
+    DatabaseReference dbReference;
+    //Customer customer;
+    //List<String> itemList;
+    TextView name,userName, email, password, custType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_customers);
 
-        firebaseAuth=FirebaseAuth.getInstance();
         FloatingActionButton fab =  findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,14 +61,45 @@ public class AdminCustomers extends AppCompatActivity
             }
         });
 
-        firebaseAuth= FirebaseAuth.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        //check to see what the login status of the current user is
+      listView = findViewById(R.id.listView);
+      customers = new ArrayList<>();
 
-        //database = FirebaseDatabase.getInstance();
+      //itemList = new ArrayList<>();
 
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usersdRef = rootRef.child("users");
+      dbReference = FirebaseDatabase.getInstance().getReference("users");
+      dbReference.addValueEventListener(new ValueEventListener() {
+          @Override
+          public void onDataChange(DataSnapshot dataSnapshot) {
+
+              for(DataSnapshot snapshot : dataSnapshot.getChildren())
+              {
+                  Customer customer = snapshot.getValue(Customer.class);
+
+                  String custFName = customer.getCustFName();
+                  String custLName = customer.getCustLName();
+                  String userName = customer.getCustUsername();
+                  String custEmail = customer.getCustEmail();
+                  String custPassword = customer.getCustPassword();
+                  String custType = customer.getCustType();
+
+
+                  customers.add(new Customer(custFName, custLName,userName, custEmail, custPassword, custType));
+
+              }
+              adapter = new CustAdapter(customers, getApplicationContext());
+              listView.setAdapter(adapter);
+
+          }
+
+          @Override
+          public void onCancelled(DatabaseError databaseError) {
+
+          }
+      });
+
 
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -91,11 +119,11 @@ public class AdminCustomers extends AppCompatActivity
 
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                        AdminCustomers.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                        AdminCust.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
                 drawer.addDrawerListener(toggle);
                 toggle.syncState();
                 NavigationView navigationView = findViewById(R.id.nav_view);
-                navigationView.setNavigationItemSelectedListener(AdminCustomers.this);
+                navigationView.setNavigationItemSelectedListener(AdminCust.this);
 
                 if (type.equals("Admin")) {//if the user is an admin
                     navigationView.getMenu().clear();
@@ -113,7 +141,11 @@ public class AdminCustomers extends AppCompatActivity
 
             }
         });
-    }
+            }
+
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -178,34 +210,5 @@ public class AdminCustomers extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-        try{
-            mDatabase = FirebaseDatabase.getInstance().getReference();
-            DatabaseReference users = mDatabase.getRoot().child("users");
-
-
-
-
-            //users.getKey().toString();
-            String users2 = users.toString();
-            //Toast.makeText(getApplicationContext(), users2, Toast.LENGTH_LONG).show();
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-            listView = findViewById(R.id.listView);
-            //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
-            //customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
-            databaseAccess.close();
-            adapter = new CustomerAdapter(this, customers);
-            listView.setAdapter(adapter);
-
-
-        }catch(Exception ex){
-            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-    }
-
 }
+

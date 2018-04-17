@@ -7,74 +7,63 @@
 
     <GridLayout
         android:layout_width="280dp"
-        android:layout_height="wrap_content">
+        android:layout_height="133dp">
 
 
-        <TextView
-            android:id="@+id/Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="0"
-            android:paddingBottom="2dp"
-            android:paddingLeft="5dp"
-            android:textAlignment="viewStart"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/Name"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_column="0"
+                android:layout_row="0"
+                android:paddingBottom="2dp"
+                android:paddingLeft="5dp"
+                android:textAlignment="viewStart"
+                android:textStyle="bold"/>
+
 
 
         <TextView
             android:id="@+id/userName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_column="0"
             android:layout_row="1"
             android:paddingBottom="2dp"
             android:paddingLeft="5dp"
-            android:textAlignment="viewStart" />
-
-        <TextView
-            android:id="@+id/txtPassword"
-            android:layout_width="72dp"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:text="@string/password"
-            android:paddingBottom="2dp"
-            android:paddingLeft="5dp"
-            android:textAlignment="viewStart"
-            />
-
-        <TextView
-            android:id="@+id/custPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="2"
-            android:paddingBottom="2dp"
-            android:paddingLeft="5dp"
-            android:layout_marginLeft="70dp"
-            android:textAlignment="viewStart"
-            android:inputType="textPassword"/>
+            android:textAlignment="viewStart"/>
 
         <TextView
             android:id="@+id/custEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
+            android:layout_column="0"
+            android:layout_row="2"
+            android:paddingBottom="2dp"
+            android:paddingLeft="5dp"
+            android:textAlignment="viewStart"/>
+
+        <TextView
+            android:id="@+id/custPassword"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
             android:layout_column="0"
             android:layout_row="3"
             android:paddingBottom="2dp"
             android:paddingLeft="5dp"
             android:textAlignment="viewStart" />
 
+
         <TextView
             android:id="@+id/custRole"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_column="0"
             android:layout_row="4"
             android:paddingBottom="2dp"
             android:paddingLeft="5dp"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/holo_red_dark" />
 
 
     </GridLayout>
@@ -87,9 +76,10 @@
         <Button
             android:id="@+id/DeleteBtn"
             android:layout_width="74dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_marginTop="10dp"
+            android:layout_row="2"
             android:onClick="Delete"
             android:text="@string/delete"
             android:textAlignment="center" />
@@ -97,8 +87,9 @@
         <Button
             android:id="@+id/EditBtn"
             android:layout_width="74dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_column="0"
+            android:layout_marginTop="10dp"
             android:layout_row="0"
             android:onClick="EditCustomer"
             android:text="@string/edit"
