@@ -67,13 +67,13 @@ public class OrderConfirmation extends AppCompatActivity {
             String priceNum = ("Price").concat(Integer.toString(i));
             String prodName = extras.getString(productNum);
             String prodPrice = extras.getString(priceNum);
-            //String qty = carts.get(i).getQty();
+            int qty = carts.get(i).getQty();
             //int qtyI = Integer.getInteger(qty);
 
             double prodPriced = Double.parseDouble(prodPrice);
-            //double productTotal = prodPriced * qtyI;
-            //orderTotal += productTotal;
-            orderTotal += prodPriced;
+            double productTotal = prodPriced * qty;
+            orderTotal += productTotal;
+            //orderTotal += prodPriced;
 
 
         }
