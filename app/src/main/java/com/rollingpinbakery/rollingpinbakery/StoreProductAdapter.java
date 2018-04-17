@@ -20,6 +20,7 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rudst on 2/28/2018.
@@ -117,7 +118,7 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
     public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
         Intent formResult = new Intent(getContext(), CartActivity.class);
 
-        String qty = "1";
+        int qty;
         formResult.putExtra("int_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
@@ -126,7 +127,30 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_productDesc", desc);
 
         view.getContext().startActivity(formResult);
-        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(name, type, salePrice, qty));
+
+
+        List<Cart> cartList = AppDatabase.getAppDatabase(context).cartDao().getAllCartItems();
+        if(!cartList.isEmpty()){
+            for(int i = 0; i < cartList.size(); i++){
+                Cart cart = cartList.get(i);
+                int prodID = cartList.get(i).getProdID();
+                if(prodID == id){
+                    qty = cartList.get(i).getQty(); //get qty
+                    qty++;
+                    cart.setQty(qty);
+                    AppDatabase.getAppDatabase(context).cartDao().update(cart);
+                }else {
+                    qty = 1;
+                    AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+                }
+            }
+        }else{
+            qty=1;
+            AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+        }
+
+        //AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, String.valueOf(qty)));
+        //AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, String.valueOf(qty)));
 
         //view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }

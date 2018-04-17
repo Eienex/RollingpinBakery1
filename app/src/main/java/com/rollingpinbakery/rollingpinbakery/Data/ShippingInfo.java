@@ -2,6 +2,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -34,7 +35,9 @@ public class ShippingInfo {
     @ColumnInfo(name = "zipCode")
     private String zipCode;
 
+    @Ignore
     public ShippingInfo(){}
+
 
     public ShippingInfo(String _id, String custID, String name, String address, String city, String state, String zipCode)
     {
@@ -46,6 +49,7 @@ public class ShippingInfo {
         this.state = state;
         this.zipCode = zipCode;
     }
+    @Ignore
     public ShippingInfo(String custID,String name, String address, String city, String state, String zipCode)
     {
         this.custID = custID;

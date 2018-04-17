@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -173,13 +174,17 @@ public class AdminCustomers extends AppCompatActivity
             mDatabase = FirebaseDatabase.getInstance().getReference();
             DatabaseReference users = mDatabase.getRoot().child("users");
 
+
+
+
+            //users.getKey().toString();
             String users2 = users.toString();
-            Toast.makeText(getApplicationContext(), users2, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), users2, Toast.LENGTH_LONG).show();
             DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
             databaseAccess.open();
             listView = findViewById(R.id.listView);
             //customers = (ArrayList<Customer>) AppDatabase.getAppDatabase(this).customerDao().getAllCustomers();
-            customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
+            //customers = (ArrayList<Customer>) databaseAccess.getAllCustomers();
             databaseAccess.close();
             adapter = new CustomerAdapter(this, customers);
             listView.setAdapter(adapter);

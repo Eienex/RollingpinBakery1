@@ -82,7 +82,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(Register.this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
                     databaseAccess.close();
                     Register.this.finish();
-                    startActivity(new Intent(Register.this, LoginActivity.class));
+                    startActivity(new Intent(Register.this, Login.class));
 
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
@@ -94,7 +94,7 @@ public class Register extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Register.this, LoginActivity.class));
+                startActivity(new Intent(Register.this, Login.class));
             }
         });
     }
@@ -169,7 +169,7 @@ public class Register extends AppCompatActivity {
                     Toast.makeText(this, "Welcome to the Rolling Pin Bakery, " + fNameText, Toast.LENGTH_LONG).show();
                     databaseAccess.close();
                     this.finish();
-                    startActivity(new Intent(this, LoginActivity.class));
+                    startActivity(new Intent(this, Login.class));
 
                 }catch(Exception ex){
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();

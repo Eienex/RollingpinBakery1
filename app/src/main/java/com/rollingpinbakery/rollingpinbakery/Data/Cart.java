@@ -12,6 +12,11 @@ public class Cart {
     @PrimaryKey(autoGenerate = true)
     private int _cartId;
 
+
+
+    @ColumnInfo(name = "prodID")
+    private int prodID;
+
     @ColumnInfo(name = "itemName")
     private String itemName;
 
@@ -22,9 +27,10 @@ public class Cart {
     private String price;
 
     @ColumnInfo(name = "Qty")
-    private String qty;
+    private int qty;
 
-    public Cart(String itemName, String itemCat, String price, String qty) {
+    public Cart(int prodID, String itemName, String itemCat, String price, int qty) {
+        this.prodID = prodID;
         this.itemName = itemName;
         this.itemCat = itemCat;
         this.price = price;
@@ -43,6 +49,9 @@ public class Cart {
     public int get_cartId() {return _cartId;}
     public void set_cartId(int _cartId) {this._cartId = _cartId;}
 
+    public int getProdID() {return prodID; }
+    public void setProdID(int prodID) {this.prodID = prodID; }
+
     public String getItemName() {return itemName;}
     public void setItemName(String itemName) {this.itemName = itemName;}
 
@@ -52,6 +61,6 @@ public class Cart {
     public String getPrice() {return price;}
     public void setPrice(String price) {this.price = price;}
 
-    public String getQty() {return qty;}
-    public void setQty(String price) {this.qty = qty;}
+    public int getQty() {return qty;}
+    public void setQty(int qty) {this.qty = qty;}
 }

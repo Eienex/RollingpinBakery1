@@ -2,6 +2,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverter;
 import android.support.annotation.NonNull;
@@ -45,6 +46,7 @@ public class Customer {
 
     public Customer(){}
 
+    @Ignore
     public Customer( String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
 
         this.custFName = custFName;

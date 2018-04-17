@@ -36,8 +36,7 @@ public class CartAdapter extends ArrayAdapter<Cart> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         final Cart cart = getItem(position);
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.row_cart_item,
-                parent, false);
+        convertView = inflater.inflate(R.layout.row_cart_item,parent, false);
         TextView itemName = convertView.findViewById(R.id.itemName);
         TextView itemCat = convertView.findViewById(R.id.itemCat);
         TextView price = convertView.findViewById((R.id.price));
@@ -47,7 +46,7 @@ public class CartAdapter extends ArrayAdapter<Cart> {
         itemName.setText(cart.getItemName());
         itemCat.setText(cart.getItemCat());
         price.setText(cart.getPrice());
-        qty.setText(cart.getQty());
+        qty.setText("Qty: " + cart.getQty());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

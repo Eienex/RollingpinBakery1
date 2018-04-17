@@ -62,7 +62,7 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
-        //final String id = customer.get_custId();
+        final String id = customer.get_custId();
 
         //This is where I have been trying to connect to the firebase database and pull the information.
         //I don't know if we need to use an outside customer adapter to do that though, so we might
@@ -79,13 +79,16 @@ public class CustomerAdapter extends ArrayAdapter<Customer> {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Customer cust = dataSnapshot.getValue(Customer.class);
 
-                Toast.makeText(getContext(), "This is the database", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getContext(), "This is the database", Toast.LENGTH_LONG).show();
                 Name.setText("Name: " + cust.getCustFName() + " " + cust.getCustLName());
                 username.setText("Username: " + cust.getCustUsername());
                 password.setText("Password: " + cust.getCustPassword());
                 email.setText("Email: " + cust.getCustEmail());
                 custRole.setText("Role: " + cust.getCustType());
+
+
             }
+
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) { }
             @Override

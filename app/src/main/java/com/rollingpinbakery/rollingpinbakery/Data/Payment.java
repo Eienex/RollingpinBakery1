@@ -2,6 +2,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -35,6 +36,7 @@ public class Payment {
 
     public Payment(){}
 
+    @Ignore
     public Payment(String _paymentID, String custID, String payType, String cardNum, String cardHolderName, String expDate, String secCode) {
         this._paymentID = _paymentID;
         this.custID = custID;

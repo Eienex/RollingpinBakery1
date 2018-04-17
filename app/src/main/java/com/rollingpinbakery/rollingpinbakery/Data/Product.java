@@ -2,6 +2,7 @@ package com.rollingpinbakery.rollingpinbakery.Data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 /**
@@ -34,8 +35,10 @@ public class Product {
     @ColumnInfo(name = "prodImage")
     private String prodImage;
 
+
     public Product(){}
 
+    @Ignore
     public Product(String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this.prodName = prodName;
@@ -46,6 +49,7 @@ public class Product {
         this.prodFeatured = prodFeatured;
         this.prodImage = prodImage;
     }
+
     public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this._prodId = id;
