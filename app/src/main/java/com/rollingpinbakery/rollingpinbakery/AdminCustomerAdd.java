@@ -19,10 +19,7 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
-import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
-import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminCustomerAdd extends AppCompatActivity {
 
@@ -51,14 +48,9 @@ public class AdminCustomerAdd extends AppCompatActivity {
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {  }
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {  }
         });
     }
 
@@ -81,7 +73,6 @@ public class AdminCustomerAdd extends AppCompatActivity {
                             } else {
                                 FirebaseAuthException e = (FirebaseAuthException) task.getException();
                                 Toast.makeText(AdminCustomerAdd.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
                             }
                         }
                     });

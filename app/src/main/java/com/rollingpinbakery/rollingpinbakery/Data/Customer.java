@@ -31,11 +31,11 @@ public class Customer {
     @ColumnInfo(name = "custUsername")
     private String custUsername;
 
-    @ColumnInfo(name = "custPassword")
-    private String custPassword;
-
     @ColumnInfo(name = "custEmail")
     private String custEmail;
+
+    @ColumnInfo(name = "custPassword")
+    private String custPassword;
 
     @ColumnInfo(name = "custType")
     private String custType;
@@ -47,13 +47,13 @@ public class Customer {
     public Customer(){}
 
     @Ignore
-    public Customer( String custFName, String custLName, String custUsername, String custPassword, String custEmail, String custType) {
+    public Customer( String custFName, String custLName, String custUsername, String custEmail, String custPassword, String custType) {
 
         this.custFName = custFName;
         this.custLName = custLName;
         this.custUsername = custUsername;
-        this.custPassword = custPassword;
         this.custEmail = custEmail;
+        this.custPassword = custPassword;
         this.custType = custType;
         //this.dateSignedUp = dateSignedUp;
     }
