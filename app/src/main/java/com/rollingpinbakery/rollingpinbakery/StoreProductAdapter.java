@@ -51,7 +51,7 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         Button viewBtn = convertView.findViewById(R.id.ViewBtn);
         Button buyBtn = convertView.findViewById(R.id.BuyBtn);
 
-        final int id = product.get_prodId();
+        final String id = product.get_prodId();
 
         name.setText("Name: " + product.getProdName());
         price.setText("Price: " + product.getProdRetailPrice());
@@ -101,10 +101,10 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         AppDatabase.getAppDatabase(getContext()).productDao().delete(product);
     }
 
-    public void viewProduct(View view, int id, String name, String price, String salePrice, String type, String desc){
+    public void viewProduct(View view, String id, String name, String price, String salePrice, String type, String desc){
         Intent formResult = new Intent(getContext(), Item.class);
 
-        formResult.putExtra("int_productID", id);
+        formResult.putExtra("txt_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
         formResult.putExtra("txt_productSalePrice", salePrice);
@@ -115,11 +115,11 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }
 
-    public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
+    public void cart(View view, String id, String name, String price, String salePrice, String type, String desc){
         Intent formResult = new Intent(getContext(), CartActivity.class);
 
         int qty;
-        formResult.putExtra("int_productID", id);
+        formResult.putExtra("txt_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
         formResult.putExtra("txt_productSalePrice", salePrice);
@@ -133,7 +133,7 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         if(!cartList.isEmpty()){
             for(int i = 0; i < cartList.size(); i++){
                 Cart cart = cartList.get(i);
-                int prodID = cartList.get(i).getProdID();
+                String prodID = cartList.get(i).getProdID();
                 if(prodID == id){
                     qty = cartList.get(i).getQty(); //get qty
                     qty++;

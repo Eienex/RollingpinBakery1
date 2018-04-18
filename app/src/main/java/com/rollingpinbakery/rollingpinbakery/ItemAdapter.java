@@ -49,7 +49,7 @@ public class ItemAdapter extends ArrayAdapter<Product> {
         final TextView productDesc = convertView.findViewById(R.id.productDesc);
         Button buyBtn = convertView.findViewById(R.id.BuyBtn);
 
-        final int id = product.get_prodId();
+        final String id = product.get_prodId();
 
         productName.setText(product.getProdName());
         productImage.setImageDrawable(Drawable.createFromPath(product.getProdImage()));
@@ -72,10 +72,10 @@ public class ItemAdapter extends ArrayAdapter<Product> {
         return convertView;
     }
 
-    public void cart(View view, int id, String name, String price, String salePrice, String type, String desc){
+    public void cart(View view, String id, String name, String price, String salePrice, String type, String desc){
             Intent formResult = new Intent(getContext(), Item.class);
 
-            formResult.putExtra("int_productID", id);
+            formResult.putExtra("txt_productID", id);
             formResult.putExtra("txt_productName", name);
             formResult.putExtra("txt_productPrice",price);
             formResult.putExtra("txt_productSalePrice", salePrice);

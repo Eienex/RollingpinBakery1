@@ -15,7 +15,7 @@ public class Cart {
 
 
     @ColumnInfo(name = "prodID")
-    private int prodID;
+    private String prodID;
 
     @ColumnInfo(name = "itemName")
     private String itemName;
@@ -29,7 +29,7 @@ public class Cart {
     @ColumnInfo(name = "Qty")
     private int qty;
 
-    public Cart(int prodID, String itemName, String itemCat, String price, int qty) {
+    public Cart(String prodID, String itemName, String itemCat, String price, int qty) {
         this.prodID = prodID;
         this.itemName = itemName;
         this.itemCat = itemCat;
@@ -49,8 +49,8 @@ public class Cart {
     public int get_cartId() {return _cartId;}
     public void set_cartId(int _cartId) {this._cartId = _cartId;}
 
-    public int getProdID() {return prodID; }
-    public void setProdID(int prodID) {this.prodID = prodID; }
+    public String getProdID() {return prodID; }
+    public void setProdID(String prodID) {this.prodID = prodID; }
 
     public String getItemName() {return itemName;}
     public void setItemName(String itemName) {this.itemName = itemName;}

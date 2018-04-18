@@ -184,7 +184,7 @@ public class DatabaseAccess {
         cursor.moveToFirst();
         int i = 0;
         while (!cursor.isAfterLast()) {
-            list.add(i, new Product(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2),
+            list.add(i, new Product(cursor.getString(0), cursor.getString(1), cursor.getDouble(2),
                             cursor.getDouble(3), cursor.getString(4), cursor.getString(5),
                             cursor.getInt(6), cursor.getString(7)));
             i++;
@@ -199,7 +199,7 @@ public class DatabaseAccess {
         Cursor cursor = database.rawQuery("SELECT * FROM Products where prodID == " + id, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            product.set_prodId(cursor.getInt(0));
+            product.set_prodId(cursor.getString(0));
             product.setProdName(cursor.getString(1));
             product.setProdRetailPrice(cursor.getDouble(2));
             product.setProdSalePrice(cursor.getDouble(3));
@@ -219,7 +219,7 @@ public class DatabaseAccess {
         cursor.moveToFirst();
         int i =0;
         while (!cursor.isAfterLast()) {
-            list.add(i, new Product(cursor.getInt(0), cursor.getString(1), cursor.getDouble(2),
+            list.add(i, new Product(cursor.getString(0), cursor.getString(1), cursor.getDouble(2),
                     cursor.getDouble(3), cursor.getString(4), cursor.getString(5),
                     cursor.getInt(6), cursor.getString(7)));
             i++;

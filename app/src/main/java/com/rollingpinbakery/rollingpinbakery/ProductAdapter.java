@@ -51,7 +51,7 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
-        final int id = product.get_prodId();
+        final String id = product.get_prodId();
 
         name.setText("Name: " + product.getProdName());
         price.setText("Price: " + product.getProdRetailPrice());
@@ -114,10 +114,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         //AppDatabase.getAppDatabase(getContext()).productDao().delete(product);
     }
 
-    public void editProduct(View view, int id, String name, String price, String salePrice, String type, String desc, String prodIsFeatured){
+    public void editProduct(View view, String id, String name, String price, String salePrice, String type, String desc, String prodIsFeatured){
         Intent formResult = new Intent(getContext(), AdminProductEdit.class);
 
-        formResult.putExtra("int_productID", id);
+        formResult.putExtra("txt_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
         formResult.putExtra("txt_productSalePrice", salePrice);

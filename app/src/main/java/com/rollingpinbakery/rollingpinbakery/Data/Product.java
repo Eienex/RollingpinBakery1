@@ -4,6 +4,7 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 /**
  * Created by rudst on 2/12/2018.
@@ -11,8 +12,9 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Product {
-    @PrimaryKey(autoGenerate = true)
-    private int _prodId;
+    @PrimaryKey
+    @NonNull
+    private String _prodId;
 
     @ColumnInfo(name = "prodName")
     private String prodName;
@@ -50,7 +52,7 @@ public class Product {
         this.prodImage = prodImage;
     }
 
-    public Product(int id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
+    public Product(String id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this._prodId = id;
         this.prodName = prodName;
@@ -62,8 +64,8 @@ public class Product {
         this.prodImage = prodImage;
     }
 
-    public int get_prodId() {return _prodId;}
-    public void set_prodId(int _prodId) {this._prodId = _prodId;}
+    public String get_prodId() {return _prodId;}
+    public void set_prodId(String _prodId) {this._prodId = _prodId;}
 
     public String getProdName() {return prodName;}
     public void setProdName(String prodName) {this.prodName = prodName;}

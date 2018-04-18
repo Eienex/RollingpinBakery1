@@ -16,7 +16,7 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminProductEdit extends AppCompatActivity {
 
-    int id;
+    String id;
     EditText prodName, prodPrice, prodSalePrice, prodDesc, prodImage;
     Spinner productCategory;
     CheckBox prodIsFeatured;
@@ -35,7 +35,7 @@ public class AdminProductEdit extends AppCompatActivity {
         prodIsFeatured = (CheckBox)findViewById(R.id.IsFeaturedCkbx);
         //prodImage = (EditText)findViewById(R.id.ProductImage);
 
-        id = getIntent().getIntExtra("int_productID", 0);
+        id = getIntent().getStringExtra("txt_productID");
         String txtName = getIntent().getStringExtra("txt_productName");
         String txtPrice = getIntent().getStringExtra("txt_productPrice");
         String txtSalesPrice = getIntent().getStringExtra("txt_productSalePrice");
