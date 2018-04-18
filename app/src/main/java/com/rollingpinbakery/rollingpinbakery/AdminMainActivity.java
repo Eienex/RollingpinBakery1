@@ -151,7 +151,7 @@ public class AdminMainActivity extends AppCompatActivity
 
 
     public void products(View view){
-        startActivity(new Intent(this, AdminProducts.class));
+        startActivity(new Intent(this, Admin_Products.class));
     }
 
     public void customers(View view){

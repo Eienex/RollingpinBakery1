@@ -95,7 +95,7 @@ public class Admin_AddProduct extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 finish();
-                startActivity(new Intent(this, AdminProducts.class));
+                startActivity(new Intent(this, Admin_Products.class));
 
             }
             else {
@@ -112,7 +112,7 @@ public class Admin_AddProduct extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
                 }
                 finish();
-                startActivity(new Intent(this, AdminProducts.class));
+                startActivity(new Intent(this, Admin_Products.class));
             }
         }
 

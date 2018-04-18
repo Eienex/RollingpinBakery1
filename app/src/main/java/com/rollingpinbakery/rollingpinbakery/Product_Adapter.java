@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
@@ -25,11 +26,22 @@ import java.util.ArrayList;
  * Created by rudst on 2/28/2018.
  */
 
-public class ProductAdapter extends ArrayAdapter<Product> {
+public class Product_Adapter extends ArrayAdapter<Product> implements View.OnClickListener{
+
     private ArrayList<Product> dataSet;
     Context context;
 
-    public ProductAdapter(Context context, ArrayList<Product> products){
+
+        private static class ViewHolder{
+        TextView name;
+        TextView price;
+        TextView salePrice;
+        TextView productType;
+        TextView productDesc;
+        TextView prodIsFeatured;
+        }
+
+    public Product_Adapter(Context context, ArrayList<Product> products){
         super(context, R.layout.row_item, products);
         this.dataSet = products;
         this.context = context;
@@ -39,38 +51,53 @@ public class ProductAdapter extends ArrayAdapter<Product> {
     @Override
     public View getView(int postition, @Nullable View convertView, @NonNull final ViewGroup parent){
         final Product product = getItem(postition);
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.row_item, parent, false);
+        Product_Adapter.ViewHolder viewHolder;
 
-        final TextView name = convertView.findViewById(R.id.name);
-        final TextView price = convertView.findViewById(R.id.price);
-        final TextView salePrice = convertView.findViewById(R.id.salePrice);
-        final TextView productType = convertView.findViewById(R.id.productType);
-        final TextView productDesc = convertView.findViewById(R.id.productDesc);
-        final TextView prodIsFeatured = convertView.findViewById(R.id.prodIsFeatured);
+        final View result;
+
+        if (convertView == null) {
+            viewHolder = new Product_Adapter.ViewHolder();
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.row_item, parent, false);
+            viewHolder.name = convertView.findViewById(R.id.name);
+            viewHolder.price = convertView.findViewById(R.id.price);
+            viewHolder.salePrice = convertView.findViewById(R.id.salePrice);
+            viewHolder.productType = convertView.findViewById(R.id.productType);
+            viewHolder.productDesc = convertView.findViewById(R.id.prodDesc);
+            viewHolder.prodIsFeatured = convertView.findViewById(R.id.prodIsFeatured);
+
+            result = convertView;
+
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (Product_Adapter.ViewHolder) convertView.getTag();
+            result = convertView;
+        }
+
+        viewHolder.name.setText("Name: " + product.getProdName());
+        viewHolder.price.setText(("Price: " + product.getProdRetailPrice()));
+
+        if(product.getProdSalePrice() != null) {
+            viewHolder.salePrice.setText("Sale Price: " + product.getProdSalePrice());
+        }
+        else{
+            viewHolder.salePrice.setText("Sale Price: None");
+        }
+        viewHolder.productType.setText("Category: " + product.getProdType());
+       // viewHolder.productDesc.setText("Description: " + product.getProdDesc());
+        if(product.getProdFeatured() == 1){
+            viewHolder.prodIsFeatured.setText("Featured Product!");
+            viewHolder.prodIsFeatured.setTextColor(Color.RED);
+        }else {
+            viewHolder.prodIsFeatured.setText("");
+        }
+
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
         final String id = product.get_prodId();
 
-        name.setText("Name: " + product.getProdName());
-        price.setText("Price: " + product.getProdRetailPrice());
-        if(product.getProdSalePrice() != null) {
-            salePrice.setText("Sale Price: " + product.getProdSalePrice());
-        }
-        else{
-            salePrice.setText("Sale Price: None");
-        }
-        productType.setText("Category: " + product.getProdType());
-        productDesc.setText("Description: " + product.getProdDesc());
-        if (product.getProdFeatured() == 1){
-            prodIsFeatured.setText("Featured Product!");
-            prodIsFeatured.setTextColor(Color.RED);
-        }
-        else{
-            prodIsFeatured.setText("");
-        }
-
+/*
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,9 +118,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
                 //Delete the item from the database
                 update(product);
                 notifyDataSetChanged();
-                view.getContext().startActivity(new Intent(getContext(), AdminProducts.class));
+                view.getContext().startActivity(new Intent(getContext(), Admin_Products.class));
             }
         });
+        */
         return convertView;
     }
 
@@ -128,10 +156,10 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         view.getContext().startActivity(formResult);
     }
 
-    public void viewProduct(View view, int id, String name, String price, String salePrice, String type, String desc, String prodIsFeatured){
+    public void viewProduct(View view, String id, String name, String price, String salePrice, String type, String desc, String prodIsFeatured){
         Intent formResult = new Intent(getContext(), AdminProductEdit.class);
 
-        formResult.putExtra("int_productID", id);
+        formResult.putExtra("txt_productID", id);
         formResult.putExtra("txt_productName", name);
         formResult.putExtra("txt_productPrice",price);
         formResult.putExtra("txt_productSalePrice", salePrice);
@@ -140,5 +168,8 @@ public class ProductAdapter extends ArrayAdapter<Product> {
         formResult.putExtra("txt_prodIsFeatured", prodIsFeatured);
 
         view.getContext().startActivity(formResult);
+    }
+    @Override
+    public void onClick(View v) {
     }
 }

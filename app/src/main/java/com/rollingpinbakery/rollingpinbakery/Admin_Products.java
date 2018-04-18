@@ -34,15 +34,20 @@ import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import java.util.ArrayList;
 
-public class AdminProducts extends AppCompatActivity
+public class Admin_Products extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
-    private FirebaseAuth firebaseAuth;
+
     private FirebaseDatabase database;
 
-    Button editBtn;
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference dbReference;
+
     ListView listView;
     ArrayList<Product> products;
-    private static ProductAdapter adapter;
+    private static Product_Adapter adapter;
+
+    Button editBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,40 @@ public class AdminProducts extends AppCompatActivity
 
         //check to see what the login status of the current user is
 
+        listView = findViewById(R.id.listView);
+        products = new ArrayList<>();
+
+
+        dbReference = FirebaseDatabase.getInstance().getReference("Products");
+        dbReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Product product = snapshot.getValue(Product.class);
+
+                    String prodID = snapshot.getKey();
+                    String prodName = product.getProdName();
+                    Double price = product.getProdRetailPrice();
+                    Double salesPrice = product.getProdSalePrice();
+                    String description = product.getProdDesc();
+                    String type = product.getProdType();
+                    int isFeatured = product.getProdFeatured();
+                    String image = null;
+
+
+                    products.add(new Product(prodID, prodName, price, salesPrice, description, type, isFeatured, null));
+
+                }
+                adapter = new Product_Adapter(getApplicationContext(), products);
+                listView.setAdapter(adapter);
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {   }
+        });
+
+
         database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = database.getReference().child("users");
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -79,11 +118,11 @@ public class AdminProducts extends AppCompatActivity
 
                 DrawerLayout drawer = findViewById(R.id.drawer_layout);
                 ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                        AdminProducts.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                        Admin_Products.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
                 drawer.addDrawerListener(toggle);
                 toggle.syncState();
                 NavigationView navigationView = findViewById(R.id.nav_view);
-                navigationView.setNavigationItemSelectedListener(AdminProducts.this);
+                navigationView.setNavigationItemSelectedListener(Admin_Products.this);
 
                 if (type.equals("Admin")) {//if the user is an admin
                     navigationView.getMenu().clear();
@@ -175,21 +214,7 @@ public class AdminProducts extends AppCompatActivity
     @Override
     protected void onResume(){
         super.onResume();
-        try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-            listView = findViewById(R.id.listView);
-            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getAllProducts();
-            products = (ArrayList<Product>) databaseAccess.getAllProducts();
-            databaseAccess.close();
-            adapter = new ProductAdapter(this, products);
-            listView.setAdapter(adapter);
-        }catch(Exception ex){
-            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-
-        }
+    }
 
 
 }
