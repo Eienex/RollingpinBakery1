@@ -102,8 +102,7 @@ public class Admin_AddProduct extends AppCompatActivity{
                 try{
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference myRef = database.getReference();
-                    //FirebaseUser productID = firebaseAuth.getCurrentUser();
-                    //String productIDUid =productID.getUid();
+
                     String productID = myRef.push().getKey();
 
                     Product product = new Product(productID, txtName, productPrice, productSalesPrice, txtDesc, spinnerResult, isFeatured, null);

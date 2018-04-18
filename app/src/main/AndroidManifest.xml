@@ -97,15 +97,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:label="Log In">
-            <intent-filter>
-                <action android:name="com.rollingpinbakery.rollingpinbakery.Login" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".Login"
             android:label="Log In">
             <intent-filter>

@@ -67,7 +67,6 @@ public class AdminCustomerAdd extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 createUser();
-                                firebaseAuth.signOut();
                                 Toast.makeText(AdminCustomerAdd.this, "Registration Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(AdminCustomerAdd.this, AdminCustomers.class));
                             } else {

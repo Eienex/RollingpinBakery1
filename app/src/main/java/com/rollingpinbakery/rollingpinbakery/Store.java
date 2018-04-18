@@ -71,13 +71,9 @@ public class Store extends AppCompatActivity
                     navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
                 }
             }
-
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {   }
         });
-
     }
 
     @Override
@@ -89,7 +85,6 @@ public class Store extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

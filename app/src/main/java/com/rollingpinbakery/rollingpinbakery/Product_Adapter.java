@@ -63,7 +63,7 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
             viewHolder.price = convertView.findViewById(R.id.price);
             viewHolder.salePrice = convertView.findViewById(R.id.salePrice);
             viewHolder.productType = convertView.findViewById(R.id.productType);
-            viewHolder.productDesc = convertView.findViewById(R.id.prodDesc);
+            viewHolder.productDesc = convertView.findViewById(R.id.productDesc);
             viewHolder.prodIsFeatured = convertView.findViewById(R.id.prodIsFeatured);
 
             result = convertView;
@@ -84,7 +84,7 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
             viewHolder.salePrice.setText("Sale Price: None");
         }
         viewHolder.productType.setText("Category: " + product.getProdType());
-       // viewHolder.productDesc.setText("Description: " + product.getProdDesc());
+        viewHolder.productDesc.setText("Description: " + product.getProdDesc());
         if(product.getProdFeatured() == 1){
             viewHolder.prodIsFeatured.setText("Featured Product!");
             viewHolder.prodIsFeatured.setTextColor(Color.RED);
