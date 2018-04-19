@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,14 +37,14 @@ public class CakesCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference dbReference;
+
     ListView listView;
     ArrayList<Product> products;
     private static StoreProductAdapter adapter;
 
     public static final String MyPREFERENCES = "MyPrefs";
     SharedPreferences sharedPreferences;
-    private FirebaseDatabase database;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +52,8 @@ public class CakesCategory extends AppCompatActivity
 
         firebaseAuth= FirebaseAuth.getInstance();
 
+        listView = findViewById(R.id.listView);
+        products = new ArrayList<>();
         //get shared Preferences
         //sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         //String LoginStatus = sharedPreferences.getString("LoginStatus", "");
@@ -58,36 +61,35 @@ public class CakesCategory extends AppCompatActivity
 
         //check to see what the login status of the current user is
 
-        database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = database.getReference().child("users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        dbReference = FirebaseDatabase.getInstance().getReference("Products");
+        dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                String userID = user.getUid();
-                Customer customer = dataSnapshot.child(userID).getValue(Customer.class);
-                String type = customer.getCustType();
-                //String userID = user.getUid();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Product product = snapshot.getValue(Product.class);
 
-                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                setSupportActionBar(toolbar);
+                    if(product.getProdType().endsWith("Cake")){
+                        String prodID = snapshot.getKey();
+                        String prodName = product.getProdName();
+                        Double price = product.getProdRetailPrice();
+                        Double salesPrice = product.getProdSalePrice();
+                        String description = product.getProdDesc();
+                        String type = product.getProdType();
+                        int isFeatured = product.getProdFeatured();
+                        String image = null;
 
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                        CakesCategory.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                drawer.addDrawerListener(toggle);
-                toggle.syncState();
-                NavigationView navigationView = findViewById(R.id.nav_view);
-                navigationView.setNavigationItemSelectedListener(CakesCategory.this);
+                        products.add(new Product(prodID, prodName, price, salesPrice, description, type, isFeatured, null));
+                    }
 
-                if (type.equals("Admin")) {//if the user is an admin
-                    navigationView.getMenu().clear();
-                    //set the navView to the Admin View
-                    navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
-                } else {//if the user is not an Admin
-                    navigationView.getMenu().clear();
-                    //set the nav view to the Main Logged In View
-                    navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                }
+                if(products.isEmpty()){
+                    TextView EmptyCat = findViewById(R.id.NoCakeProd);
+                    EmptyCat.setText("There are currently no Cake products available for purchase");
+                }
+                else{
+                    adapter = new StoreProductAdapter(getApplicationContext(), products);
+                    listView.setAdapter(adapter);
                 }
             }
 
@@ -143,6 +145,9 @@ public class CakesCategory extends AppCompatActivity
         } else if (id == R.id.nav_Store) {
             Intent editIntent = new Intent(this, Store.class);
             startActivity(editIntent);
+        } else if (id == R.id.nav_Admin) {
+            Intent editIntent = new Intent(this, AdminMainActivity.class);
+            startActivity(editIntent);
         } else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
@@ -166,19 +171,5 @@ public class CakesCategory extends AppCompatActivity
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-            listView = findViewById(R.id.listView);
-            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
-            products = (ArrayList<Product>) databaseAccess.getProductByType("Cake");
-            databaseAccess.close();
-            adapter = new StoreProductAdapter(this, products);
-            listView.setAdapter(adapter);
-        }catch(Exception ex){
-            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+    protected void onResume() { super.onResume(); }
 }

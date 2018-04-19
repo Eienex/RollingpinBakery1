@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,8 +36,8 @@ import java.util.ArrayList;
 public class DonutCategory extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private FirebaseDatabase database;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference dbReference;
 
     ListView listView;
     ArrayList<Product> products;
@@ -48,36 +49,39 @@ public class DonutCategory extends AppCompatActivity
         setContentView(R.layout.activity_donut_category);
 
         firebaseAuth= FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = database.getReference().child("users");
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+        listView = findViewById(R.id.listView);
+        products = new ArrayList<>();
+        //Get the Reference to the Products database
+        dbReference = FirebaseDatabase.getInstance().getReference("Products");
+        dbReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                String userID = user.getUid();
-                Customer customer = dataSnapshot.child(userID).getValue(Customer.class);
-                String type = customer.getCustType();
-                //String userID = user.getUid();
+                for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                {
+                    Product product = snapshot.getValue(Product.class);
 
-                Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-                setSupportActionBar(toolbar);
+                    if(product.getProdType().endsWith("Donut")){
+                        String prodID = snapshot.getKey();
+                        String prodName = product.getProdName();
+                        Double price = product.getProdRetailPrice();
+                        Double salesPrice = product.getProdSalePrice();
+                        String description = product.getProdDesc();
+                        String type = product.getProdType();
+                        int isFeatured = product.getProdFeatured();
+                        String image = null;
 
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                        DonutCategory.this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-                drawer.addDrawerListener(toggle);
-                toggle.syncState();
-                NavigationView navigationView = findViewById(R.id.nav_view);
-                navigationView.setNavigationItemSelectedListener(DonutCategory.this);
+                        products.add(new Product(prodID, prodName, price, salesPrice, description, type, isFeatured, null));
+                    }
 
-                if (type.equals("Admin")) {//if the user is an admin
-                    navigationView.getMenu().clear();
-                    //set the navView to the Admin View
-                    navigationView.inflateMenu(R.menu.activity_main_admin_drawer);
-                } else {//if the user is not an Admin
-                    navigationView.getMenu().clear();
-                    //set the nav view to the Main Logged In View
-                    navigationView.inflateMenu(R.menu.activity_main_logged_in_drawer);
+                }
+                if(products.isEmpty()){
+                    TextView EmptyCat = findViewById(R.id.NoDonutProd);
+                    EmptyCat.setText("There are currently no Donut products available for purchase");
+                }
+                else{
+                    adapter = new StoreProductAdapter(getApplicationContext(), products);
+                    listView.setAdapter(adapter);
                 }
             }
 
@@ -136,7 +140,10 @@ public class DonutCategory extends AppCompatActivity
         }  else if (id == R.id.nav_Cart) {
             Intent editIntent = new Intent(this, CartActivity.class);
             startActivity(editIntent);
-        }  else if (id == R.id.nav_Logout) {
+        }else if (id == R.id.nav_Admin) {
+            Intent editIntent = new Intent(this, AdminMainActivity.class);
+            startActivity(editIntent);
+        }else if (id == R.id.nav_Logout) {
             firebaseAuth.signOut();
             finish();
             //SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -156,21 +163,7 @@ public class DonutCategory extends AppCompatActivity
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-            databaseAccess.open();
-            listView = findViewById(R.id.listView);
-            //products = (ArrayList<Product>) AppDatabase.getAppDatabase(this).productDao().getProductByType("Cake");
-            products = (ArrayList<Product>) databaseAccess.getProductByType("Donut");
-            databaseAccess.close();
-            adapter = new StoreProductAdapter(this, products);
-            listView.setAdapter(adapter);
-        }catch(Exception ex){
-            Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
+    protected void onResume() {super.onResume(); }
 
 }
 

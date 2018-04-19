@@ -45,7 +45,6 @@ public class Admin_Products extends AppCompatActivity
     ListView listView;
     ArrayList<Product> products;
     private static Product_Adapter adapter;
-
     Button editBtn;
 
 

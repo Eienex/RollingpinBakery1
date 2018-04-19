@@ -100,6 +100,7 @@ public class OrderConfirmation extends AppCompatActivity {
         String PaymentExpMonth = extras.getString("PaymentExpMonth");
         String PaymentExpYear = extras.getString("PaymentExpYear");
         String PaymentCSCNumber = extras.getString("PaymentCSCNumber");
+        //String secretCSCNum = PaymentCSCNumber.replace(PaymentCSCNumber,"***");
 
 
 
@@ -120,6 +121,8 @@ public class OrderConfirmation extends AppCompatActivity {
     //Method to handle the Place Order button
     public void PlaceOrder(View view){
         Toast.makeText(getApplicationContext(), "Thank you for placing an order with Rolling Pin Bakery!", Toast.LENGTH_LONG).show();
+        //Add the order into the Firebase database
+
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
