@@ -48,8 +48,8 @@ public class CartAdapter extends ArrayAdapter<Cart> {
 
         itemName.setText(cart.getItemName());
         itemCat.setText(cart.getItemCat());
-        price.setText(cart.getPrice());
         qty.setText("Qty: " + cart.getQty());
+        price.setText("Price: " + cart.getPrice());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

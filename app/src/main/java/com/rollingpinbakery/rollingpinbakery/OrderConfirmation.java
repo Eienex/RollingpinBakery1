@@ -66,7 +66,7 @@ public class OrderConfirmation extends AppCompatActivity {
             String productNum = ("Product").concat(Integer.toString(i));
             String priceNum = ("Price").concat(Integer.toString(i));
             String prodName = extras.getString(productNum);
-            String prodPrice = extras.getString(priceNum);
+            String prodPrice = carts.get(i).getPrice();
             int qty = carts.get(i).getQty();
             //int qtyI = Integer.getInteger(qty);
 
@@ -123,6 +123,9 @@ public class OrderConfirmation extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Thank you for placing an order with Rolling Pin Bakery!", Toast.LENGTH_LONG).show();
         //Add the order into the Firebase database
 
+        //Remove all of the products from the cart
+        AppDatabase.getAppDatabase(getApplicationContext()).cartDao().removeCart();
+        //navigate to the home screen
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 

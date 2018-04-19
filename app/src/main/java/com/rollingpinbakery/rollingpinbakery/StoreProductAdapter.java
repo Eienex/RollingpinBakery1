@@ -130,28 +130,45 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
 
 
         List<Cart> cartList = AppDatabase.getAppDatabase(context).cartDao().getAllCartItems();
-        if(!cartList.isEmpty()){
+        if(!cartList.isEmpty()){ //there is products in the cart
             for(int i = 0; i < cartList.size(); i++){
                 Cart cart = cartList.get(i);
                 String prodID = cartList.get(i).getProdID();
+                //checks to see if the product is already inside the cart
                 if(prodID == id){
                     qty = cartList.get(i).getQty(); //get qty
                     qty++;
                     cart.setQty(qty);
                     AppDatabase.getAppDatabase(context).cartDao().update(cart);
-                }else {
+                }
+                else{
                     qty = 1;
-                    AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+                    salePrice = salePrice.replace("Sale Price: ", "");
+                    price = price.replace("Price: ", "");
+                    double sp = Double.parseDouble(salePrice);
+                    double p = Double.parseDouble(price);
+                    //Check to see if the product is on sale
+                    if(sp > 0 && sp < p){ //the product is on sale
+                        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+                    }
+                    else{//the product is not on sale
+                        AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, price, qty));
+                    }
                 }
             }
-        }else{
-            qty=1;
-            AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+        }else{ //No products are in the cart
+            qty = 1;
+            salePrice = salePrice.replace("Sale Price: ", "");
+            price = price.replace("Price: ", "");
+            double sp = Double.parseDouble(salePrice);
+            double p = Double.parseDouble(price);
+            //Check to see if the product is on sale
+            if(sp > 0 && sp < p){ //the product is on sale
+                AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, qty));
+            }
+            else{//the product is not on sale
+                AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, price, qty));
+            }
         }
-
-        //AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, String.valueOf(qty)));
-        //AppDatabase.getAppDatabase(context).cartDao().insert(new Cart(id, name, type, salePrice, String.valueOf(qty)));
-
-        //view.getContext().startActivity(new Intent(getContext(), CartActivity.class));
     }
 }
