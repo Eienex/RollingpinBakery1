@@ -98,14 +98,17 @@ public class ShippingInfoPage extends AppCompatActivity {
         else {
             if (stateText.length() != 2) {
                 Toast.makeText(getApplicationContext(), "State can only be two letters. EX: MN", Toast.LENGTH_SHORT).show();
-            } else if (zipCodeText.length() != 5) {
+            }
+            else{
+                shippingResults.putExtra("ShippingState", stateText);
+            }
+            if (zipCodeText.length() < 5 || zipCodeText.length() > 5) {
                 Toast.makeText(getApplicationContext(), "Please enter a valid Zip Code", Toast.LENGTH_SHORT).show();
-            } else {
+            } else{
                     //put extras to the next form
                     shippingResults.putExtra("ShippingName", nameText);
                     shippingResults.putExtra("ShippingAddress", addressText);
                     shippingResults.putExtra("ShippingCity", cityText);
-                    shippingResults.putExtra("ShippingState", stateText);
                     shippingResults.putExtra("ShippingZip", zipCodeText);
                 result = true;
             }

@@ -104,6 +104,7 @@ public class OrderConfirmation extends AppCompatActivity {
 
 
 
+
         //set the textboxes to all of the form info
         cartTotal.setText("Order Total: $" + new DecimalFormat("#.00").format(orderTotal));
         shipNameText.setText("Name: " + ShippingName);

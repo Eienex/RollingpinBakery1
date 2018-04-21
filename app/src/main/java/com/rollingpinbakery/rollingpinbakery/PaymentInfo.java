@@ -88,17 +88,21 @@ public class PaymentInfo extends AppCompatActivity {
     public void proceedToConfirm(View view) {
         if(validate()){
             if(validate()){
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = firebaseDatabase.getReference();
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                String custID =user.getUid();
-                String paymentID = myRef.push().getKey();
-                String expDate = expMonthText + "/" + expYearText;
-
-                Payment paymentInfo = new Payment(paymentID,custID, cardTypeText, cardNumberText, nameOnCardText, expDate, cscText);
-                myRef.child("Payments").child(paymentID).setValue(paymentInfo);
-                startActivity(paymentResults);
+                try {
+                    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                    DatabaseReference myRef = firebaseDatabase.getReference();
+                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                    String custID = user.getUid();
+                    String paymentID = myRef.push().getKey();
+                    String expDate = expMonthText + "/" + expYearText;
+                    Payment paymentInfo = new Payment(paymentID, custID, cardTypeText, AndroidCryptUtils.toHex(cipherText), nameOnCardText, expDate, cscText);
+                    myRef.child("Payments").child(paymentID).setValue(paymentInfo);
+                    startActivity(paymentResults);
+                }
+                catch(Exception e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
             // AppDatabase.getAppDatabase(this).shippingInfoDao().insert(
             //     new ShippingInfo(nameText, addressText, cityText,
@@ -146,15 +150,30 @@ public class PaymentInfo extends AppCompatActivity {
                     cipher.init(Cipher.ENCRYPT_MODE, key, ivSpec);
                     cipherText = cipher.doFinal(AndroidCryptUtils.toByteArray(cardNumberText));
 
+
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                 }
-                paymentResults.putExtra("PaymentName", nameOnCardText);
-                paymentResults.putExtra("PaymentCardNumber", cipherText);
-                paymentResults.putExtra("PaymentCardType", cardTypeText);
-                paymentResults.putExtra("PaymentExpMonth", expMonthText);
-                paymentResults.putExtra("PaymentExpYear", expYearText);
-                paymentResults.putExtra("PaymentCSCNumber", cscText);
+                char[] cardHidden = cardNumberText.toCharArray();
+                for(int i = 0; i < 12; i++){
+                    cardHidden[i] = '*';
+                }
+                StringBuilder sb = new StringBuilder();
+                for(int i = 0; i < cardHidden.length;i++){
+                    sb.append(cardHidden[i]);
+                }
+                try {
+                    paymentResults.putExtra("PaymentName", nameOnCardText);
+                    paymentResults.putExtra("PaymentCardNumber", sb.toString());
+                    paymentResults.putExtra("PaymentCardType", cardTypeText);
+                    paymentResults.putExtra("PaymentExpMonth", expMonthText);
+                    paymentResults.putExtra("PaymentExpYear", expYearText);
+                    paymentResults.putExtra("PaymentCSCNumber", cscText);
+                }
+                catch(Exception e){
+                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+
             }
 
                 result = true;
