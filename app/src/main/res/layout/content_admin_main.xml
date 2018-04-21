@@ -6,29 +6,30 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.rollingpinbakery.rollingpinbakery.AdminMainActivity"
-    tools:showIn="@layout/activity_admin_products">
+    >
 
 
     <Button
         android:id="@+id/products"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="96dp"
         android:onClick="products"
         android:text="@string/edit_products"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/custmers"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:onClick="customers"
         android:text="@string/edit_customers"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,10 +40,10 @@
     <Button
         android:id="@+id/reports"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="80dp"
         android:onClick="reports"
         android:text="@string/title_activity_admin_reports"
         app:layout_constraintEnd_toEndOf="parent"

@@ -96,7 +96,6 @@
         <item>Cookie</item>
         <item>Pastry</item>
         <item>Donut</item>
-        <item>Bread</item>
     </string-array>
     <string-array name="customerRoles">
         <item>Customer</item>

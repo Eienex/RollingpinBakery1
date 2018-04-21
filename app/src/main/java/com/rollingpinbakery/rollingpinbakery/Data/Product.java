@@ -37,6 +37,9 @@ public class Product {
     @ColumnInfo(name = "prodImage")
     private String prodImage;
 
+    @ColumnInfo(name = "onSale")
+    private String onSale;
+
 
     public Product(){}
 
@@ -52,6 +55,15 @@ public class Product {
         this.prodImage = prodImage;
     }
 
+    public Product( String prodName, Double prodRetailPrice, Double prodSalePrice, String onSale, String prodType) {
+
+
+        this.prodName = prodName;
+        this.prodRetailPrice = prodRetailPrice;
+        this.prodSalePrice = prodSalePrice;
+        this.onSale = onSale;
+        this.prodType = prodType;
+    }
     public Product(String id, String prodName, Double prodRetailPrice, Double prodSalePrice, String prodDesc, String prodType, int prodFeatured, String prodImage) {
 
         this._prodId = id;
@@ -88,5 +100,7 @@ public class Product {
     public String getProdImage() {return prodImage;}
     public void setProdImage(String prodImage) {this.prodImage = prodImage;}
 
+    public String getOnSale() {return onSale;}
+    public void setOnSale(String onSale) {this.onSale = onSale;}
 
 }

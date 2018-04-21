@@ -69,6 +69,14 @@ public class Customer {
         //this.dateSignedUp = dateSignedUp;
     }
 
+    public Customer(String id, String custFName, String custLName, String custEmail, String custType) {
+        this._custId = id;
+        this.custFName = custFName;
+        this.custLName = custLName;
+        this.custEmail = custEmail;
+        this.custType = custType;
+    }
+
     public String get_custId() {return _custId;}
     public void set_custId(String _custId) {this._custId = _custId;}
 

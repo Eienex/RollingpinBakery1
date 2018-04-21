@@ -80,8 +80,8 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
         if(product.getProdSalePrice() != null) {
             viewHolder.salePrice.setText("Sale Price: " + product.getProdSalePrice());
         }
-        else{
-            viewHolder.salePrice.setText("Sale Price: None");
+        else if(product.getProdSalePrice() == 0){
+            viewHolder.salePrice.setText("Sale Price: --");
         }
         viewHolder.productType.setText("Category: " + product.getProdType());
         viewHolder.productDesc.setText("Description: " + product.getProdDesc());

@@ -125,7 +125,7 @@
         </activity>
         <activity
             android:name=".CustReports"
-            android:label="Customer Reports">
+            android:label="Users - By Type">
             <intent-filter>
                 <action android:name="com.rollingpinbakery.rollingpinbakery.CustReports" />
 
@@ -143,7 +143,7 @@
         </activity>
         <activity
             android:name=".InventReports"
-            android:label="Inventory Reports">
+            android:label="Products - Price: Low-to-High">
             <intent-filter>
                 <action android:name="com.rollingpinbakery.rollingpinbakery.InventReports" />
 
