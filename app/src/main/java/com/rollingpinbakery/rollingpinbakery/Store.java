@@ -155,8 +155,6 @@ public class Store extends AppCompatActivity
     public void NavDonutsCat(View view){
         startActivity(new Intent(this, DonutCategory.class));
     }
-    public void NavBreadsCat(View view){
-        startActivity(new Intent(this, BreadsCategory.class));
-    }
+
 
 }
