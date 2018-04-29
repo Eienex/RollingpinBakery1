@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RollingpinBakery1.iml" filepath="$PROJECT_DIR$/RollingpinBakery1.iml" />
-      <module fileurl="file://C:\Users\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery2.iml" filepath="C:\Users\defco\AndroidStudioProjects\RollingpinBakery1\RollingpinBakery2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery2.iml" filepath="$PROJECT_DIR$/../../../../../defco/AndroidStudioProjects/RollingpinBakery1/RollingpinBakery2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

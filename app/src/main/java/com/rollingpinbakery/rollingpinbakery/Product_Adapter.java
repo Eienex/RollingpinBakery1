@@ -15,6 +15,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
@@ -112,16 +117,17 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
             }
         });
 
+*/
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Delete the item from the database
-                update(product);
+                delete(product);
                 notifyDataSetChanged();
                 view.getContext().startActivity(new Intent(getContext(), Admin_Products.class));
             }
         });
-        */
+
         return convertView;
     }
 
@@ -130,12 +136,24 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
         notifyDataSetChanged();
     }
 
-    public void update(Product product){
+    public void delete(final Product productToDelete){
         try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
-            databaseAccess.open();
-            databaseAccess.deleteProduct(product);
-            databaseAccess.close();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Products");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                    {
+                        Product product = snapshot.getValue(Product.class);
+                        if (product.get_prodId() == productToDelete.get_prodId()){
+                            snapshot.getRef().removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {   }
+            });
         }catch(Exception ex){
             Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
         }

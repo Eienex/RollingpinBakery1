@@ -11,8 +11,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
+import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 import org.w3c.dom.Text;
 
@@ -41,7 +47,7 @@ implements View.OnClickListener {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Customer customer = getItem(position);
+        final Customer customer = getItem(position);
         ViewHolder viewHolder;
 
         final View result;
@@ -85,60 +91,61 @@ implements View.OnClickListener {
                 // editCustomer(view, id, txtFName, txtLName, txtUsername, txtPassword, txtEmail, txtRole);
             }
         });
-
+*/
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Delete the item from the database
-                update(customer);
+                Delete(customer);
                 notifyDataSetChanged();
                 view.getContext().startActivity(new Intent(getContext(), AdminCustomers.class));
             }
-        }); */
+        });
 
         return convertView;
     }
+
     @Override
     public void onClick(View v) {
     }
-}
-/*
-    public void reset(Customer customer){
+
+
+    public void reset(Customer customer) {
         this.remove(customer);
         notifyDataSetChanged();
     }
 
-    public void update(Customer customer){
-        //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
-        try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
-            databaseAccess.open();
-            //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
-            databaseAccess.deleteCustomer(customer);
-            databaseAccess.close();
-        }catch(Exception ex){
-            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    }
-    public void Delete(Customer customer){
-        try{
-            DatabaseAccess databaseAccess = DatabaseAccess.getInstance(context);
-            databaseAccess.open();
-            //AppDatabase.getAppDatabase(getContext()).customerDao().delete(customer);
-            databaseAccess.deleteCustomer(customer);
-            databaseAccess.close();
-        }catch(Exception ex){
-            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+
+    public void Delete(final Customer customerToDelete) {
+        try {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users");
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren())
+                    {
+                        Customer customer = snapshot.getValue(Customer.class);
+                        if (customer.get_custId()== customerToDelete.get_custId()){
+                            snapshot.getRef().removeValue();
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {   }
+            });
+        } catch (Exception ex) {
+            Toast.makeText(getContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
 
-    public void editCustomer(View view, String id, String fName, String lName, String username, String password, String email, String role){
+    public void editCustomer(View view, String id, String fName, String lName, String username, String password, String email, String role) {
         Intent formResult = new Intent(getContext(), AdminCustomerEdit.class);
 
         formResult.putExtra("txt_custID", id);
         formResult.putExtra("txt_custFName", fName);
-        formResult.putExtra("txt_custLName",lName);
+        formResult.putExtra("txt_custLName", lName);
         formResult.putExtra("txt_username", username);
         formResult.putExtra("txt_password", password);
         formResult.putExtra("txt_email", email);
@@ -146,4 +153,4 @@ implements View.OnClickListener {
 
         view.getContext().startActivity(formResult);
     }
-*/
+}
