@@ -1,5 +1,6 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
 import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminCustomerEdit extends AppCompatActivity {
-
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference dbReference;
     String id;
     EditText custFName, custLName, custUsername, custPassword, custEmail;
     Spinner customerRole;
@@ -96,20 +104,38 @@ public class AdminCustomerEdit extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please fill out the form", Toast.LENGTH_SHORT);
         }
         else {
+            Spinner spinner = findViewById(R.id.spinner);
+            String spinnerResult = spinner.getSelectedItem().toString();
+            final Customer updatedCustomer = new Customer(id,txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult);
             try{
-                Spinner spinner = findViewById(R.id.spinner);
-                String spinnerResult = spinner.getSelectedItem().toString();
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-                databaseAccess.open();
-                Customer updatedCustomer = new Customer(id,txtFName, txtLName, txtUsername, txtPassword, txtEmail, spinnerResult);
-                //AppDatabase.getAppDatabase(this).customerDao().update(updatedCustomer);
-                databaseAccess.updateCustomer(updatedCustomer);
-                databaseAccess.close();
-                finish();
+
+                dbReference = FirebaseDatabase.getInstance().getReference("users");
+                dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot data : dataSnapshot.getChildren())
+                        {
+                            String custId = data.child("_custId").getValue().toString();
+                            if(custId.equals(updatedCustomer.get_custId())){
+                                String keyID=data.getKey();
+
+                                dbReference.child(keyID).child("custEmail").setValue(updatedCustomer.getCustEmail());
+                                dbReference.child(keyID).child("custFName").setValue(updatedCustomer.getCustFName());
+                                dbReference.child(keyID).child("custLName").setValue(updatedCustomer.getCustLName());
+                                dbReference.child(keyID).child("custPassword").setValue(updatedCustomer.getCustPassword());
+                                dbReference.child(keyID).child("custType").setValue(updatedCustomer.getCustType());
+                                dbReference.child(keyID).child("custUsername").setValue(updatedCustomer.getCustUsername());
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {   }
+                });
             }catch(Exception ex){
                 Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
             }
-
+            startActivity(new Intent(getApplicationContext(), AdminCustomers.class));
         }
     }
 }

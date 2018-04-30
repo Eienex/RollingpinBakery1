@@ -79,19 +79,21 @@ implements View.OnClickListener {
         Button editBtn = convertView.findViewById(R.id.EditBtn);
         Button deleteButton = convertView.findViewById(R.id.DeleteBtn);
 
-    /*    editBtn.setOnClickListener(new View.OnClickListener() {
+        final String id = customer.get_custId();
+
+      editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String txtFName = customer.getCustFName();
                 final String txtLName = customer.getCustLName();
-                final String txtUsername = username.getText().toString();
-                final String txtPassword = password.getText().toString();
-                final String txtEmail = email.getText().toString();
-                final String txtRole = custRole.getText().toString();
-                // editCustomer(view, id, txtFName, txtLName, txtUsername, txtPassword, txtEmail, txtRole);
+                final String txtUsername = customer.getCustUsername();
+                final String txtPassword = customer.getCustPassword();
+                final String txtEmail = customer.getCustEmail();
+                final String txtRole = customer.getCustType();
+                editCustomer(view, id, txtFName, txtLName, txtUsername, txtPassword, txtEmail, txtRole);
             }
         });
-*/
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
