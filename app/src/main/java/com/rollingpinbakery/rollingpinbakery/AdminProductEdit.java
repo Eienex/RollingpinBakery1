@@ -1,5 +1,6 @@
 package com.rollingpinbakery.rollingpinbakery;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +11,20 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rollingpinbakery.rollingpinbakery.Data.AppDatabase;
+import com.rollingpinbakery.rollingpinbakery.Data.Customer;
 import com.rollingpinbakery.rollingpinbakery.Data.DatabaseAccess;
 import com.rollingpinbakery.rollingpinbakery.Data.Product;
 
 public class AdminProductEdit extends AppCompatActivity {
-
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference dbReference;
     String id;
     EditText prodName, prodPrice, prodSalePrice, prodDesc, prodImage;
     Spinner productCategory;
@@ -91,10 +100,10 @@ public class AdminProductEdit extends AppCompatActivity {
         EditText prodDesc = (EditText)findViewById(R.id.ProductDescription);
         EditText prodImg = (EditText)findViewById(R.id.ProductImage);
 
-        String txtName = prodName.getText().toString();
-        String txtPrice = prodPrice.getText().toString();
-        String txtSalePrice = prodSalesPrice.getText().toString();
-        String txtDesc = prodDesc.getText().toString();
+        final String txtName = prodName.getText().toString();
+        final String txtPrice = prodPrice.getText().toString();
+        final String txtSalePrice = prodSalesPrice.getText().toString();
+        final String txtDesc = prodDesc.getText().toString();
         String txtImg = prodImg.getText().toString();
 
         if (txtName.matches("") || txtPrice.matches("")){
@@ -107,7 +116,7 @@ public class AdminProductEdit extends AppCompatActivity {
                 productSalesPrice = 0.00;
             }else {productSalesPrice = Double.parseDouble(txtSalePrice);}
 
-            Spinner spinner = findViewById(R.id.spinner);
+            final Spinner spinner = findViewById(R.id.spinner);
             String spinnerResult = spinner.getSelectedItem().toString();
             int isFeatured = 0;
             CheckBox isFeaturedProd = findViewById(R.id.IsFeaturedCkbx);
@@ -118,17 +127,36 @@ public class AdminProductEdit extends AppCompatActivity {
                 isFeatured = 0;
             }
 
-            Product updatedProduct = new Product(id,txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured,null);
+            final Product updatedProduct = new Product(id,txtName, productPrice, productSalesPrice, txtDesc,spinnerResult,isFeatured,null);
                 //AppDatabase.getAppDatabase(this).productDao().update(updatedProduct);
             try{
-                DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-                databaseAccess.open();
-                databaseAccess.updateProduct(updatedProduct);
-                databaseAccess.close();
+                dbReference = FirebaseDatabase.getInstance().getReference("Products");
+                dbReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for(DataSnapshot data : dataSnapshot.getChildren())
+                        {
+                            String productId = data.child("_prodId").getValue().toString();
+                            if(productId.equals(id)){
+                                String keyID=data.getKey();
+
+                                dbReference.child(keyID).child("prodDesc").setValue(updatedProduct.getProdDesc());
+                                dbReference.child(keyID).child("prodFeatured").setValue(updatedProduct.getProdFeatured());
+                                dbReference.child(keyID).child("prodName").setValue(updatedProduct.getProdName());
+                                dbReference.child(keyID).child("prodRetailPrice").setValue(updatedProduct.getProdRetailPrice());
+                                dbReference.child(keyID).child("prodSalePrice").setValue(updatedProduct.getProdSalePrice());
+                                dbReference.child(keyID).child("prodType").setValue(updatedProduct.getProdType());
+                            }
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {   }
+                });
             }catch(Exception ex){
                 Toast.makeText(getApplicationContext(), ex.getMessage(), Toast.LENGTH_LONG).show();
             }
-                finish();
+                startActivity(new Intent(getApplicationContext(), Admin_Products.class));
             }
     }
 }

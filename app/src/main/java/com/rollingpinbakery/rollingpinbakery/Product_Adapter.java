@@ -56,7 +56,7 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
     @Override
     public View getView(int postition, @Nullable View convertView, @NonNull final ViewGroup parent){
         final Product product = getItem(postition);
-        Product_Adapter.ViewHolder viewHolder;
+        final Product_Adapter.ViewHolder viewHolder;
 
         final View result;
 
@@ -102,22 +102,22 @@ public class Product_Adapter extends ArrayAdapter<Product> implements View.OnCli
 
         final String id = product.get_prodId();
 
-/*
+
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String txtName = name.getText().toString();
-                final String txtPrice = price.getText().toString();
-                final String txtSalePrice = salePrice.getText().toString();
-                final String txtType = productType.getText().toString();
-                final String txtDesc = productDesc.getText().toString();
-                final String txtProdIsFeatured = prodIsFeatured.getText().toString();
-                final String txtProdImg = prodIsFeatured.getText().toString();
+                final String txtName = viewHolder.name.getText().toString();
+                final String txtPrice = viewHolder.price.getText().toString();
+                final String txtSalePrice = viewHolder.salePrice.getText().toString();
+                final String txtType = viewHolder.productType.getText().toString();
+                final String txtDesc = viewHolder.productDesc.getText().toString();
+                final String txtProdIsFeatured = viewHolder.prodIsFeatured.getText().toString();
+                final String txtProdImg = viewHolder.prodIsFeatured.getText().toString();
                 editProduct(view, id, txtName, txtPrice, txtSalePrice, txtType, txtDesc, txtProdIsFeatured);
             }
         });
 
-*/
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
