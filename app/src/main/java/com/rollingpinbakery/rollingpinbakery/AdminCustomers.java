@@ -75,7 +75,7 @@ public class AdminCustomers extends AppCompatActivity
                   String custType = customer.getCustType();
 
 
-                  customers.add(new Customer(custId, custFName, custLName,userName, custEmail, custPassword, custType));
+                  customers.add(new Customer(custId, custFName, custLName,userName, custPassword,custEmail, custType));
 
               }
               adapter = new CustomerAdapter(customers, getApplicationContext());
