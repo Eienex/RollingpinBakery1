@@ -66,6 +66,7 @@ public class AdminCustomers extends AppCompatActivity
               {
                   Customer customer = snapshot.getValue(Customer.class);
 
+                  String custId = customer.get_custId();
                   String custFName = customer.getCustFName();
                   String custLName = customer.getCustLName();
                   String userName = customer.getCustUsername();
@@ -74,7 +75,7 @@ public class AdminCustomers extends AppCompatActivity
                   String custType = customer.getCustType();
 
 
-                  customers.add(new Customer(custFName, custLName,userName, custEmail, custPassword, custType));
+                  customers.add(new Customer(custId, custFName, custLName,userName, custEmail, custPassword, custType));
 
               }
               adapter = new CustomerAdapter(customers, getApplicationContext());

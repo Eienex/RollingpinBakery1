@@ -90,7 +90,7 @@ public class AdminCustomerEdit extends AppCompatActivity {
         EditText custLName = (EditText)findViewById(R.id.CustomerLName);
         EditText custUsername = (EditText)findViewById(R.id.CustomerUsername);
         EditText custPassword = (EditText)findViewById(R.id.CustomerPassword);
-        EditText custEmail = (EditText)findViewById(R.id.CustomerEmail);
+        final EditText custEmail = (EditText)findViewById(R.id.CustomerEmail);
 
 
         String txtFName = custFName.getText().toString();
@@ -116,7 +116,9 @@ public class AdminCustomerEdit extends AppCompatActivity {
 
                         for(DataSnapshot data : dataSnapshot.getChildren())
                         {
-                            String custId = data.child("_custId").getValue().toString();
+                            Customer customer = data.getValue(Customer.class);
+
+                            String custId = customer.get_custId();
                             if(custId.equals(updatedCustomer.get_custId())){
                                 String keyID=data.getKey();
 
