@@ -48,7 +48,6 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         final TextView salePrice = convertView.findViewById(R.id.salePrice);
         final TextView productType = convertView.findViewById(R.id.productType);
         final TextView productDesc = convertView.findViewById(R.id.productDesc);
-        Button viewBtn = convertView.findViewById(R.id.ViewBtn);
         Button buyBtn = convertView.findViewById(R.id.BuyBtn);
 
         final String id = product.get_prodId();
@@ -64,18 +63,6 @@ public class StoreProductAdapter extends ArrayAdapter<Product> {
         productType.setText("Category: " + product.getProdType());
         productDesc.setText("Description: " + product.getProdDesc());
 
-
-        viewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String txtName = name.getText().toString();
-                final String txtPrice = price.getText().toString();
-                final String txtSalePrice = salePrice.getText().toString();
-                final String txtType = productType.getText().toString();
-                final String txtDesc = productDesc.getText().toString();
-                viewProduct(view, id, txtName, txtPrice, txtSalePrice, txtType, txtDesc);
-            }
-        });
 
         buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
