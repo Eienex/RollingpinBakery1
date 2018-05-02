@@ -77,15 +77,6 @@
             android:text="@string/Donuts"
             android:textSize="30sp" />
 
-        <Button
-            android:id="@+id/BreadsCategory"
-            android:layout_width="175dp"
-            android:layout_height="138dp"
-
-            android:layout_margin="3dp"
-            android:onClick="NavBreadsCat"
-            android:text="@string/breads"
-            android:textSize="30sp" />
 
     </GridLayout>
 </android.support.constraint.ConstraintLayout>
